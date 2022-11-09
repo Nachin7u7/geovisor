@@ -22,10 +22,10 @@ switch($action) {
                      * si no tuviera algun acceso se actualizará
                      */
 
-                    $url = 'Location: /distribuidor';
+                    $url = 'Location: /public';
                     break;
                 default:
-                    $url = 'Location: /';
+                    $url = 'Location: /sib';
                     break;
             }
 
