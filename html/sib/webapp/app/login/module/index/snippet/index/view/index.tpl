@@ -40,6 +40,14 @@
                 <a href="/ingreso/recupera" class="txt1">Forgot your password??</a>
             </div>
     *}
+
+            <div id="div_olvido">
+                <a href="/web/restorepassword" class="txt1">¿Olvido su contraseña?</a>
+            </div>
+            <div id="div_registro">
+                <a href="/web/singin" class="txt1">Registrar usuario</a>
+            </div>
+
         </div>
 
     </div>
@@ -57,9 +65,14 @@
 </form>
 
 
-<div  style="text-align: center;font-size: 11px; color: #7c7c7c; padding-top: 15px;">
+<div  style="text-align: center;font-size: 10px; color: #7c7c7c; padding-top: 10px; ">
+    <img src="/images/logo/otca.png" width="350"><br>
+    El presente sistema ha sido desarrollado en colaboración entre el MNHN y el Proyecto Bioamazonía,<br>
+    proyecto de desarrollo de la Organización del Tratado de Cooperación Amazónica (OTCA),<br>
+    cofinanciado por la República Federal de Alemania a través de KfW.
+</div>
 
-    <br>
-    2022-2023 © <a href="http://www.seth.com.bo" target="_blank" style="font-size: 11px;  ">SETH Solution</a> | Uyuni v.0.0.5
-    <br><br>
+<div  style="text-align: center;font-size: 11px; color: #7c7c7c; padding-top: 2px; padding-bottom: 5px;">
+2022-2023 <a href="http://www.mnhn.gob.bo" target="_blank" style="font-size: 11px;  ">© MNHN</a> - <a href="http://www.seth.com.bo" target="_blank" style="font-size: 11px;  ">SETH Solution</a> | Uyuni v.0.1.0
+<br>
 </div>
