@@ -121,4 +121,46 @@ class Index extends CoreResources {
         }
         return $dataResult;
     }
+
+    public function verifica($c,$e){
+        if(trim($c)!=""){
+            $where = [
+                ['username', '=', base64_decode($e)],
+                ['check_code', '=', $c],
+                ['active', '=', FALSE],
+            ];
+            $user = User::where($where)->first();
+        }
+        return $user;
+    }
+    public function valida_email($c,$e){
+        global $db,$smarty;
+        /**
+         * Verificamos si existe el usuario
+         */
+        $user = $this->verifica($c,$e);
+        if($user->id>1){
+            $e = base64_decode($e);
+            $rec = array();
+            $rec["check_date"] = date("Y-m-d H:i:s");
+            $rec["check_email"] = 'TRUE';
+            $rec["check_code"] = NULL;
+            $rec["active"] = 'TRUE';
+            $db->AutoExecute($this->table_core["user"],$rec,"UPDATE","id='".$user->id."'");
+            $smarty->assign("email_user", trim($e));
+
+            $to["email"] = $user->username;
+            $to["name"] = $user->name." ".$user->last_name;
+
+            $asunto = "[MNHN-SIB] - Su cuenta fue activada";
+            //$envio = $this->sendEmailSystem($to,$asunto);
+
+            $resp["resp"] = 1;
+            $resp["msg"] = "Se cambio con exito la contraseña";
+        }else{
+            $resp["resp"] = 2;
+            $resp["msg"] = "Los datos de verificación de correo electrónico son incorrectos";
+        }
+        return $resp;
+    }
 }

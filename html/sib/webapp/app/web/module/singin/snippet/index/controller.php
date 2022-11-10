@@ -41,19 +41,22 @@ switch($action) {
         $smarty->assign("subpage_js", $webm["index_js"]);
         break;
     /**
-     * Creación de JSON
+     * Registrar
      */
-    case 'list':
-
-        //$datatable_debug = true;
-        $res = $objItem->getItemDatatableRows();
-        Core::printJson($res);
-        break;
-
     case 'save':
         $smarty->assign("subpage", $webm["email"]);
         $respuesta = $objItem->updateData($_REQUEST["item"]);
         Core::printJson($respuesta);
         break;
-
+    
+    case 'verifica':
+            
+            $smarty->assign("subpage", $webm["email_valida"]);
+            
+            $res = $objItem->valida_email($_REQUEST["c"],$_REQUEST["e"]);
+            $smarty->assign("verifica", $res["resp"]);
+            $smarty->assign("subpage", $webm["verifica"]);
+            $smarty->assign("subpage_js", $webm["verifica_js"]);
+            
+    break;
 }

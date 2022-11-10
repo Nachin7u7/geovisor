@@ -16,7 +16,7 @@ font-family:'Roboto', Tahoma, Verdana, Segoe, sans-serif;
 <br><br>
         Para poder activar tu cuenta, haz click en el siguiente boton.
         <br><br>
-        <a href="{$url_dominio}/ingreso/registro/verifica/?c={$check_code}&e={$email_user}" style="-webkit-text-size-adjust: none; text-decoration: none; display: inline-block;
+        <a href="{$url_dominio}/web/singin/verifica/?c={$check_code}&e={$email_user}" style="-webkit-text-size-adjust: none; text-decoration: none; display: inline-block;
 color: #ffffff; background-color: #53ba3e; border-radius: 50px; -webkit-border-radius: 50px;
 -moz-border-radius: 50px; width: auto; width: auto; border-top: 1px solid #53ba3e; border-right:
 1px solid #53ba3e; border-bottom: 1px solid #53ba3e; border-left: 1px solid #53ba3e; padding-top:

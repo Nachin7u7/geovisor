@@ -42,7 +42,9 @@
     *}
 
             <div id="div_olvido">
+            {*
                 <a href="/web/restorepassword" class="txt1">¿Olvido su contraseña?</a>
+                *}
             </div>
             <div id="div_registro">
                 <a href="/web/singin" class="txt1">Registrar usuario</a>
