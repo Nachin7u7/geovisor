@@ -3,18 +3,18 @@ namespace App\Sib\Module\Botanica\Snippet\Index;
 use Core\CoreResources;
 
 class Index extends CoreResources {
-    var $objTable = "muestrabio";
-    var $folder = "botanica";
-    var $fkey_field = "coleccion_id";
-    var $fkey_id = 6;
-    var $extraWhere = "";
+    var $objTable = "catalogo_taxonomia";
+//    var $folder = "botanica";
+//    var $fkey_field = "coleccion_id";
+//    var $fkey_id = 6;
+//    var $extraWhere = "";
     function __construct()
     {
         /**
          * We initialize all the libraries and variables for the new class
          */
         $this->appInit();
-        $this->extraWhere = $this->fkey_field."=".$this->fkey_id ;
+//        $this->extraWhere = $this->fkey_field."=".$this->fkey_id ;
     }
     function getItem($idItem){
 
@@ -52,7 +52,8 @@ class Index extends CoreResources {
         /**
          * Additional configuration
          */
-        $extraWhere = $this->extraWhere ;
+//        $extraWhere = $this->extraWhere ;
+        $extraWhere = "reino_id=1" ;
         $groupBy = "";
         $having = "";
         /**
@@ -81,7 +82,8 @@ class Index extends CoreResources {
      */
     function deleteData($id){
         $field_id="id";
-        $where = $this->extraWhere;
+//        $where = $this->extraWhere;
+        $where = "";
         $res = $this->deleteItem($id,$field_id,$this->table[$this->objTable],$where);
         return $res;
     }

@@ -4,17 +4,17 @@ use Core\CoreResources;
 
 class Index extends CoreResources
 {
-    var $objTable = "muestrabio";
-    var $fkey_field = "coleccion_id";
-    var $fkey_id = 6;
-    var $extraWhere = "";
+    var $objTable = "catalogo_taxonomia";
+//    var $fkey_field = "coleccion_id";
+//    var $fkey_id = 6;
+//    var $extraWhere = "";
     function __construct()
     {
         /**
          * We initialize all the libraries and variables for the new class
          */
         $this->appInit();
-        $this->extraWhere = $this->fkey_field."=".$this->fkey_id ;
+//        $this->extraWhere = $this->fkey_field."=".$this->fkey_id ;
     }
     function getItem($idItem){
 

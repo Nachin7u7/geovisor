@@ -22,6 +22,41 @@ class Catalog extends CoreResources{
         $this->addCatalogList($this->table["departamento"]
             ,"departamento","","name",""
             ,"name","","","");
+
+
+        $this->addCatalogList($this->table["reino"]
+            ,"reino","","nombre",""
+            ,"nombre","","","");
+        $this->addCatalogList($this->table["division"]
+            ,"division","","nombre",""
+            ,"nombre","","","");
+        $this->addCatalogList($this->table["orden"]
+            ,"orden","","nombre",""
+            ,"nombre","","","");
+        $this->addCatalogList($this->table["familia"]
+            ,"familia","","nombre",""
+            ,"nombre","","","");
+        $this->addCatalogList($this->table["genero"]
+            ,"genero","","nombre",""
+            ,"nombre","","","");
+        $this->addCatalogList($this->table["especie"]
+            ,"especie","","nombre",""
+            ,"nombre","","","");
+        $this->addCatalogList($this->table["filo"]
+            ,"filo","","nombre",""
+            ,"nombre","","","");
+        $this->addCatalogList($this->table["clase"]
+            ,"clase","","nombre",""
+            ,"nombre","","","");
+        $this->addCatalogList($this->table["tipo_nomenclatura"]
+            ,"tipo_nomenclatura","","nombre",""
+            ,"nombre","","","");
+        $this->addCatalogList($this->table["categoria_taxon"]
+            ,"categoria_taxon","","nombre",""
+            ,"nombre","","","");
+        $this->addCatalogList($this->table["epiteto"]
+            ,"epiteto","","nombre",""
+            ,"nombre","","","");
     }
 
 }

@@ -12,8 +12,8 @@ $fields = array();
  * Configuraciòn de los grupos de campos a utilizar
  */
 $field_item = array();
-$field_item["occurrence_id"]=array("type"=>"text");
-$field_item["recorded_by"]=array("type"=>"text");
+//$field_item["occurrence_id"]=array("type"=>"text");
+//$field_item["recorded_by"]=array("type"=>"text");
 //$field_item["active"]=array("type"=>"checkbox_02");
 
 

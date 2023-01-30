@@ -12,9 +12,8 @@ $appVars["table"]  = array();
 $db_prefix = ""; //prefijo de la base de datos
 $db_table = array();
 $dbSchemaName = "coleccion";
-$db_table[] = Core::getTableConfig("muestrabio");
-$db_table[] = Core::getTableConfig("muestrabio_foto");
-
+$db_table[] = Core::getTableConfig("catalogo_taxonomia");
+$db_table[] = Core::getTableConfig("especimen");
 $appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName);
 unset($db_table);
 unset($db_prefix);
@@ -22,6 +21,17 @@ unset($db_prefix);
 
 $db_table = array();
 $dbSchemaName = "catalogo";
+$db_table[] = Core::getTableConfig("reino");
+$db_table[] = Core::getTableConfig("division");
+$db_table[] = Core::getTableConfig("orden");
+$db_table[] = Core::getTableConfig("familia");
+$db_table[] = Core::getTableConfig("genero");
+$db_table[] = Core::getTableConfig("especie");
+$db_table[] = Core::getTableConfig("filo");
+$db_table[] = Core::getTableConfig("clase");
+$db_table[] = Core::getTableConfig("tipo_nomenclatura");
+$db_table[] = Core::getTableConfig("categoria_taxon");
+$db_table[] = Core::getTableConfig("epiteto");
 $db_table[] = Core::getTableConfig("coleccion");
 $db_table[] = Core::getTableConfig("pais");
 $appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName,$appVars["table"] );

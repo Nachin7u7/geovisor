@@ -18,14 +18,29 @@ $item_tab[]=array(
 );
 
 //-------------------------------------------------------------
-/*
+
 $item_tab[]=array(
-    "label"=> $smarty->config_vars["tab_enmienda"]
-,   "id_name"=>"enmienda"
-,   "icon" => "fas fa-calendar-alt m--font-success"
+    "label"=> $smarty->config_vars["tab_especimenes"]
+,   "id_name"=>"especimenes"
+,   "icon" => "fas fa-otter m--font-success"
 ,   "new" => 0
 );
-*/
+//-------------------------------------------------------------
+
+$item_tab[]=array(
+    "label"=> $smarty->config_vars["tab_datoscolecta"]
+,   "id_name"=>"datoscolecta"
+,   "icon" => "fas fa-book m--font-success"
+,   "new" => 0
+);
+//-------------------------------------------------------------
+
+$item_tab[]=array(
+    "label"=> $smarty->config_vars["tab_lugarcolecta"]
+,   "id_name"=>"lugarcolecta"
+,   "icon" => "fas fa-map-marker m--font-success"
+,   "new" => 0
+);
 //-------------------------------------------------------------
 $item_tab[]=array(
     "label"=> $smarty->config_vars["tab_foto"]
