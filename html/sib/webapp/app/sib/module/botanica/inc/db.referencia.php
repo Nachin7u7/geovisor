@@ -14,6 +14,7 @@ $db_table = array();
 $dbSchemaName = "coleccion";
 $db_table[] = Core::getTableConfig("catalogo_taxonomia");
 $db_table[] = Core::getTableConfig("especimen");
+$db_table[] = Core::getTableConfig("especimen_foto");
 $appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName);
 unset($db_table);
 unset($db_prefix);
@@ -34,6 +35,8 @@ $db_table[] = Core::getTableConfig("categoria_taxon");
 $db_table[] = Core::getTableConfig("epiteto");
 $db_table[] = Core::getTableConfig("coleccion");
 $db_table[] = Core::getTableConfig("pais");
+$db_table[] = Core::getTableConfig("language");
+$db_table[] = Core::getTableConfig("license");
 $appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName,$appVars["table"] );
 unset($db_table);
 

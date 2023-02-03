@@ -3,7 +3,7 @@ namespace App\Sib\Module\Botanica\Snippet\Index;
 use Core\CoreResources;
 
 class Index extends CoreResources {
-    var $objTable = "catalogo_taxonomia";
+    var $objTable = "especimen";
 //    var $folder = "botanica";
 //    var $fkey_field = "coleccion_id";
 //    var $fkey_id = 6;
@@ -52,8 +52,7 @@ class Index extends CoreResources {
         /**
          * Additional configuration
          */
-//        $extraWhere = $this->extraWhere ;
-        $extraWhere = "reino_id=1" ;
+        $extraWhere = "" ;
         $groupBy = "";
         $having = "";
         /**

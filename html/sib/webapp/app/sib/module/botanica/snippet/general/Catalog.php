@@ -12,13 +12,14 @@ class Catalog extends CoreResources{
     }
 
     public function confCatalog(){
-        $this->addCatalogList($this->table["pais"]
-            ,"pais","","nombre",""
+        $this->addCatalogList($this->table["language"]
+            ,"language","","nombre",""
             ,"nombre","","","");
-//
-//        $this->addCatalogList($this->table["programa_estado"]
-//            ,"programa_estado","","nombre",""
-//            ,"nombre","","","");
+
+        $this->addCatalogList($this->table["license"]
+            ,"license","","nombre",""
+            ,"nombre","","","");
+
         $this->addCatalogList($this->table["departamento"]
             ,"departamento","","name",""
             ,"name","","","");

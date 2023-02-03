@@ -24,13 +24,13 @@ $grid_table_join = array();
 /**
  * Configuración de los campos que mostraremos en la grilla
  */
-$grid_item[]=array("field" => "nombre_cientifico","label"=> $smarty->config_vars["table_nombre_cientifico"]);
-//$grid_item[]=array("field" => "occurrence_id","label"=> $smarty->config_vars["table_occurrence_id"]);
-//$grid_item[]=array("field" => "coleccion_id","label"=> $smarty->config_vars["table_coleccion_id"]);
-//$grid_item[]=array("field" => "location_latitude_decimal","label"=> $smarty->config_vars["table_location_latitude_decimal"]);
-//$grid_item[]=array("field" => "location_longitude_decimal","label"=> $smarty->config_vars["table_location_longitude_decimal"]);
-//$grid_item[]=array("field" => "departamento_id","label"=> $smarty->config_vars["table_departamento_id"]);
-//$grid_item[]=array("field" => "municipio_id","label"=> $smarty->config_vars["table_municipio_id"]);
+$grid_item[]=array("field" => "basis_of_record","label"=> $smarty->config_vars["table_basis_of_record"]);
+$grid_item[]=array("field" => "type","label"=> $smarty->config_vars["table_type"]);
+$grid_item[]=array("field" => "collection_code","label"=> $smarty->config_vars["table_collection_code"]);
+$grid_item[]=array("field" => "catalog_number","label"=> $smarty->config_vars["table_catalog_number"]);
+$grid_item[]=array("field" => "rights_holder","label"=> $smarty->config_vars["table_rights_holder"]);
+$grid_item[]=array("field" => "access_rights","label"=> $smarty->config_vars["table_access_rights"]);
+$grid_item[]=array("field" => "recorded_by","label"=> $smarty->config_vars["table_recorded_by"]);
 
 $grid_item[]=array("field" => "created_at","label"=> $smarty->config_vars["gl_table_created_at"]);
 $grid_item[]=array("field" => "updated_at","label"=> $smarty->config_vars["gl_table_updated_at"]);

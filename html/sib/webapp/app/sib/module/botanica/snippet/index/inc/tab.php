@@ -20,14 +20,6 @@ $item_tab[]=array(
 //-------------------------------------------------------------
 
 $item_tab[]=array(
-    "label"=> $smarty->config_vars["tab_especimenes"]
-,   "id_name"=>"especimenes"
-,   "icon" => "fas fa-otter m--font-success"
-,   "new" => 0
-);
-//-------------------------------------------------------------
-
-$item_tab[]=array(
     "label"=> $smarty->config_vars["tab_datoscolecta"]
 ,   "id_name"=>"datoscolecta"
 ,   "icon" => "fas fa-book m--font-success"
@@ -43,12 +35,20 @@ $item_tab[]=array(
 );
 //-------------------------------------------------------------
 $item_tab[]=array(
+    "label"=> $smarty->config_vars["tab_taxonomia"]
+,   "id_name"=>"taxonomia"
+,   "icon" => "fas fa-otter m--font-success"
+,   "new" => 0
+);
+//-------------------------------------------------------------
+$item_tab[]=array(
     "label"=> $smarty->config_vars["tab_foto"]
 ,   "id_name"=>"foto"
 ,   "icon" => "fas fa-paperclip m--font-success"
 ,   "new" => 0
 );
 //-------------------------------------------------------------
+
 /**
  * Se añade el arreglo de tabs configurada a $tabs
  */

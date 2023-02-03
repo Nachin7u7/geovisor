@@ -1,25 +1,6 @@
 {include file="formprincipal/index.css.tpl"}
 
 <div class="card card-custom gutter-b ">
-    <div class="form-group row">
-        <div class="col-lg-2"></div>
-        <div class="col-lg-8">
-            <label>{#field_especimen_id#} <span class="text-danger bold">*</span> : </label>
-            <div class="input-group">
-                <select class="form-control m-select2 select2_general"
-                        name="item[especimen_id]" id="especimen_id"
-                        data-placeholder="{#field_Holder_especimen_id#}" {$privFace.input}
-                        required
-                        data-fv-not-empty___message="{#glFieldRequired#}"
-                >
-                    <option></option>
-                    {html_options options=$cataobj.especimen selected=$item.especimen_id}
-                </select>
-            </div>
-            <span class="form-text text-black-50">{#field_GroupMsg_especimen_id#}</span>
-        </div>
-    </div>
-
     <div class="card-header py-3">
 
         <div class="card-title  m-0">

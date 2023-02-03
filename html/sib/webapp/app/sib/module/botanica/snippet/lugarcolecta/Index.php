@@ -50,7 +50,7 @@ class Index extends CoreResources
         switch($form){
             case 'index': $tabla = $this->table[$this->objTable];
                 break;
-            case 'module': $tabla = $this->table["institucion"];
+            case 'module': $tabla = $this->table["especimen"];
                 break;
         }
 
@@ -76,7 +76,7 @@ class Index extends CoreResources
                     $requestGeom = $this->setGeomPointPostgis(
                         $itemData["location_longitude_decimal"]
                         ,$itemData["location_latitude_decimal"]
-                        ,"institucion"
+                        ,"especimen"
                         ,$fieldGeom
                         ,$field_id
                         ,$res["id"]

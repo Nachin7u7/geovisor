@@ -5,9 +5,9 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class Index extends CoreResources
 {
-    var $objTable = "muestrabio_foto";
+    var $objTable = "especimen_foto";
     var $folder = "foto";
-    var $fkey_field = "muestrabio_id";
+    var $fkey_field = "especimen_id";
 
     function __construct(){
         /**

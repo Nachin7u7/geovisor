@@ -39,7 +39,7 @@ switch($action){
         /**
          * Catalog
          */
-        $objCatalog->conf_catalog_formEspecimen($item_id);
+        $objCatalog->conf_catalog_form();
         $cataobj= $objCatalog->getCatalogList();
         //print_struc($cataobj);exit;
         $smarty->assign("cataobj", $cataobj);

@@ -12,8 +12,16 @@ $fields = array();
  * Configuraciòn de los grupos de campos a utilizar
  */
 $field_item = array();
-//$field_item["occurrence_id"]=array("type"=>"text");
-//$field_item["recorded_by"]=array("type"=>"text");
+$field_item["occurrence_id"]=array("type"=>"text");
+$field_item["basis_of_record"]=array("type"=>"text");
+$field_item["type"]=array("type"=>"text");
+$field_item["collection_code"]=array("type"=>"text");
+$field_item["collection_id"]=array("type"=>"text");
+$field_item["catalog_number"]=array("type"=>"text");
+$field_item["language_id"]=array("type"=>"text");
+$field_item["license_id"]=array("type"=>"text");
+$field_item["rights_holder"]=array("type"=>"text");
+$field_item["access_rights"]=array("type"=>"text");
 //$field_item["active"]=array("type"=>"checkbox_02");
 
 

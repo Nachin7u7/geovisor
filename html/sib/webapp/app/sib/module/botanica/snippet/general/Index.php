@@ -4,7 +4,7 @@ use Core\CoreResources;
 
 class Index extends CoreResources
 {
-    var $objTable = "catalogo_taxonomia";
+    var $objTable = "especimen";
 //    var $fkey_field = "coleccion_id";
 //    var $fkey_id = 6;
 //    var $extraWhere = "";
@@ -63,7 +63,6 @@ class Index extends CoreResources
                  * Additional processes when saving the data
                  */
                 if ($action=="new"){
-                    $dataResult[$this->fkey_field] = $this->fkey_id;
                 }
                 
                 break;
