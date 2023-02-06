@@ -1,19 +1,16 @@
 {include file="formprincipal/index.css.tpl"}
-
 <div class="card card-custom gutter-b ">
-    <div class="card-header py-3">
-
-        <div class="card-title  m-0">
-            <span class="card-icon"><i class="flaticon2-next text-dark-25"></i></span>
-            <span class="font-weight-bold font-size-h4 text-primary">{#title_datos#}</span>
-        </div>
-    </div>
     <!--begin::Form-->
     <form method="POST"
           action="{$path_url}/{$subcontrol}_/{if $type=="update"}{$id}/{/if}save.principal/"
           id="general_form">
 
-
+        <div class="card-header py-3">
+            <div class="card-title  m-0">
+                <span class="card-icon"><i class="flaticon2-next text-dark-25"></i></span>
+                <span class="font-weight-bold font-size-h4 text-primary">{#title_datos#}</span>
+            </div>
+        </div>
 
         <div class="card-body py-0">
             <div class="form-group">

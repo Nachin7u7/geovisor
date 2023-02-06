@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Sib\Module\Botanica\Snippet\Lugarcolecta;
+namespace App\Sib\Botanica\Lugarcolecta;
 use Core\CoreResources;
 class Catalog extends CoreResources{
 
@@ -12,19 +12,29 @@ class Catalog extends CoreResources{
     /**
      * Implementación desde aca
      */
-    public function conf_catalog_form(){
-//        $where = "cod_dep <> '0' ";
-//        $this->addCatalogList($this->table["departamento"]
-//            ,"departamento","","name",""
-//            ,"name",$where,"","");
-//        $where = $item["departamento_id"] != ""?" departamento_id = ".$item["departamento_id"]:"";
-//        $this->addCatalogList($this->table["municipio"]
-//            ,"municipio","","name",""
-//            ,"name",$where,"","");
+    public function conf_catalog_form($item){
+        $where = "cod_dep <> '0' ";
+        $this->addCatalogList($this->table["departamento"]
+            ,"departamento","","name",""
+            ,"name",$where,"","");
+        $where = $item["departamento_id"] != ""?" departamento_id = ".$item["departamento_id"]:"";
+        $this->addCatalogList($this->table["municipio"]
+            ,"municipio","","name",""
+            ,"name",$where,"","");
     }
-//    public function conf_catalog_formEspecimen($item){
-//
-//    }
+
+
+    function getMunicipioOptions($id){
+        /**
+         * sacamos los municipios
+         */
+        if($id!="" and $id>0){
+            $sql = "select id,sec_prov,provincia,name,zona,id_ut,capital,cod_ut,ine_dpto,ine_prov,ine_mun from ".$this->table["municipio"]." as m where m.departamento_id = '".$id."'";
+            $item = $this->dbm->Execute($sql);
+            $item = $item->GetRows();
+        }
+        return $item;
+    }
 
 
     public function confCatalog(){
