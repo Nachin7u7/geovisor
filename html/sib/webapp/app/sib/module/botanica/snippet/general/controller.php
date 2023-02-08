@@ -49,6 +49,8 @@ switch($action){
         $respuesta = $objItem->updateData($_REQUEST["item"],$id,$type);
         Core::printJson($respuesta);
         break;
-
-
+    case 'get.item':
+        $item = $objCatalog->getInstitucion($_REQUEST["id"]);
+        Core::printJson($item);
+        break;
 }

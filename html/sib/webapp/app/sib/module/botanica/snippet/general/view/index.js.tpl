@@ -9,6 +9,7 @@
         var btn_submit = $('#general_submit');
 
         var formv;
+        let urlmodule = "{/literal}{$path_url}/{$subcontrol}_{literal}";
         /**
          * Antes de enviar el formulario se ejecuta la siguiente funcion
          */
@@ -60,7 +61,7 @@
                 /**
                  * Copiamos los datos de summerNote a una variable
                  */
-                $('#descripcion_input').val($('#descripcion').summernote('code'));
+                $('#occurrence_remarks_input').val($('#occurrence_remarks').summernote('code'));
 
                 formv.validate().then(function(status) {
                     if(status === 'Valid'){
@@ -114,6 +115,28 @@
                     break;
             }
         };
+        var handle_select_institucion = function(){
+            $('#institution_id').on('change',function(){
+                var id = $('#institution_id').val();
+                $('#institution_code_s').addClass('spinner spinner-right').attr('disabled', true);
+                $('#institution_code').prop('disabled', true);
+                console.log(id);
+                if(id!="") {
+                    $.post(urlmodule+"/get.item"
+                        , {id: id}
+                        , function (res, textStatus, jqXHR) {
+                            for (var row in res) {
+
+                                console.log(res);
+                                $('#institution_code').val(res[row].institution_code);
+                            }
+                            $('#institution_code_s').removeClass('spinner spinner-right').attr('disabled', false);
+                            $('#institution_code').prop('disabled', false);
+                        }
+                        , 'json');
+                }
+            });
+        };
 
         return {
             init: function() {
@@ -122,6 +145,7 @@
                 handle_components();
                 handle_type_select();
                 handle_font_select();
+                handle_select_institucion();
             }
         };
     }();

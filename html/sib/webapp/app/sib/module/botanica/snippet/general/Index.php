@@ -64,7 +64,24 @@ class Index extends CoreResources
                  */
                 if ($action=="new"){
                 }
-                
+                if ($dataResult["language_id"]=="" or $dataResult["language_id"]==0){
+                    $dataResult["language_id"] = NULL;
+                }
+                if ($dataResult["license_id"]=="" or $dataResult["license_id"]==0){
+                    $dataResult["license_id"] = NULL;
+                }
+                if ($dataResult["life_stage_id"]=="" or $dataResult["life_stage_id"]==0){
+                    $dataResult["life_stage_id"] = NULL;
+                }
+                if ($dataResult["occurrence_status_id"]=="" or $dataResult["occurrence_status_id"]==0){
+                    $dataResult["occurrence_status_id"] = NULL;
+                }
+                if ($dataResult["preparations_id"]=="" or $dataResult["preparations_id"]==0){
+                    $dataResult["preparations_id"] = NULL;
+                }
+                if ($dataResult["sex_id"]=="" or $dataResult["sex_id"]==0){
+                    $dataResult["sex_id"] = NULL;
+                }
                 break;
         }
         return $dataResult;

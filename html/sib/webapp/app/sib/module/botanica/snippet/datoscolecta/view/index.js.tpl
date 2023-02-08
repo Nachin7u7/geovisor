@@ -79,7 +79,9 @@
             coreUyuni.setComponents();
             $('#hora').timepicker({
                 minuteStep: 1,
-                defaultTime: '',
+                showSeconds: false,
+                showMeridian: false,
+                defaultTime: ''
             });
         };
 

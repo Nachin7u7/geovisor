@@ -24,40 +24,37 @@ class Catalog extends CoreResources{
             ,"departamento","","name",""
             ,"name","","","");
 
+        $this->addCatalogList($this->table["sex"]
+            ,"sex","","nombre",""
+            ,"nombre","","","");
 
-        $this->addCatalogList($this->table["reino"]
-            ,"reino","","nombre",""
+        $this->addCatalogList($this->table["institucion"]
+            ,"institucion","","nombre",""
             ,"nombre","","","");
-        $this->addCatalogList($this->table["division"]
-            ,"division","","nombre",""
+
+        $this->addCatalogList($this->table["life_stage"]
+            ,"life_stage","","nombre",""
             ,"nombre","","","");
-        $this->addCatalogList($this->table["orden"]
-            ,"orden","","nombre",""
+
+        $this->addCatalogList($this->table["occurrence_status"]
+            ,"occurrence_status","","nombre",""
             ,"nombre","","","");
-        $this->addCatalogList($this->table["familia"]
-            ,"familia","","nombre",""
+
+        $this->addCatalogList($this->table["preparations"]
+            ,"preparations","","nombre",""
             ,"nombre","","","");
-        $this->addCatalogList($this->table["genero"]
-            ,"genero","","nombre",""
-            ,"nombre","","","");
-        $this->addCatalogList($this->table["especie"]
-            ,"especie","","nombre",""
-            ,"nombre","","","");
-        $this->addCatalogList($this->table["filo"]
-            ,"filo","","nombre",""
-            ,"nombre","","","");
-        $this->addCatalogList($this->table["clase"]
-            ,"clase","","nombre",""
-            ,"nombre","","","");
-        $this->addCatalogList($this->table["tipo_nomenclatura"]
-            ,"tipo_nomenclatura","","nombre",""
-            ,"nombre","","","");
-        $this->addCatalogList($this->table["categoria_taxon"]
-            ,"categoria_taxon","","nombre",""
-            ,"nombre","","","");
-        $this->addCatalogList($this->table["epiteto"]
-            ,"epiteto","","nombre",""
-            ,"nombre","","","");
+    }
+
+    function getInstitucion($id){
+        /**
+         * sacamos la intitucion
+         */
+        if($id!="" and $id>0){
+            $sql = "select * from ".$this->table["institucion"]." as i where i.id = '".$id."'";
+            $item = $this->dbm->Execute($sql);
+            $item = $item->GetRows();
+        }
+        return $item;
     }
 
 }
