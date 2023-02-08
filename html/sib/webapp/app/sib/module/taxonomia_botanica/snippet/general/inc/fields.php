@@ -12,18 +12,14 @@ $fields = array();
  * Configuraciòn de los grupos de campos a utilizar
  */
 $field_item = array();
-$field_item["reino_id"]=array("type"=>"text");
+$field_item["kingdom_id"]=array("type"=>"text");
 $field_item["division_id"]=array("type"=>"text");
-$field_item["orden_id"]=array("type"=>"text");
-$field_item["familia_id"]=array("type"=>"text");
-$field_item["genero_id"]=array("type"=>"text");
-$field_item["especie_id"]=array("type"=>"text");
-$field_item["filo_id"]=array("type"=>"text");
-$field_item["clase_id"]=array("type"=>"text");
-$field_item["tipo_nomenclatura_id"]=array("type"=>"text");
-$field_item["categoria_taxon_id"]=array("type"=>"text");
-$field_item["epiteto_id"]=array("type"=>"text");
-$field_item["nombre_cientifico"]=array("type"=>"text");
+$field_item["order_id"]=array("type"=>"text");
+$field_item["family_id"]=array("type"=>"text");
+$field_item["genus_id"]=array("type"=>"text");
+$field_item["phylum_id"]=array("type"=>"text");
+$field_item["class_id"]=array("type"=>"text");
+$field_item["scientific_name"]=array("type"=>"text");
 //$field_item["active"]=array("type"=>"checkbox_02");
 
 

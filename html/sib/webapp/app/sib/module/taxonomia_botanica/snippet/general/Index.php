@@ -47,6 +47,13 @@ class Index extends CoreResources
         $field_id="id";
         $res = $this->updateItem($itemId,$itemData ,$this->table[$this->objTable],$action,$field_id);
         $res["accion"] = $action;
+        if( $res["res"]==1){
+            $this->setDivision($itemData["division_id"], $itemId);
+            $this->setOrder($itemData["order_id"], $itemId);
+            $this->setFamily($itemData["family_id"], $itemId);
+            $this->setGenus($itemData["genus_id"], $itemId);
+            $this->setKingdom($itemData["kingdom_id"], $itemId);
+        }
         return $res;
     }
 
@@ -59,12 +66,114 @@ class Index extends CoreResources
                  * Additional processes when saving the data
                  */
                 if ($action=="new"){
-                    $dataResult[$this->fkey_field] = $this->fkey_id;
+                    $dataResult["kingdom_id"] = 1;
+                    $dataResult["kingdom"] = "Plantae";
                 }
-                
+                $dataResult["division"] = $this->getItemDivision($rec["division_id"])["nombre"];
+                $dataResult["order"] = $this->getItemOrder($rec["order_id"])["nombre"];
+                $dataResult["family"] = $this->getItemFamily($rec["family_id"])["nombre"];
+                $dataResult["genus"] = $this->getItemGenus($rec["genus_id"])["nombre"];
                 break;
         }
         return $dataResult;
+    }
+
+    private function setDivision($division_id, $itemId){
+        if($division_id!=""){
+            $sql = "SELECT * 
+                    FROM catalogo.division where id=".$division_id;
+            $res = $this->dbm->execute($sql);
+            $item = $res->fields;
+            $rec = array();
+            $rec["division"]=$item["nombre"];
+            $where = "id = ".$itemId;
+            $table = $this->table["catalogo_taxonomia"];
+            $this->dbm->AutoExecute($table,$rec,"UPDATE",$where);
+        }
+    }
+
+    function getItemDivision($id){
+        $sql = "select * from catalogo.division where id = '".$id."'";
+        $item = $this->dbm->Execute($sql);
+        $item = $item->fields;
+        return $item;
+    }
+
+    private function setOrder($orden_id, $itemId){
+        if($orden_id!=""){
+            $sql = "SELECT * 
+                    FROM catalogo.orden where id=".$orden_id;
+            $res = $this->dbm->execute($sql);
+            $item = $res->fields;
+            $rec = array();
+            $rec["order"]=$item["nombre"];
+            $where = "id = ".$itemId;
+            $table = $this->table["catalogo_taxonomia"];
+            $this->dbm->AutoExecute($table,$rec,"UPDATE",$where);
+        }
+    }
+
+    function getItemOrder($id){
+        $sql = "select * from catalogo.orden where id = '".$id."'";
+        $item = $this->dbm->Execute($sql);
+        $item = $item->fields;
+        return $item;
+    }
+
+    private function setFamily($family_id, $itemId){
+        if($family_id!=""){
+            $sql = "SELECT * 
+                    FROM catalogo.familia where id=".$family_id;
+            $res = $this->dbm->execute($sql);
+            $item = $res->fields;
+            $rec = array();
+            $rec["family"]=$item["nombre"];
+            $where = "id = ".$itemId;
+            $table = $this->table["catalogo_taxonomia"];
+            $this->dbm->AutoExecute($table,$rec,"UPDATE",$where);
+        }
+    }
+
+    function getItemFamily($id){
+        $sql = "select * from catalogo.familia where id = '".$id."'";
+        $item = $this->dbm->Execute($sql);
+        $item = $item->fields;
+        return $item;
+    }
+
+    private function setGenus($genus_id, $itemId){
+        if($genus_id!=""){
+            $sql = "SELECT * 
+                    FROM catalogo.genero where id=".$genus_id;
+            $res = $this->dbm->execute($sql);
+            $item = $res->fields;
+            $rec = array();
+            $rec["genus"]=$item["nombre"];
+            $where = "id = ".$itemId;
+            $table = $this->table["catalogo_taxonomia"];
+            $this->dbm->AutoExecute($table,$rec,"UPDATE",$where);
+        }
+    }
+
+    function getItemGenus($id){
+        $sql = "select * from catalogo.genero where id = '".$id."'";
+        $item = $this->dbm->Execute($sql);
+        $item = $item->fields;
+        return $item;
+    }
+
+    private function setKingdom($kingdom_id, $itemId){
+        if($kingdom_id!=""){
+            $sql = "SELECT * 
+                    FROM catalogo.reino where id=".$kingdom_id;
+            $res = $this->dbm->execute($sql);
+            $item = $res->fields;
+            $rec = array();
+            $rec["kingdom"]=$item["nombre"];
+            $where = "id = ".$itemId;
+            $table = $this->table["catalogo_taxonomia"];
+            $this->dbm->AutoExecute($table,$rec,"UPDATE",$where);
+        }
     }
 
 }
