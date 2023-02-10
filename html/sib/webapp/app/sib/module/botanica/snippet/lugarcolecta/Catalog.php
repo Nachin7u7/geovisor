@@ -29,9 +29,22 @@ class Catalog extends CoreResources{
          * sacamos los municipios
          */
         if($id!="" and $id>0){
-            $sql = "select id,sec_prov,provincia,name,zona,id_ut,capital,cod_ut,ine_dpto,ine_prov,ine_mun from ".$this->table["municipio"]." as m where m.departamento_id = '".$id."'";
+            $sql = "select id,sec_prov,provincia,name,zona,id_ut,capital,cod_ut,ine_dpto,ine_prov,ine_mun,lat,lon from ".$this->table["municipio"]." as m where m.departamento_id = '".$id."'";
             $item = $this->dbm->Execute($sql);
             $item = $item->GetRows();
+            //echo "entre al if";
+        }
+        return $item;
+    }
+    function getMunicipioPoint($id){
+        /**
+         * sacamos los municipios
+         */
+        if($id!="" and $id>0){
+            $sql = "select id,sec_prov,provincia,name,zona,id_ut,capital,cod_ut,ine_dpto,ine_prov,ine_mun,lat,lon, departamento_id from ".$this->table["municipio"]." as m where m.id = '".$id."'";
+            $item = $this->dbm->Execute($sql);
+            $item = $item->GetRows();
+            //echo "entre al if";
         }
         return $item;
     }

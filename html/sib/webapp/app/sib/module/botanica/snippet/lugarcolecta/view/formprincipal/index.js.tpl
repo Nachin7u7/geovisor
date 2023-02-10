@@ -7,7 +7,6 @@
          */
         var form = $('#general_form');
         var btn_submit = $('#general_submit');
-
         var formv;
         /**
          * Antes de enviar el formulario se ejecuta la siguiente funcion
@@ -79,6 +78,8 @@
             coreUyuni.setComponents();
         };
 
+
+
         return {
             init: function() {
                 handle_form_submit();
@@ -95,6 +96,7 @@
 
 
     var snippet_geovisor = function () {
+
 
         var marker;
         var leaflet;
@@ -336,12 +338,72 @@
             })
         };
 
+        var municipio_opt = $("#municipio_id");
+        let urlmodule = "{/literal}{$path_url}/{$subcontrol}_{literal}";
+
+        var handle_option_municipio = function(){
+            $('#departamento_id').on('change',function(){
+                var id = $('#departamento_id').val();
+                municipio_search(id);
+            });
+        };
+
+        var municipio_search = function(id){
+            municipio_opt.find("option").remove();
+            // disabled el selectbox
+            municipio_opt.prop('disabled', true);
+            if(id!="") {
+                $.post(urlmodule+"/get.municipio"
+                    , {id: id}
+                    , function (res, textStatus, jqXHR) {
+                        let selOption = $('<option></option>');
+                        municipio_opt.append(selOption.attr("value", "").text("{/literal}{#field_Holder_municipio_id#}{literal}"));
+                        let municipio_list = []
+                        for (var row in res) {
+                            municipio_opt.append($('<option></option>').attr("value", res[row].id).text(res[row].name));
+                            municipio_list[res[row].id] = res[row];
+                        }
+                        municipio_opt.trigger('chosen:updated');
+                        municipio_opt.prop('disabled', false);
+                    }
+                    , 'json');
+            }else{
+                //handle_options_init();
+            }
+        };
+
+        var handle_change_municipio = function(){
+            $('#municipio_id').on('change',function(){
+                var id = $('#municipio_id').val();
+                push_point_municipio(id);
+            });
+        };
+        var push_point_municipio = function(id){
+            if(id!="") {
+                $.post(urlmodule+"/get.point_municipio"
+                    , {id: id}
+                    , function (res, textStatus, jqXHR) {
+                        // console.log(res[0].departamento_id)
+                        changeLocation(res[0].lat, res[0].lon);
+                        map.setView(new L.LatLng(res[0].lat, res[0].lon), 10);
+                        latitude.val(res[0].lat);
+                        longitude.val(res[0].lon);
+                        $('#departamento_id').val(res[0].departamento_id);
+                    }
+                    , 'json');
+            }else{
+                //handle_options_init();
+            }
+        };
+
         return {
             // public functions
             init: function () {
                 // default charts
                 createMap();
                 handle_ll();
+                handle_option_municipio();
+                handle_change_municipio();
             }
         };
     }();
