@@ -43,13 +43,13 @@
                     <span class="form-text text-black-50">{#field_msg_verbatimEventDate#}</span>
                 </div>
                 <div class="col-lg-6">
-                    <label>{#field_fieldNumber#}:</label>
+                    <label>{#field_eventTime#}:</label>
                     <div class="input-group">
                         <input class="form-control" id="hora"
                                name="item[event_time]" value="{$item.event_time}"
                                readonly="readonly" placeholder="Seleccione la hora" type="text"/>
                     </div>
-                    <span class="form-text text-muted">{#field_msg_fieldNumber#}</span>
+                    <span class="form-text text-muted">{#field_msg_eventTime#}</span>
                 </div>
                 <div class="col-lg-6">
                     <label>{#field_fieldNumber#}:</label>
