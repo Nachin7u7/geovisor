@@ -20,6 +20,38 @@
 
 
                 <div class="col-lg-6">
+                    <label>{#field_departamento_id#} <span class="text-danger bold">*</span> : </label>
+                    <div class="input-group">
+                        <select class="form-control m-select2 select2_general"
+                                name="item[departamento_id]" id="departamento_id"
+                                data-placeholder="{#field_Holder_departamento_id#}" {$privFace.input}
+                                required
+                                data-fv-not-empty___message="{#glFieldRequired#}"
+                        >
+                            <option></option>
+                            {html_options options=$cataobj.departamento selected=$item.departamento_id}
+                        </select>
+                    </div>
+                    <span class="form-text text-black-50">{#field_GroupMsg_departamento_id#}</span>
+                </div>
+
+                <div class="col-lg-6">
+                    <label>{#field_municipio_id#} <span class="text-danger bold">*</span> : </label>
+                    <div class="input-group">
+                        <select class="form-control m-select2 select2_general"
+                                name="item[municipio_id]" id="municipio_id"
+                                data-placeholder="{#field_Holder_municipio_id#}" {$privFace.input}
+                                required
+                                data-fv-not-empty___message="{#glFieldRequired#}"
+                        >
+                            <option></option>
+                            {html_options options=$cataobj.municipio selected=$item.municipio_id}
+                        </select>
+                    </div>
+                    <span class="form-text text-black-50">{#field_GroupMsg_municipio_id#}</span>
+                </div>
+
+                <div class="col-lg-6">
                     <label>{#fiel_location_latitude_decimal#}  <span class="text-danger bold">*</span> :</label>
                     <div class="input-group">
                         <input type="text" class="form-control"

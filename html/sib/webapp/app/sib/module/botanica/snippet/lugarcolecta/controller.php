@@ -37,7 +37,7 @@ switch($action){
         /**
          * Catalog
          */
-        $objCatalog->confCatalog();
+        $objCatalog->conf_catalog_form($item);
         $cataobj= $objCatalog->getCatalogList();
         //print_struc($cataobj);exit;
         $smarty->assign("cataobj", $cataobj);
@@ -54,4 +54,13 @@ switch($action){
         $respuesta = $objItem->updateData($_REQUEST["item"],$id,"module",$type);
         Core::printJson($respuesta);
         break;
+    case 'get.municipio':
+        $item = $objCatalog->getMunicipioOptions($_REQUEST["id"]);
+        Core::printJson($item);
+        break;
+    case 'get.point_municipio':
+        $item = $objCatalog->getMunicipioPoint($_REQUEST["id"]);
+        Core::printJson($item);
+        break;
+
 }
