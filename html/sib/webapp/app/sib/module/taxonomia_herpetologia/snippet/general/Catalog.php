@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Sib\Module\Taxonomia_botanica\Snippet\general;
+namespace App\Sib\Module\Taxonomia_herpetologia\Snippet\general;
 use Core\CoreResources;
 
 class Catalog extends CoreResources{
@@ -27,23 +27,8 @@ class Catalog extends CoreResources{
         $this->addCatalogList($this->table["genero"]
             ,"genero","","nombre",""
             ,"nombre","","","");
-        $this->addCatalogList($this->table["especie"]
-            ,"especie","","nombre",""
-            ,"nombre","","","");
-        $this->addCatalogList($this->table["filo"]
-            ,"filo","","nombre",""
-            ,"nombre","","","");
         $this->addCatalogList($this->table["clase"]
             ,"clase","","nombre",""
-            ,"nombre","","","");
-        $this->addCatalogList($this->table["tipo_nomenclatura"]
-            ,"tipo_nomenclatura","","nombre",""
-            ,"nombre","","","");
-        $this->addCatalogList($this->table["categoria_taxon"]
-            ,"categoria_taxon","","nombre",""
-            ,"nombre","","","");
-        $this->addCatalogList($this->table["epiteto"]
-            ,"epiteto","","nombre",""
             ,"nombre","","","");
     }
 

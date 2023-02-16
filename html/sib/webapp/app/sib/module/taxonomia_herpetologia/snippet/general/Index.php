@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Sib\Module\Taxonomia_botanica\Snippet\general;
+namespace App\Sib\Module\Taxonomia_herpetologia\Snippet\general;
 use Core\CoreResources;
 
 class Index extends CoreResources
@@ -48,7 +48,7 @@ class Index extends CoreResources
         $res = $this->updateItem($itemId,$itemData ,$this->table[$this->objTable],$action,$field_id);
         $res["accion"] = $action;
         if( $res["res"]==1){
-            $this->setDivision($itemData["division_id"], $itemId);
+            $this->setClass($itemData["class_id"], $itemId);
             $this->setOrder($itemData["order_id"], $itemId);
             $this->setFamily($itemData["family_id"], $itemId);
             $this->setGenus($itemData["genus_id"], $itemId);
@@ -66,10 +66,10 @@ class Index extends CoreResources
                  * Additional processes when saving the data
                  */
                 if ($action=="new"){
-                    $dataResult["kingdom_id"] = 1;
-                    $dataResult["kingdom"] = "Plantae";
+                    $dataResult["kingdom_id"] = 2;
+                    $dataResult["kingdom"] = "Animalae";
                 }
-                $dataResult["division"] = $this->getItemDivision($rec["division_id"])["nombre"];
+                $dataResult["class"] = $this->getItemClass($rec["class_id"])["nombre"];
                 $dataResult["order"] = $this->getItemOrder($rec["order_id"])["nombre"];
                 $dataResult["family"] = $this->getItemFamily($rec["family_id"])["nombre"];
                 $dataResult["genus"] = $this->getItemGenus($rec["genus_id"])["nombre"];
@@ -78,22 +78,22 @@ class Index extends CoreResources
         return $dataResult;
     }
 
-    private function setDivision($division_id, $itemId){
-        if($division_id!=""){
+    private function setClass($class_id, $itemId){
+        if($class_id!=""){
             $sql = "SELECT * 
-                    FROM catalogo.division where id=".$division_id;
+                    FROM catalogo.clase where id=".$class_id;
             $res = $this->dbm->execute($sql);
             $item = $res->fields;
             $rec = array();
-            $rec["division"]=$item["nombre"];
+            $rec["class"]=$item["nombre"];
             $where = "id = ".$itemId;
             $table = $this->table["catalogo_taxonomia"];
             $this->dbm->AutoExecute($table,$rec,"UPDATE",$where);
         }
     }
 
-    function getItemDivision($id){
-        $sql = "select * from catalogo.division where id = '".$id."'";
+    function getItemClass($id){
+        $sql = "select * from catalogo.clase where id = '".$id."'";
         $item = $this->dbm->Execute($sql);
         $item = $item->fields;
         return $item;

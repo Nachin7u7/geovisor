@@ -1,6 +1,6 @@
 <?PHP
-use App\Sib\Module\Taxonomia_botanica\Snippet\general\Index;
-use App\Sib\Module\Taxonomia_botanica\Snippet\general\Catalog;
+use App\Sib\Module\Taxonomia_herpetologia\Snippet\general\Index;
+use App\Sib\Module\Taxonomia_herpetologia\Snippet\general\Catalog;
 use Core\Core;
 
 $objItem = new Index();

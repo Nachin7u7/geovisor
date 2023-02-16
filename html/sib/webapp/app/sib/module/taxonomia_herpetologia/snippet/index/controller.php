@@ -1,6 +1,6 @@
 <?PHP
-use App\Sib\Module\Taxonomia_botanica\Snippet\Index\Index;
-use App\Sib\Module\Taxonomia_botanica\Snippet\Index\Catalog;
+use App\Sib\Module\Taxonomia_herpetologia\Snippet\Index\Index;
+use App\Sib\Module\Taxonomia_herpetologia\Snippet\Index\Catalog;
 use Core\Core;
 
 

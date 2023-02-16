@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Sib\Module\Taxonomia_botanica\Snippet\Index;
+namespace App\Sib\Module\Taxonomia_herpetologia\Snippet\Index;
 use Core\CoreResources;
 
 class Catalog extends CoreResources{
