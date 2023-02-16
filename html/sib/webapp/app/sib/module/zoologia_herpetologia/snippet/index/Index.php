@@ -1,11 +1,12 @@
 <?PHP
-namespace App\Sib\Module\Botanica\Snippet\Index;
+namespace App\Sib\Module\Zoologia_herpetologia\Snippet\Index;
 use Core\CoreResources;
 
 class Index extends CoreResources {
     var $objTable = "especimen";
     var $folder = "botanica";
     var $fkey_field = "kingdom";
+    var $fkey_field2 = "class";
     var $extraWhere = "";
     function __construct()
     {
@@ -13,7 +14,7 @@ class Index extends CoreResources {
          * We initialize all the libraries and variables for the new class
          */
         $this->appInit();
-        $this->extraWhere = $this->fkey_field."= 'Plantae'" ;
+        $this->extraWhere = $this->fkey_field."= 'Animalae' AND ".$this->fkey_field2."= 'Reptilia'";
     }
     function getItem($idItem){
 
@@ -51,7 +52,7 @@ class Index extends CoreResources {
         /**
          * Additional configuration
          */
-        $extraWhere = $this->extraWhere ;
+        $extraWhere = $this->extraWhere;
         $groupBy = "";
         $having = "";
         /**

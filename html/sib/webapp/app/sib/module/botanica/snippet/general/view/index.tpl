@@ -267,7 +267,7 @@
                                 data-placeholder="{#field_Holder_occurrence_status_id#}" {$privFace.input}
                         >
                             <option></option>
-                            {html_options options=$cataobj.occurrence_status selected=$item.life_stage_id}
+                            {html_options options=$cataobj.occurrence_status selected=$item.occurrence_status_id}
                         </select>
                     </div>
                     <span class="form-text text-black-50">{#field_GroupMsg_occurrence_status_id#}</span>
@@ -280,7 +280,7 @@
                                 data-placeholder="{#field_Holder_preparations_id#}" {$privFace.input}
                         >
                             <option></option>
-                            {html_options options=$cataobj.preparations selected=$item.life_stage_id}
+                            {html_options options=$cataobj.preparations selected=$item.preparations_id}
                         </select>
                     </div>
                     <span class="form-text text-black-50">{#field_GroupMsg_preparations_id#}</span>
