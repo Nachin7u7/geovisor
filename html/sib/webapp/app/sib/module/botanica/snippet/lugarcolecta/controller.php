@@ -62,5 +62,9 @@ switch($action){
         $item = $objCatalog->getMunicipioPoint($_REQUEST["id"]);
         Core::printJson($item);
         break;
+    case 'get.departamentos':
+        $item = $objCatalog->getDepartamentOptions();
+        Core::printJson($item);
+        break;
 
 }

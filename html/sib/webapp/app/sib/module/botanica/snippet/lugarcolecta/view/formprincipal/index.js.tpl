@@ -275,6 +275,8 @@
             map.on('click', function (e) {
                 const lat = e.latlng.lat;
                 const lng = e.latlng.lng;
+                //console.log(e);
+                refresh_option_dep_mun(lat, lng);
                 $('#location_longitude_decimal').val(Math.round(lng * 100000) / 100000);
                 $('#location_latitude_decimal').val(Math.round(lat * 100000) / 100000);
                 marker.setLatLng([lat,lng]).update();
@@ -339,6 +341,7 @@
         };
 
         var municipio_opt = $("#municipio_id");
+        var departamento_opt = $("#departamento_id");
         let urlmodule = "{/literal}{$path_url}/{$subcontrol}_{literal}";
 
         var handle_option_municipio = function(){
@@ -389,6 +392,69 @@
                         latitude.val(res[0].lat);
                         longitude.val(res[0].lon);
                         $('#departamento_id').val(res[0].departamento_id);
+                    }
+                    , 'json');
+            }else{
+                //handle_options_init();
+            }
+        };
+
+        var refresh_option_dep_mun = function(lat, lng){
+            var id='';
+            if(lat!="" && lng!="") {
+                departamento_opt.find("option").remove();
+                departamento_opt.prop('disabled', true);
+                municipio_opt.find("option").remove();
+                municipio_opt.prop('disabled', true);
+                $.post("https://nominatim.openstreetmap.org/reverse?format=geojson&lat="+lat+"&lon="+lng+""
+                    , function (res, textStatus, jqXHR) {
+                        var text = res.features[0].properties.address.state;
+                        var textMunicipio = res.features[0].properties.address.city;
+                        var textProMunicipio = res.features[0].properties.address.county;
+                        console.log(res.features[0].properties.address);
+                        if(text!="") {
+                            $.post(urlmodule+"/get.departamentos"
+                                , function (res, textStatus, jqXHR) {
+                                    let selOption = $('<option></option>');
+                                    departamento_opt.append(selOption.attr("value", "").text("{/literal}{#field_Holder_departamento_id#}{literal}"));
+                                    let departamento_list = []
+                                    for (var row in res) {
+                                        if(res[row].name.toLowerCase() == text.toLowerCase()){
+                                            id=res[row].id;
+                                            departamento_opt.append($('<option></option>').attr({value:res[row].id, selected:true}).text(res[row].name));
+                                        }else{
+                                            departamento_opt.append($('<option></option>').attr("value", res[row].id).text(res[row].name));
+                                        }
+                                        departamento_list[res[row].id] = res[row];
+                                    }
+                                    departamento_opt.trigger('chosen:updated');
+                                    departamento_opt.prop('disabled', false);
+
+                                    $.post(urlmodule+"/get.municipio"
+                                        , {id: id}
+                                        , function (res, textStatus, jqXHR) {
+                                            let selOption = $('<option></option>');
+                                            municipio_opt.append(selOption.attr("value", "").text("{/literal}{#field_Holder_municipio_id#}{literal}"));
+                                            let municipio_list = []
+                                            for (var row in res) {
+                                                if(res[row].name.toLowerCase() == textMunicipio.toLowerCase()){
+                                                    municipio_opt.append($('<option></option>').attr({value:res[row].id, selected:true}).text(res[row].name));
+                                                }else if (res[row].name.toLowerCase() == textProMunicipio.toLowerCase()){
+                                                    municipio_opt.append($('<option></option>').attr({value:res[row].id, selected:true}).text(res[row].name));
+                                                }else{
+                                                    municipio_opt.append($('<option></option>').attr("value", res[row].id).text(res[row].name));
+                                                }
+                                                municipio_list[res[row].id] = res[row];
+                                            }
+                                            municipio_opt.trigger('chosen:updated');
+                                            municipio_opt.prop('disabled', false);
+                                        }
+                                        , 'json');
+                                }
+                                , 'json');
+                        }else{
+                            //handle_options_init();
+                        }
                     }
                     , 'json');
             }else{

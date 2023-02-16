@@ -49,6 +49,16 @@ class Catalog extends CoreResources{
         return $item;
     }
 
+    function getDepartamentOptions(){
+        /**
+         * sacamos los municipios
+         */
+        $sql = "select id,name from ".$this->table["departamento"]." as m where cod_dep <> '0'";
+        $item = $this->dbm->Execute($sql);
+        $item = $item->GetRows();
+        return $item;
+    }
+
 
     public function confCatalog(){
     }
