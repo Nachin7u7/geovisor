@@ -28,6 +28,8 @@ $field_item = array();
 //**********Location
 $field_item["location_latitude_decimal"]=array("type"=>"text");
 $field_item["location_longitude_decimal"]=array("type"=>"text");
+$field_item["verbatim_latitude"]=array("type"=>"text");
+$field_item["verbatim_longitude"]=array("type"=>"text");
 
 $group = "module";
 $fields[$group]= $field_item;

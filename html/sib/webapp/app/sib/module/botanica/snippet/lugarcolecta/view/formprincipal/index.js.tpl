@@ -462,6 +462,47 @@
             }
         };
 
+        $(function() {
+            // Obtener el valor inicial del primer input
+            var location_latitude_decimal = $('#location_latitude_decimal').val();
+
+            // Mostrar el valor inicial en el segundo input
+            $('#verbatim_latitude').val(location_latitude_decimal);
+
+            $("#location_latitude_decimal").on("change", function(){
+                console.log("cambio en valor");
+            }).triggerHandler('change');
+
+
+            var select = document.getElementById('location_latitude_decimal')
+            select.addEventListener('input', e =>{
+                console.log("cambio en valor con input");
+            })
+        });
+
+        // var location_latitude_decimal = $('#location_latitude_decimal').val();
+        var handle_calculos = function(){
+            $(".location_latitude_decimal").on('blur',function(){
+                calcula_total_fibra();
+            });
+            $("#location_latitude_decimal").bind("keyup keydown change", function(){
+                console.log("ingreso a la funcion MULTIP0LE");
+                calcula_total_fibra();
+            });
+            $(".location_latitude_decimal").on('change',function(){
+                calcula_total_fibra();
+            });
+            $(".location_latitude_decimal").on('input',function(){
+                calcula_total_fibra();
+            });
+        };
+
+        var calcula_total_fibra = function (){
+            // Actualizar el valor del segundo input cuando el valor del primer input cambia
+               var location_latitude_decimal = $("#location_latitude_decimal").val();
+                $('#verbatim_latitude').val(location_latitude_decimal);
+        };
+
         return {
             // public functions
             init: function () {
@@ -470,6 +511,7 @@
                 handle_ll();
                 handle_option_municipio();
                 handle_change_municipio();
+                handle_calculos();
             }
         };
     }();

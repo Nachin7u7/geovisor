@@ -71,6 +71,20 @@
                     >
                     <span class="form-text text-black-50">{#field_msg_eventRemarks#}</span>
                 </div>
+                <div class="col-lg-12">
+                    <label>{#field_colector_principal#}  <span class="text-danger bold">*</span> :</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               name="item[colector_principal]" value="{$item.colector_principal|escape:"html"}"
+                               required
+                               data-fv-not-empty___message="{#glFieldRequired#}"
+                               minlength="3"
+                               data-fv-string-length___message="{#field_length_colector_principal#}"
+                        >
+                        <div class="input-group-append"><span class="input-group-text field_info"><i class="far fa-user-circle"></i></span></div>
+                    </div>
+                    <span class="form-text text-black-50">{#field_msg_colector_principal#}</span>
+                </div>
             </div>
         </div>
 

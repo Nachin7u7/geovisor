@@ -54,7 +54,7 @@
                 <div class="col-lg-6">
                     <label>{#fiel_location_latitude_decimal#}  <span class="text-danger bold">*</span> :</label>
                     <div class="input-group">
-                        <input type="text" class="form-control"
+                        <input type="text" class="form-control location_latitude_decimal"
                                name="item[location_latitude_decimal]"
                                id="location_latitude_decimal"
                                required
@@ -69,7 +69,7 @@
                 <div class="col-lg-6">
                     <label>{#fiel_location_longitude_decimal#}  <span class="text-danger bold">*</span> :</label>
                     <div class="input-group">
-                        <input type="text" class="form-control"
+                        <input type="text" class="form-control location_longitude_decimal"
                                id="location_longitude_decimal"
                                required
                                name="item[location_longitude_decimal]"
@@ -80,6 +80,36 @@
                                         class="fa fa-map-marker-alt text-danger"></i></span></div>
                     </div>
                     <span class="form-text text-black-50">{#field_msg_location_longitude_decimal#}</span>
+                </div>
+                <div class="col-lg-6">
+                    <label>{#field_verbatim_latitude#}  <span class="text-danger bold">*</span> :</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               name="item[verbatim_latitude]"
+                               id="verbatim_latitude"
+                               required
+                               value="{$item.verbatim_latitude|escape:"html"}"
+                               data-fv-not-empty___message="{#glFieldRequired#}"
+                        >
+                        <div class="input-group-append"><span class="input-group-text"><i
+                                        class="fa fa-map-marker-alt text-danger"></i></span></div>
+                    </div>
+                    <span class="form-text text-black-50">{#field_msg_verbatim_latitude#}</span>
+                </div>
+                <div class="col-lg-6">
+                    <label>{#field_verbatim_longitude#}  <span class="text-danger bold">*</span> :</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               id="verbatim_longitude"
+                               required
+                               name="item[verbatim_longitude]"
+                               value="{$item.field_verbatim_longitude|escape:"html"}"
+                               data-fv-not-empty___message="{#glFieldRequired#}"
+                        >
+                        <div class="input-group-append"><span class="input-group-text"><i
+                                        class="fa fa-map-marker-alt text-danger"></i></span></div>
+                    </div>
+                    <span class="form-text text-black-50">{#field_msg_verbatim_longitude#}</span>
                 </div>
             </div>
         </div>

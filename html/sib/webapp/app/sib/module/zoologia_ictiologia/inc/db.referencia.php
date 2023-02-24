@@ -15,6 +15,8 @@ $dbSchemaName = "coleccion";
 $db_table[] = Core::getTableConfig("catalogo_taxonomia");
 $db_table[] = Core::getTableConfig("especimen");
 $db_table[] = Core::getTableConfig("especimen_foto");
+$db_table[] = Core::getTableConfig("especimen_colector_secundario");
+$db_table[] = Core::getTableConfig("especimen_preparador");
 $db_table[] = Core::getTableConfig("institucion");
 $appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName);
 unset($db_table);

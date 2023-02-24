@@ -17,6 +17,8 @@ $field_item["verbatim_event_date"]=array("type"=>"date_01");
 $field_item["event_time"]=array("type"=>"text");
 $field_item["field_number"]=array("type"=>"text");
 $field_item["event_remarks"]=array("type"=>"text");
+$field_item["colector_principal"]=array("type"=>"text");
+
 
 //$field_item["active"]=array("type"=>"checkbox_02");
 
