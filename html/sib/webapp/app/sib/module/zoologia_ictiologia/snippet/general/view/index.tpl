@@ -88,8 +88,8 @@
                                id="institution_code"
                                value="{$item.institution_code|escape:"html"}"
 
-                                                               required
-                                                               data-fv-not-empty___message="{#glFieldRequired#}"
+                                {*                               required*}
+                                {*                               data-fv-not-empty___message="{#glFieldRequired#}"*}
                         >
                         <div class="input-group-append"><span class="input-group-text field_info"><i class="fas flaticon-layer"></i></span></div>
                     </div>
@@ -246,6 +246,19 @@
                     </div>
                     <span class="form-text text-black-50">{#field_GroupMsg_life_stage_id#}</span>
                 </div>
+{*                <div class="col-lg-4">*}
+{*                    <label>{#field_life_stage_id#}: </label>*}
+{*                    <div class="input-group">*}
+{*                        <select class="form-control m-select2 select2_general"*}
+{*                                name="item[life_stage_id]" id="life_stage_id"*}
+{*                                data-placeholder="{#field_Holder_life_stage_id#}" {$privFace.input}*}
+{*                        >*}
+{*                            <option></option>*}
+{*                            {html_options options=$cataobj.life_stage selected=$item.life_stage_id}*}
+{*                        </select>*}
+{*                    </div>*}
+{*                    <span class="form-text text-black-50">{#field_GroupMsg_life_stage_id#}</span>*}
+{*                </div>*}
                 <div class="col-lg-4">
                     <label>{#field_occurrence_status_id#}: </label>
                     <div class="input-group">
@@ -267,7 +280,7 @@
                                 data-placeholder="{#field_Holder_preparations_id#}" {$privFace.input}
                         >
                             <option></option>
-                            {html_options options=$cataobj.preparations selected=$item.life_stage_id}
+                            {html_options options=$cataobj.preparations selected=$item.preparations_id}
                         </select>
                     </div>
                     <span class="form-text text-black-50">{#field_GroupMsg_preparations_id#}</span>
