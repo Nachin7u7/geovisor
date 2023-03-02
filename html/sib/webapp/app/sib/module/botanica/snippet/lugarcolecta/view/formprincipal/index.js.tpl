@@ -276,12 +276,57 @@
                 const lat = e.latlng.lat;
                 const lng = e.latlng.lng;
                 //console.log(e);
+                $('#verbatim_latitude').val(convertirDMS(lat));
+                $('#verbatim_longitude').val(convertirDMS(lng));
+                $('#utm_latitude').val(convertirUTM(lat));
+                $('#utm_longitude').val(convertirUTM(lng));
                 refresh_option_dep_mun(lat, lng);
                 $('#location_longitude_decimal').val(Math.round(lng * 100000) / 100000);
                 $('#location_latitude_decimal').val(Math.round(lat * 100000) / 100000);
                 marker.setLatLng([lat,lng]).update();
             });
         };
+
+        function convertirDMS(valor) {
+            var absValor = Math.abs(valor);
+            var grados = Math.floor(absValor);
+            var minutos = Math.round((absValor - grados) * 60);
+            // var grados = Math.abs(parseInt(latitud));
+            // var minutos = Math.round(Math.abs((latitud - grados) * 60));
+            var direccion = valor < 0 ? 'S' : 'N';
+            return grados + '°' + minutos + '\'' + direccion;
+        }
+
+        function convertirUTM(latitud) {
+            var Lat_rad = latitud * (Math.PI / 180);
+            var Lat0_rad = -16.0 * (Math.PI / 180);
+            var Lon0_rad = -68.0 * (Math.PI / 180); // meridiano central para Bolivia
+            var a = 6378137.0;
+            var F0 = 0.9996;
+            var k1 = 0.00669438;
+            var k2 = 0.00003065;
+            var k3 = 0.000000034;
+            var E0 = 500000.0;
+            var N0 = 10000000.0;
+            var n = (a - 6356752.314) / (a + 6356752.314);
+            var A = a / (1 + n) * (1 + Math.pow(n, 2) / 4 + Math.pow(n, 4) / 64);
+            var alpha = (3 * n / 2 - 27 * Math.pow(n, 3) / 32) * Math.sin(2 * Lat_rad);
+            var beta = (21 * Math.pow(n, 2) / 16 - 55 * Math.pow(n, 4) / 32) * Math.sin(4 * Lat_rad);
+            var gamma = (151 * Math.pow(n, 3) / 96) * Math.sin(6 * Lat_rad);
+            var delta = (1097 * Math.pow(n, 4) / 512) * Math.sin(8 * Lat_rad);
+            var S = A * F0 * (Lat_rad - Lat0_rad) + alpha + beta + gamma + delta;
+            var k = 0.9996;
+            var E = E0 + k * S * Math.sin(Lat_rad);
+            var N = N0 + k * S * Math.cos(Lat_rad);
+
+            // corrección del meridiano central
+            E = E - 500000.0;
+            E = E * Math.cos(Lon0_rad) - N * Math.sin(Lon0_rad);
+            N = E * Math.sin(Lon0_rad) + N * Math.cos(Lon0_rad);
+            E = E + 500000.0;
+
+            return E.toFixed(1);
+        }
 
         var latitude=$('#location_latitude_decimal');
         var longitude= $('#location_longitude_decimal');
@@ -460,47 +505,31 @@
             }else{
                 //handle_options_init();
             }
-        };
+        }
 
         $(function() {
-            // Obtener el valor inicial del primer input
             var location_latitude_decimal = $('#location_latitude_decimal').val();
+            $('#verbatim_latitude').val(convertirDMS(location_latitude_decimal));
+            $('#utm_latitude').val(convertirUTM(location_latitude_decimal));
 
-            // Mostrar el valor inicial en el segundo input
-            $('#verbatim_latitude').val(location_latitude_decimal);
+            var location_longitude_decimal = $('#location_longitude_decimal').val();
+            $('#verbatim_longitude').val(convertirDMS(location_longitude_decimal));
+            $('#utm_longitude').val(convertirUTM(location_longitude_decimal));
 
-            $("#location_latitude_decimal").on("change", function(){
-                console.log("cambio en valor");
-            }).triggerHandler('change');
-
-
-            var select = document.getElementById('location_latitude_decimal')
-            select.addEventListener('input', e =>{
-                console.log("cambio en valor con input");
-            })
         });
 
         // var location_latitude_decimal = $('#location_latitude_decimal').val();
         var handle_calculos = function(){
-            $(".location_latitude_decimal").on('blur',function(){
-                calcula_total_fibra();
-            });
             $("#location_latitude_decimal").bind("keyup keydown change", function(){
-                console.log("ingreso a la funcion MULTIP0LE");
-                calcula_total_fibra();
+                var location_latitude_decimal = $('#location_latitude_decimal').val();
+                $('#verbatim_latitude').val(convertirDMS(location_latitude_decimal));
+                $('#utm_latitude').val(convertirUTM(location_latitude_decimal));
             });
-            $(".location_latitude_decimal").on('change',function(){
-                calcula_total_fibra();
+            $("#location_longitude_decimal").bind("keyup keydown change", function(){
+                var location_longitude_decimal = $('#location_longitude_decimal').val();
+                $('#verbatim_longitude').val(convertirDMS(location_longitude_decimal));
+                $('#utm_longitude').val(convertirUTM(location_longitude_decimal));
             });
-            $(".location_latitude_decimal").on('input',function(){
-                calcula_total_fibra();
-            });
-        };
-
-        var calcula_total_fibra = function (){
-            // Actualizar el valor del segundo input cuando el valor del primer input cambia
-               var location_latitude_decimal = $("#location_latitude_decimal").val();
-                $('#verbatim_latitude').val(location_latitude_decimal);
         };
 
         return {

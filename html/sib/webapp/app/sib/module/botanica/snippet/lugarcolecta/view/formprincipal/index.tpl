@@ -111,6 +111,36 @@
                     </div>
                     <span class="form-text text-black-50">{#field_msg_verbatim_longitude#}</span>
                 </div>
+                <div class="col-lg-6">
+                    <label>{#field_utm_latitude#}  <span class="text-danger bold">*</span> :</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               name="item[utm_latitude]"
+                               id="utm_latitude"
+                               required
+                               value="{$item.utm_latitude|escape:"html"}"
+                               data-fv-not-empty___message="{#glFieldRequired#}"
+                        >
+                        <div class="input-group-append"><span class="input-group-text"><i
+                                        class="fa fa-map-marker-alt text-danger"></i></span></div>
+                    </div>
+                    <span class="form-text text-black-50">{#field_msg_utm_latitude#}</span>
+                </div>
+                <div class="col-lg-6">
+                    <label>{#field_utm_longitude#}  <span class="text-danger bold">*</span> :</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               id="utm_longitude"
+                               required
+                               name="item[utm_longitude]"
+                               value="{$item.utm_longitude|escape:"html"}"
+                               data-fv-not-empty___message="{#glFieldRequired#}"
+                        >
+                        <div class="input-group-append"><span class="input-group-text"><i
+                                        class="fa fa-map-marker-alt text-danger"></i></span></div>
+                    </div>
+                    <span class="form-text text-black-50">{#field_msg_utm_longitude#}</span>
+                </div>
             </div>
         </div>
 

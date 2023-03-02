@@ -26,12 +26,9 @@ $db_table[] = Core::getTableConfig("division");
 $db_table[] = Core::getTableConfig("orden");
 $db_table[] = Core::getTableConfig("familia");
 $db_table[] = Core::getTableConfig("genero");
-$db_table[] = Core::getTableConfig("especie");
 $db_table[] = Core::getTableConfig("filo");
 $db_table[] = Core::getTableConfig("clase");
-$db_table[] = Core::getTableConfig("tipo_nomenclatura");
-$db_table[] = Core::getTableConfig("categoria_taxon");
-$db_table[] = Core::getTableConfig("epiteto");
+
 $appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName,$appVars["table"] );
 unset($db_table);
 
