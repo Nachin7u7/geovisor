@@ -1,0 +1,751 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Manejo de información mediante el uso de API",
+        "contact": {
+            "email": "admin@seth.com.bo"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Login de Usuarios y generación de token",
+                "description": "Ingreso al sistema de información mediante: email, contraseña y nombre del dispositivo. Si los datos son correctos, el sistema de devolvera un token para ser usado.",
+                "operationId": "authLogin",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Correo electrónico, que actua como usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "jada.runte@example.org"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "Contraseña proporcionada por el administrador",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "password"
+                        }
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Nombre del dispositivo de donde se esta conectando, por ejemplo: iphone10,firefox-win10,etc.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "iphone-x10"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Se autentifico con éxito",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token": {
+                                            "type": "string",
+                                            "example": "885|4lzLzFRZwxoEVVBJYr8FggntJCWBVBUPJaOgqEXIxxx"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "success"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No autorizado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthorized"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "entidad no procesable, Campos necesarios no enviados",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "email": {
+                                                        "type": "string",
+                                                        "example": "The email field is required."
+                                                    },
+                                                    "password": {
+                                                        "type": "string",
+                                                        "example": "The password field is required."
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "The name field is required."
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/list_species_amazon/": {
+            "get": {
+                "tags": [
+                    "CITES"
+                ],
+                "summary": "Lista todas las especies CITES amazónicas utilizadas",
+                "description": "Lista todas las especies CITES amazónicas utilizadas",
+                "operationId": "v1getCitesEspecieList",
+                "responses": {
+                    "200": {
+                        "description": "Json con datos de la lista de solicitudes CITES",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No autentificado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/list_purpose/": {
+            "get": {
+                "tags": [
+                    "CITES"
+                ],
+                "summary": "Lista de Propositos CITES",
+                "description": "Devuelve la lista de los datos de solicitudes cites",
+                "operationId": "v1getPropositoList",
+                "responses": {
+                    "200": {
+                        "description": "Json con datos de la lista de solicitudes CITES",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No autentificado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/centro_custodia/": {
+            "get": {
+                "tags": [
+                    "CCFS"
+                ],
+                "summary": "Lista de Centros de Custodia de fauna Silvestre ",
+                "description": "Devuelve la lista de los datos de Centros de Custodia de fauna Silvestre",
+                "operationId": "v1getCcfsList",
+                "responses": {
+                    "200": {
+                        "description": "Json con datos de la lista de Centros de Custodia de fauna Silvestre",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No autentificado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/centro_custodia/{ccfsId}": {
+            "get": {
+                "tags": [
+                    "CCFS"
+                ],
+                "summary": "Buscar una Ccfs por ID",
+                "description": "Devuelve la información de un Centro de Custodia de fauna Silvestre (Ccfs) específico",
+                "operationId": "v1getCcfs",
+                "parameters": [
+                    {
+                        "name": "citesId",
+                        "in": "path",
+                        "description": "ID de la institución",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "default": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Se optiene los datos con éxito",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No se encontraron datos",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No autentificado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/cites/": {
+            "get": {
+                "tags": [
+                    "CITES"
+                ],
+                "summary": "Lista de solicitudes CITES",
+                "description": "Devuelve la lista de los datos de solicitudes cites",
+                "operationId": "v1getCitesList",
+                "responses": {
+                    "200": {
+                        "description": "Json con datos de la lista de solicitudes CITES",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No autentificado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/cites/{citesId}": {
+            "get": {
+                "tags": [
+                    "CITES"
+                ],
+                "summary": "Buscar una solicitud CITES por ID",
+                "description": "Devuelve la información de una ficha de una solicitud CITES específico",
+                "operationId": "v1getCites",
+                "parameters": [
+                    {
+                        "name": "citesId",
+                        "in": "path",
+                        "description": "ID de la solicitud CITES",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "default": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Se optiene los datos con éxito",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No se encontraron datos",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No autentificado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/esquila/": {
+            "get": {
+                "tags": [
+                    "VICUNA"
+                ],
+                "summary": "Lista de actas de esquila de Vicuña",
+                "description": "Devuelve la lista de los datos de actas de equila de vicuña",
+                "operationId": "v1getEsquilaList",
+                "responses": {
+                    "200": {
+                        "description": "Json con datos de la lista de actas de equila de vicuña",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No autentificado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/esquila/{esquilaId}": {
+            "get": {
+                "tags": [
+                    "VICUNA"
+                ],
+                "summary": "Buscar una acta de esquila de vicuña por ID",
+                "description": "Devuelve la información de una acta de esquila de vicuña específico",
+                "operationId": "v1getEsquila",
+                "parameters": [
+                    {
+                        "name": "citesId",
+                        "in": "path",
+                        "description": "ID de la solicitud acta de esquila de vicuña",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "default": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Se optiene los datos con éxito",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No se encontraron datos",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No autentificado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/icas_institucion/": {
+            "get": {
+                "tags": [
+                    "ICAS"
+                ],
+                "summary": "Lista de instituciones ICAS",
+                "description": "Devuelve la lista de los datos de instituciones ICAS",
+                "operationId": "v1getIcasInstitucionList",
+                "responses": {
+                    "200": {
+                        "description": "Json con datos de la lista de instituciones ICAS",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No autentificado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/icas_institucion/{icasInsitucionId}": {
+            "get": {
+                "tags": [
+                    "ICAS"
+                ],
+                "summary": "Buscar una institución por ID",
+                "description": "Devuelve la información de una institución (ICAS) específico",
+                "operationId": "v1getIcasInstitucion",
+                "parameters": [
+                    {
+                        "name": "citesId",
+                        "in": "path",
+                        "description": "ID de la institución",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "default": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Se optiene los datos con éxito",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No se encontraron datos",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No autentificado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/lagarto_institucion/": {
+            "get": {
+                "tags": [
+                    "LAGARTO"
+                ],
+                "summary": "Lista de instituciones de lagarto",
+                "description": "Devuelve la lista de los datos de instituciones de lagarto",
+                "operationId": "v1getLagartoInstitucionList",
+                "responses": {
+                    "200": {
+                        "description": "Json con datos de la lista de institcuiones de lagarto",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No autentificado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/lagarto_institucion/{lagartoInsitucionId}": {
+            "get": {
+                "tags": [
+                    "LAGARTO"
+                ],
+                "summary": "Buscar una institución por ID",
+                "description": "Devuelve la información de una institución (LAGARTO) específico",
+                "operationId": "v1getLagartoInstitucion",
+                "parameters": [
+                    {
+                        "name": "citesId",
+                        "in": "path",
+                        "description": "ID de la institución",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "default": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Se optiene los datos con éxito",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No se encontraron datos",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No autentificado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "description": "Authorization token optienes en 'login' - Auth: /api/login ",
+                "name": "bearerAuth",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Auth",
+            "description": "Autentificación"
+        },
+        {
+            "name": "CITES",
+            "description": "Consulta toda información recopilada sobre Módulo CITES"
+        }
+    ]
+}
