@@ -34,8 +34,8 @@ use Illuminate\Routing\Controller as BaseController;
  *     description="Autentificación",
  * )
  * @OA\Tag(
- *     name="CITES",
- *     description="Consulta toda información recopilada sobre Módulo CITES",
+ *     name="ESPECIMEN",
+ *     description="Consulta toda información recopilada sobre los especimenes",
  * )
  */
 class Controller extends BaseController

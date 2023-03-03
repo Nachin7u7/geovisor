@@ -3,30 +3,32 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Models\Esquila;
+use App\Models\Especimen;
 use Illuminate\Http\Request;
 
-use App\Http\Resources\V1\EsquilaResource;
+use App\Http\Resources\V1\EspecimenResource;
+ini_set('memory_limit','512M');
 
-class EsquilaController extends Controller
+class EspecimenController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     /**
      * @OA\Get(
-     *     path="/api/v1/esquila/",
-     *     summary="Lista de actas de esquila de Vicuña",
-     *     description="Devuelve la lista de los datos de actas de equila de vicuña",
-     *     operationId="v1getEsquilaList",
-     *     tags={"VICUNA"},
+     *     path="/api/v1/especimen/",
+     *     summary="Lista de especimenes ",
+     *     description="Devuelve la lista de los datos de especimenes",
+     *     operationId="v1getEspecimenList",
+     *     tags={"ESPECIMEN"},
      *     security={{"bearerAuth":{}}},
 
      *     @OA\Response(
      *         response=200,
-     *         description="Json con datos de la lista de actas de equila de vicuña",
+     *         description="Json con datos de la lista de Especimenes",
      *         @OA\JsonContent()
      *
      *     ),
@@ -42,27 +44,29 @@ class EsquilaController extends Controller
      */
     public function index()
     {
-        return EsquilaResource::collection(Esquila::all());
+        return EspecimenResource::collection(Especimen::all());
+        //return Especimen::all();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Esquila  $esquila
+     * @param  \App\Models\Especimen  $especimen
      * @return \Illuminate\Http\Response
      */
 
+
     /**
      * @OA\Get(
-     *     path="/api/v1/esquila/{esquilaId}",
-     *     summary="Buscar una acta de esquila de vicuña por ID",
-     *     description="Devuelve la información de una acta de esquila de vicuña específico",
-     *     operationId="v1getEsquila",
-     *     tags={"VICUNA"},
+     *     path="/api/v1/especimen/{especimenId}",
+     *     summary="Buscar una Ccfs por ID",
+     *     description="Devuelve la información de Especimen específico",
+     *     operationId="v1getEspecimen",
+     *     tags={"ESPECIMEN"},
      *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *      name="citesId",in="path",required=true,
-     *      description="ID de la solicitud acta de esquila de vicuña",
+     *      description="ID de la institución",
      *      @OA\Schema(type="integer",default="1",format="int64")
      *     ),
      *
@@ -87,9 +91,17 @@ class EsquilaController extends Controller
      * )
      *
      */
-    public function show(Esquila $esquila)
+    public function show($id)
     {
-        return new EsquilaResource($esquila);
+        $especimen = Especimen::find($id);
+        if (is_null($especimen)){
+            $response = [
+                'success' => false,
+                'message' => 'Proposito not found.',
+            ];
+            return response()->json($response, '404');
+        }
+        return new EspecimenResource($especimen);
     }
 
 }

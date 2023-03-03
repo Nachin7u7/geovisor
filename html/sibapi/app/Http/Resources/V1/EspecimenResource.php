@@ -4,7 +4,7 @@ namespace App\Http\Resources\V1;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CatalogoCitesEspecieResource extends JsonResource
+class EspecimenResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,10 +16,7 @@ class CatalogoCitesEspecieResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'scientificname' => $this->nombre,
-            'commonnames' => $this->nombre_comun,
-            'description' => $this->descripcion,
-            //'type' => $this->tipo,
+            'basis_of_record' => $this->basis_of_record,
         ];
     }
 }
