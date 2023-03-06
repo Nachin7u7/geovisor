@@ -278,8 +278,9 @@
                 //console.log(e);
                 $('#verbatim_latitude').val(convertirDMS(lat));
                 $('#verbatim_longitude').val(convertirDMS(lng));
-                $('#utm_latitude').val(convertirUTM(lat));
-                $('#utm_longitude').val(convertirUTM(lng));
+                var utm = convertirUTM(lat,lng);
+                $('#utm_latitude').val(utm.x);
+                $('#utm_longitude').val(utm.y);
                 refresh_option_dep_mun(lat, lng);
                 $('#location_longitude_decimal').val(Math.round(lng * 100000) / 100000);
                 $('#location_latitude_decimal').val(Math.round(lat * 100000) / 100000);
@@ -297,35 +298,42 @@
             return grados + '°' + minutos + '\'' + direccion;
         }
 
-        function convertirUTM(latitud) {
-            var Lat_rad = latitud * (Math.PI / 180);
-            var Lat0_rad = -16.0 * (Math.PI / 180);
-            var Lon0_rad = -68.0 * (Math.PI / 180); // meridiano central para Bolivia
-            var a = 6378137.0;
-            var F0 = 0.9996;
-            var k1 = 0.00669438;
-            var k2 = 0.00003065;
-            var k3 = 0.000000034;
-            var E0 = 500000.0;
-            var N0 = 10000000.0;
-            var n = (a - 6356752.314) / (a + 6356752.314);
-            var A = a / (1 + n) * (1 + Math.pow(n, 2) / 4 + Math.pow(n, 4) / 64);
-            var alpha = (3 * n / 2 - 27 * Math.pow(n, 3) / 32) * Math.sin(2 * Lat_rad);
-            var beta = (21 * Math.pow(n, 2) / 16 - 55 * Math.pow(n, 4) / 32) * Math.sin(4 * Lat_rad);
-            var gamma = (151 * Math.pow(n, 3) / 96) * Math.sin(6 * Lat_rad);
-            var delta = (1097 * Math.pow(n, 4) / 512) * Math.sin(8 * Lat_rad);
-            var S = A * F0 * (Lat_rad - Lat0_rad) + alpha + beta + gamma + delta;
-            var k = 0.9996;
-            var E = E0 + k * S * Math.sin(Lat_rad);
-            var N = N0 + k * S * Math.cos(Lat_rad);
 
-            // corrección del meridiano central
-            E = E - 500000.0;
-            E = E * Math.cos(Lon0_rad) - N * Math.sin(Lon0_rad);
-            N = E * Math.sin(Lon0_rad) + N * Math.cos(Lon0_rad);
-            E = E + 500000.0;
+        function convertirUTM(lat, lon) {
+            var hemisferio = 'S';
+            var e = 0.006739497;
+            var c_radio_polar = 6399593.626;
+            var rad_lon = lon * Math.PI / 180;
 
-            return E.toFixed(1);
+            var rad_lat = lat * Math.PI / 180;
+            var zone = Math.trunc((lon/6)+31);
+            var zoneCH = 6*zone-183;
+            var delta_lambda = + rad_lon - ((zoneCH*Math.PI)/180);
+            var A = Math.cos(rad_lat) * Math.sin(delta_lambda);
+            var Xi = (1/2) * Math.log((1 + A) / (1 - A));
+            var eta = Math.atan(Math.tan(rad_lat) / Math.cos(delta_lambda)) - rad_lat;
+            var Ni = (c_radio_polar / Math.pow((1 + e * Math.pow(Math.cos(rad_lat), 2)), 1/2)) * 0.9996;
+            var zeta = (e/2)*Math.pow(Xi,2)*Math.pow(Math.cos(rad_lat),2);
+            var A1 = Math.sin(2*rad_lat);
+            var A2 = A1 * Math.pow(Math.cos(rad_lat), 2);
+            var J2 = rad_lat + (A1/2);
+            var J4 = j4 = ((3*J2)+A2)/4;
+            var J6 = (5 * J4 + A2 * Math.pow(Math.cos(rad_lat), 2)) / 3;
+            var alfa = (3/4)*e;
+            var beta =  (5/3) * Math.pow(alfa, 2);
+            var gamma = (35/27) * Math.pow(alfa, 3);
+            var fi = 0.9996 * c_radio_polar * (rad_lat - (alfa * J2) + (beta * J4) - (gamma * J6));
+
+            // Calcular las coordenadas UTM
+            var X = Xi*Ni*(1+zeta/3)+500000;
+            var Y = (hemisferio === "S") ? eta*Ni*(1+zeta) + fi + 10000000 : eta*Ni*(1+zeta) + fi;
+
+            // Devolver las coordenadas UTM
+            return {
+                x: X.toFixed(3),
+                y: Y.toFixed(3),
+                zone: zone
+            };
         }
 
         var latitude=$('#location_latitude_decimal');
@@ -509,12 +517,16 @@
 
         $(function() {
             var location_latitude_decimal = $('#location_latitude_decimal').val();
-            $('#verbatim_latitude').val(convertirDMS(location_latitude_decimal));
-            $('#utm_latitude').val(convertirUTM(location_latitude_decimal));
-
             var location_longitude_decimal = $('#location_longitude_decimal').val();
+
+            const utmCoords = convertirUTM(location_latitude_decimal, location_longitude_decimal);
+
+            $('#verbatim_latitude').val(convertirDMS(location_latitude_decimal));
+            // $('#utm_latitude').val(convertirUTM(location_latitude_decimal, location_longitude_decimal));
+            $('#utm_latitude').val(utmCoords.x);
+
             $('#verbatim_longitude').val(convertirDMS(location_longitude_decimal));
-            $('#utm_longitude').val(convertirUTM(location_longitude_decimal));
+            $('#utm_longitude').val(utmCoords.y);
 
         });
 
@@ -522,13 +534,19 @@
         var handle_calculos = function(){
             $("#location_latitude_decimal").bind("keyup keydown change", function(){
                 var location_latitude_decimal = $('#location_latitude_decimal').val();
+                var location_longitude_decimal = $('#location_longitude_decimal').val();
+                const utmCoords = convertirUTM(location_latitude_decimal, location_longitude_decimal);
                 $('#verbatim_latitude').val(convertirDMS(location_latitude_decimal));
-                $('#utm_latitude').val(convertirUTM(location_latitude_decimal));
+                $('#utm_latitude').val(utmCoords.x);
+                $('#utm_longitude').val(utmCoords.y);
             });
             $("#location_longitude_decimal").bind("keyup keydown change", function(){
                 var location_longitude_decimal = $('#location_longitude_decimal').val();
+                var location_latitude_decimal = $('#location_latitude_decimal').val();
+                const utmCoords = convertirUTM(location_latitude_decimal, location_longitude_decimal);
                 $('#verbatim_longitude').val(convertirDMS(location_longitude_decimal));
-                $('#utm_longitude').val(convertirUTM(location_longitude_decimal));
+                $('#utm_latitude').val(utmCoords.x);
+                $('#utm_longitude').val(utmCoords.y);
             });
         };
 

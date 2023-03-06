@@ -276,12 +276,65 @@
                 const lat = e.latlng.lat;
                 const lng = e.latlng.lng;
                 //console.log(e);
+                $('#verbatim_latitude').val(convertirDMS(lat));
+                $('#verbatim_longitude').val(convertirDMS(lng));
+                var utm = convertirUTM(lat,lng);
+                $('#utm_latitude').val(utm.x);
+                $('#utm_longitude').val(utm.y);
                 refresh_option_dep_mun(lat, lng);
                 $('#location_longitude_decimal').val(Math.round(lng * 100000) / 100000);
                 $('#location_latitude_decimal').val(Math.round(lat * 100000) / 100000);
                 marker.setLatLng([lat,lng]).update();
             });
         };
+
+        function convertirDMS(valor) {
+            var absValor = Math.abs(valor);
+            var grados = Math.floor(absValor);
+            var minutos = Math.round((absValor - grados) * 60);
+            // var grados = Math.abs(parseInt(latitud));
+            // var minutos = Math.round(Math.abs((latitud - grados) * 60));
+            var direccion = valor < 0 ? 'S' : 'N';
+            return grados + '°' + minutos + '\'' + direccion;
+        }
+
+
+        function convertirUTM(lat, lon) {
+            var hemisferio = 'S';
+            var e = 0.006739497;
+            var c_radio_polar = 6399593.626;
+            var rad_lon = lon * Math.PI / 180;
+
+            var rad_lat = lat * Math.PI / 180;
+            var zone = Math.trunc((lon/6)+31);
+            var zoneCH = 6*zone-183;
+            var delta_lambda = + rad_lon - ((zoneCH*Math.PI)/180);
+            var A = Math.cos(rad_lat) * Math.sin(delta_lambda);
+            var Xi = (1/2) * Math.log((1 + A) / (1 - A));
+            var eta = Math.atan(Math.tan(rad_lat) / Math.cos(delta_lambda)) - rad_lat;
+            var Ni = (c_radio_polar / Math.pow((1 + e * Math.pow(Math.cos(rad_lat), 2)), 1/2)) * 0.9996;
+            var zeta = (e/2)*Math.pow(Xi,2)*Math.pow(Math.cos(rad_lat),2);
+            var A1 = Math.sin(2*rad_lat);
+            var A2 = A1 * Math.pow(Math.cos(rad_lat), 2);
+            var J2 = rad_lat + (A1/2);
+            var J4 = j4 = ((3*J2)+A2)/4;
+            var J6 = (5 * J4 + A2 * Math.pow(Math.cos(rad_lat), 2)) / 3;
+            var alfa = (3/4)*e;
+            var beta =  (5/3) * Math.pow(alfa, 2);
+            var gamma = (35/27) * Math.pow(alfa, 3);
+            var fi = 0.9996 * c_radio_polar * (rad_lat - (alfa * J2) + (beta * J4) - (gamma * J6));
+
+            // Calcular las coordenadas UTM
+            var X = Xi*Ni*(1+zeta/3)+500000;
+            var Y = (hemisferio === "S") ? eta*Ni*(1+zeta) + fi + 10000000 : eta*Ni*(1+zeta) + fi;
+
+            // Devolver las coordenadas UTM
+            return {
+                x: X.toFixed(3),
+                y: Y.toFixed(3),
+                zone: zone
+            };
+        }
 
         var latitude=$('#location_latitude_decimal');
         var longitude= $('#location_longitude_decimal');
@@ -462,6 +515,41 @@
             }
         };
 
+        $(function() {
+            var location_latitude_decimal = $('#location_latitude_decimal').val();
+            var location_longitude_decimal = $('#location_longitude_decimal').val();
+
+            const utmCoords = convertirUTM(location_latitude_decimal, location_longitude_decimal);
+
+            $('#verbatim_latitude').val(convertirDMS(location_latitude_decimal));
+            // $('#utm_latitude').val(convertirUTM(location_latitude_decimal, location_longitude_decimal));
+            $('#utm_latitude').val(utmCoords.x);
+
+            $('#verbatim_longitude').val(convertirDMS(location_longitude_decimal));
+            $('#utm_longitude').val(utmCoords.y);
+
+        });
+
+        // var location_latitude_decimal = $('#location_latitude_decimal').val();
+        var handle_calculos = function(){
+            $("#location_latitude_decimal").bind("keyup keydown change", function(){
+                var location_latitude_decimal = $('#location_latitude_decimal').val();
+                var location_longitude_decimal = $('#location_longitude_decimal').val();
+                const utmCoords = convertirUTM(location_latitude_decimal, location_longitude_decimal);
+                $('#verbatim_latitude').val(convertirDMS(location_latitude_decimal));
+                $('#utm_latitude').val(utmCoords.x);
+                $('#utm_longitude').val(utmCoords.y);
+            });
+            $("#location_longitude_decimal").bind("keyup keydown change", function(){
+                var location_longitude_decimal = $('#location_longitude_decimal').val();
+                var location_latitude_decimal = $('#location_latitude_decimal').val();
+                const utmCoords = convertirUTM(location_latitude_decimal, location_longitude_decimal);
+                $('#verbatim_longitude').val(convertirDMS(location_longitude_decimal));
+                $('#utm_latitude').val(utmCoords.x);
+                $('#utm_longitude').val(utmCoords.y);
+            });
+        };
+
         return {
             // public functions
             init: function () {
@@ -470,6 +558,7 @@
                 handle_ll();
                 handle_option_municipio();
                 handle_change_municipio();
+                handle_calculos();
             }
         };
     }();

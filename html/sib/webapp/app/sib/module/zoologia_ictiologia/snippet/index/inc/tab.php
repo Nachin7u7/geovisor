@@ -11,18 +11,10 @@ $tabs = array();
  */
 //-------------------------------------------------------------
 $item_tab[]=array(
-    "label"=> $smarty->config_vars["tab_taxonomia"]
-,   "id_name"=>"taxonomia"
-,   "icon" => "fas fa-otter m--font-success"
-,   "new" => 1
-);
-
-//-------------------------------------------------------------
-$item_tab[]=array(
     "label"=> $smarty->config_vars["tabGeneral"]
 ,   "id_name"=>"general"
 ,   "icon" => "fas fa-dungeon m--font-success"
-,   "new" => 0
+,   "new" => 1
 );
 
 //-------------------------------------------------------------
@@ -56,7 +48,13 @@ $item_tab[]=array(
 ,   "icon" => "fas fa-map-marker m--font-success"
 ,   "new" => 0
 );
-
+//-------------------------------------------------------------
+$item_tab[]=array(
+    "label"=> $smarty->config_vars["tab_taxonomia"]
+,   "id_name"=>"taxonomia"
+,   "icon" => "fas fa-otter m--font-success"
+,   "new" => 0
+);
 //-------------------------------------------------------------
 $item_tab[]=array(
     "label"=> $smarty->config_vars["tab_foto"]

@@ -17,6 +17,6 @@ Core::createDirectory($appVars["directory"]);
 /**
  *  Verificamos y/o Creamos la carpeta del módulo
  */
-$appVars["folderModule"] = "botanica";
+$appVars["folderModule"] = "zoologia_ictiologia";
 $appVars["directory"] = $appVars["directory"].$appVars["folderModule"]."/";
 Core::createDirectory($appVars["directory"]);

@@ -30,5 +30,6 @@
 
 <script src="/js/geo/leaflet.groupedlayercontrol/dist/leaflet.groupedlayercontrol.min.js"></script>
 <script src="/js/geo/leaflet.wms/dist/leaflet.wms.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.7.0/proj4.js"></script>
 
 

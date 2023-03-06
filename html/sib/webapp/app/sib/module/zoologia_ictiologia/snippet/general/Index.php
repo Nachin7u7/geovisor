@@ -63,6 +63,7 @@ class Index extends CoreResources
                  * Additional processes when saving the data
                  */
                 if ($action=="new"){
+                    $dataResult["categoria_id"] = 7;
                 }
                 if ($dataResult["language_id"]=="" or $dataResult["language_id"]==0){
                     $dataResult["language_id"] = NULL;

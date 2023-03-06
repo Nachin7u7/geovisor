@@ -5,7 +5,7 @@ use Core\CoreResources;
 class Index extends CoreResources {
     var $objTable = "especimen";
     var $folder = "botanica";
-    var $fkey_field = "kingdom";
+    var $fkey_field = "categoria_id";
     var $extraWhere = "";
     function __construct()
     {
@@ -13,7 +13,7 @@ class Index extends CoreResources {
          * We initialize all the libraries and variables for the new class
          */
         $this->appInit();
-        $this->extraWhere = $this->fkey_field."= 'Plantae'" ;
+        $this->extraWhere = $this->fkey_field."= '3'" ;
     }
     function getItem($idItem){
 
