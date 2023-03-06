@@ -141,7 +141,7 @@
 					}
 				],
 				"url": {
-					"raw": "{{url}}/api/v1/especimen/",
+					"raw": "{{url}}/api/v1/especimen/2",
 					"host": [
 						"{{url}}"
 					],
@@ -149,7 +149,7 @@
 						"api",
 						"v1",
 						"especimen",
-						""
+						"2"
 					]
 				}
 			},
