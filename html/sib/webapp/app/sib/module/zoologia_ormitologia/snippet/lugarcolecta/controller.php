@@ -2,7 +2,7 @@
 use App\Sib\Zoologia_ormitologia\Lugarcolecta\Index;
 use App\Sib\Zoologia_ormitologia\Lugarcolecta\Catalog;
 use Core\Core;
-use App\Sib\Module\Zoologia_mastozoologia\Snippet\Index\Index as indexParent;
+use App\Sib\Module\Zoologia_ormitologia\Snippet\Index\Index as indexParent;
 
 $objItem = new Index();
 $objCatalog = new Catalog();
@@ -39,6 +39,7 @@ switch($action){
          */
         $objCatalog->conf_catalog_form($item);
         $cataobj= $objCatalog->getCatalogList();
+        $cataobj["hemisferio"] = $objCatalog->geHemisferio();
         //print_struc($cataobj);exit;
         $smarty->assign("cataobj", $cataobj);
         $smarty->assign("item_id", $item_id);
@@ -66,5 +67,8 @@ switch($action){
         $item = $objCatalog->getDepartamentOptions();
         Core::printJson($item);
         break;
-
+    case 'get.point':
+        $item = $objCatalog->getPoint($_REQUEST["lat"], $_REQUEST["lng"]);
+        Core::printJson($item);
+        break;
 }

@@ -281,6 +281,8 @@
                 var utm = convertirUTM(lat,lng);
                 $('#utm_latitude').val(utm.x);
                 $('#utm_longitude').val(utm.y);
+                $('#zone').val(utm.zone);
+                $('#hemisferio').val(utm.hemisferio);
                 refresh_option_dep_mun(lat, lng);
                 $('#location_longitude_decimal').val(Math.round(lng * 100000) / 100000);
                 $('#location_latitude_decimal').val(Math.round(lat * 100000) / 100000);
@@ -292,15 +294,13 @@
             var absValor = Math.abs(valor);
             var grados = Math.floor(absValor);
             var minutos = Math.round((absValor - grados) * 60);
-            // var grados = Math.abs(parseInt(latitud));
-            // var minutos = Math.round(Math.abs((latitud - grados) * 60));
             var direccion = valor < 0 ? 'S' : 'N';
             return grados + '°' + minutos + '\'' + direccion;
         }
 
 
         function convertirUTM(lat, lon) {
-            var hemisferio = 'S';
+            // var hemisferio = 'S';
             var e = 0.006739497;
             var c_radio_polar = 6399593.626;
             var rad_lon = lon * Math.PI / 180;
@@ -324,15 +324,19 @@
             var gamma = (35/27) * Math.pow(alfa, 3);
             var fi = 0.9996 * c_radio_polar * (rad_lat - (alfa * J2) + (beta * J4) - (gamma * J6));
 
+            // Determinar el hemisferio
+            var hemisferio = lat >= 0 ? 'N' : 'S';
+
             // Calcular las coordenadas UTM
             var X = Xi*Ni*(1+zeta/3)+500000;
-            var Y = (hemisferio === "S") ? eta*Ni*(1+zeta) + fi + 10000000 : eta*Ni*(1+zeta) + fi;
+            var Y = (hemisferio === 'S') ? eta*Ni*(1+zeta) + fi + 10000000 : eta*Ni*(1+zeta) + fi;
 
             // Devolver las coordenadas UTM
             return {
                 x: X.toFixed(3),
                 y: Y.toFixed(3),
-                zone: zone
+                zone: zone,
+                hemisferio: hemisferio
             };
         }
 
@@ -384,22 +388,22 @@
 
         var handle_ll =  function(){
             longitude.change(function () {
-                console.log("cambio longitud");
+                // console.log("cambio longitud");
                 changeLngLat()
             });
             latitude.change(function () {
-                console.log("cambio latitud");
+                // console.log("cambio latitud");
                 changeLngLat()
             })
         };
 
-        var municipio_opt = $("#municipio_id");
-        var departamento_opt = $("#departamento_id");
+        var municipio_opt = $("#municipality_id");
+        var departamento_opt = $("#state_province_id");
         let urlmodule = "{/literal}{$path_url}/{$subcontrol}_{literal}";
 
         var handle_option_municipio = function(){
-            $('#departamento_id').on('change',function(){
-                var id = $('#departamento_id').val();
+            $('#state_province_id').on('change',function(){
+                var id = $('#state_province_id').val();
                 municipio_search(id);
             });
         };
@@ -429,8 +433,8 @@
         };
 
         var handle_change_municipio = function(){
-            $('#municipio_id').on('change',function(){
-                var id = $('#municipio_id').val();
+            $('#municipality_id').on('change',function(){
+                var id = $('#municipality_id').val();
                 push_point_municipio(id);
             });
         };
@@ -444,7 +448,7 @@
                         map.setView(new L.LatLng(res[0].lat, res[0].lon), 10);
                         latitude.val(res[0].lat);
                         longitude.val(res[0].lon);
-                        $('#departamento_id').val(res[0].departamento_id);
+                        $('#state_province_id').val(res[0].departamento_id);
                     }
                     , 'json');
             }else{
@@ -459,55 +463,29 @@
                 departamento_opt.prop('disabled', true);
                 municipio_opt.find("option").remove();
                 municipio_opt.prop('disabled', true);
-                $.post("https://nominatim.openstreetmap.org/reverse?format=geojson&lat="+lat+"&lon="+lng+""
+                $.post(urlmodule+"/get.point"
+                    , {lat: lat,
+                        lng: lng}
+                    // , {lng: lng}
                     , function (res, textStatus, jqXHR) {
-                        var text = res.features[0].properties.address.state;
-                        var textMunicipio = res.features[0].properties.address.city;
-                        var textProMunicipio = res.features[0].properties.address.county;
-                        console.log(res.features[0].properties.address);
-                        if(text!="") {
-                            $.post(urlmodule+"/get.departamentos"
-                                , function (res, textStatus, jqXHR) {
-                                    let selOption = $('<option></option>');
-                                    departamento_opt.append(selOption.attr("value", "").text("{/literal}{#field_Holder_departamento_id#}{literal}"));
-                                    let departamento_list = []
-                                    for (var row in res) {
-                                        if(res[row].name.toLowerCase() == text.toLowerCase()){
-                                            id=res[row].id;
-                                            departamento_opt.append($('<option></option>').attr({value:res[row].id, selected:true}).text(res[row].name));
-                                        }else{
-                                            departamento_opt.append($('<option></option>').attr("value", res[row].id).text(res[row].name));
-                                        }
-                                        departamento_list[res[row].id] = res[row];
-                                    }
-                                    departamento_opt.trigger('chosen:updated');
-                                    departamento_opt.prop('disabled', false);
-
-                                    $.post(urlmodule+"/get.municipio"
-                                        , {id: id}
-                                        , function (res, textStatus, jqXHR) {
-                                            let selOption = $('<option></option>');
-                                            municipio_opt.append(selOption.attr("value", "").text("{/literal}{#field_Holder_municipio_id#}{literal}"));
-                                            let municipio_list = []
-                                            for (var row in res) {
-                                                if(res[row].name.toLowerCase() == textMunicipio.toLowerCase()){
-                                                    municipio_opt.append($('<option></option>').attr({value:res[row].id, selected:true}).text(res[row].name));
-                                                }else if (res[row].name.toLowerCase() == textProMunicipio.toLowerCase()){
-                                                    municipio_opt.append($('<option></option>').attr({value:res[row].id, selected:true}).text(res[row].name));
-                                                }else{
-                                                    municipio_opt.append($('<option></option>').attr("value", res[row].id).text(res[row].name));
-                                                }
-                                                municipio_list[res[row].id] = res[row];
-                                            }
-                                            municipio_opt.trigger('chosen:updated');
-                                            municipio_opt.prop('disabled', false);
-                                        }
-                                        , 'json');
-                                }
-                                , 'json');
-                        }else{
-                            //handle_options_init();
+                        console.log(res);
+                        let selOption = $('<option></option>');
+                        municipio_opt.append(selOption.attr("value", "").text("{/literal}{#field_Holder_municipio_id#}{literal}"));
+                        departamento_opt.append(selOption.attr("value", "").text("{/literal}{#field_Holder_departamento_id#}{literal}"));
+                        let departamento_list = []
+                        for (var row in res) {
+                            departamento_opt.append($('<option></option>').attr({value:res[row].state_province_id, selected: true}).text(res[row].state_province));
+                            departamento_list[res[row].state_province_id] = res[row];
                         }
+                        let municipio_list = []
+                        for (var row1 in res) {
+                            municipio_opt.append($('<option></option>').attr("value", res[row1].municipality_id).text(res[row1].municipality));
+                            municipio_list[res[row1].municipality_id] = res[row1];
+                        }
+                        municipio_opt.trigger('chosen:updated');
+                        municipio_opt.prop('disabled', false);
+                        departamento_opt.trigger('chosen:updated');
+                        departamento_opt.prop('disabled', false);
                     }
                     , 'json');
             }else{
@@ -516,37 +494,43 @@
         }
 
         $(function() {
-            var location_latitude_decimal = $('#location_latitude_decimal').val();
-            var location_longitude_decimal = $('#location_longitude_decimal').val();
-
-            const utmCoords = convertirUTM(location_latitude_decimal, location_longitude_decimal);
-
-            $('#verbatim_latitude').val(convertirDMS(location_latitude_decimal));
-            // $('#utm_latitude').val(convertirUTM(location_latitude_decimal, location_longitude_decimal));
+            var lat = latitude.val();
+            var lng = longitude.val();
+            const utmCoords = convertirUTM(lat, lng);
+            refresh_option_dep_mun(lat,lng);
+            $('#verbatim_latitude').val(convertirDMS(lat));
             $('#utm_latitude').val(utmCoords.x);
 
-            $('#verbatim_longitude').val(convertirDMS(location_longitude_decimal));
+            $('#verbatim_longitude').val(convertirDMS(lng));
             $('#utm_longitude').val(utmCoords.y);
 
+            $('#zone').val(utmCoords.zone);
+            $('#hemisferio').val(utmCoords.hemisferio);
         });
 
         // var location_latitude_decimal = $('#location_latitude_decimal').val();
         var handle_calculos = function(){
             $("#location_latitude_decimal").bind("keyup keydown change", function(){
-                var location_latitude_decimal = $('#location_latitude_decimal').val();
-                var location_longitude_decimal = $('#location_longitude_decimal').val();
-                const utmCoords = convertirUTM(location_latitude_decimal, location_longitude_decimal);
-                $('#verbatim_latitude').val(convertirDMS(location_latitude_decimal));
+                var lat = latitude.val();
+                var lng = longitude.val();
+                const utmCoords = convertirUTM(lat, lng);
+                refresh_option_dep_mun(lat,lng);
+                $('#verbatim_latitude').val(convertirDMS(lat));
                 $('#utm_latitude').val(utmCoords.x);
                 $('#utm_longitude').val(utmCoords.y);
+                $('#zone').val(utmCoords.zone);
+                $('#hemisferio').val(utmCoords.hemisferio);
             });
             $("#location_longitude_decimal").bind("keyup keydown change", function(){
-                var location_longitude_decimal = $('#location_longitude_decimal').val();
-                var location_latitude_decimal = $('#location_latitude_decimal').val();
-                const utmCoords = convertirUTM(location_latitude_decimal, location_longitude_decimal);
-                $('#verbatim_longitude').val(convertirDMS(location_longitude_decimal));
+                var lat = latitude.val();
+                var lng = longitude.val();
+                const utmCoords = convertirUTM(lat, lng);
+                refresh_option_dep_mun(lat,lng);
+                $('#verbatim_longitude').val(convertirDMS(lng));
                 $('#utm_latitude').val(utmCoords.x);
                 $('#utm_longitude').val(utmCoords.y);
+                $('#zone').val(utmCoords.zone);
+                $('#hemisferio').val(utmCoords.hemisferio);
             });
         };
 

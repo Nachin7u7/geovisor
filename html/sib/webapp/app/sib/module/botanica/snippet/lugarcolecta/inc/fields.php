@@ -32,6 +32,10 @@ $field_item["verbatim_latitude"]=array("type"=>"text");
 $field_item["verbatim_longitude"]=array("type"=>"text");
 $field_item["utm_latitude"]=array("type"=>"text");
 $field_item["utm_longitude"]=array("type"=>"text");
+$field_item["zone"]=array("type"=>"text");
+$field_item["hemisferio"]=array("type"=>"text");
+$field_item["state_province_id"]=array("type"=>"text");
+$field_item["municipality_id"]=array("type"=>"text");
 
 $group = "module";
 $fields[$group]= $field_item;

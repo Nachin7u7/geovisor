@@ -59,6 +59,23 @@ class Catalog extends CoreResources{
         return $item;
     }
 
+    function geHemisferio(){
+        $dato = array();
+        $dato["N"] = "N";
+        $dato["S"] = "S";
+        return $dato;
+    }
+
+    function getPoint($lat, $lng){
+//        print_struc($lat);
+        $sql = "SELECT d.id AS municipality_id, d.departamento_id as state_province_id,
+                d.departamen AS state_province, d.provincia as county, d.name as municipality
+            FROM ".$this->table["municipio"]." as d
+            INNER JOIN ".$this->table["municipio"]." m ON ST_Contains(d.geom, ST_SetSRID(ST_Point(".$lng.", ".$lat."), 4326)) AND ST_Contains(m.geom, ST_SetSRID(ST_Point(".$lng.", ".$lat."), 4326))";
+        $item = $this->dbm->Execute($sql);
+        $item = $item->GetRows();
+        return $item;
+    }
 
     public function confCatalog(){
     }

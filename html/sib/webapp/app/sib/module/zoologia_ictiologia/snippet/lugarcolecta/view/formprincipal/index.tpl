@@ -17,19 +17,17 @@
                 <div id="map" style="height:400px;"></div>
             </div>
             <div class="form-group row">
-
-
                 <div class="col-lg-6">
                     <label>{#field_departamento_id#} <span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
-                                name="item[departamento_id]" id="departamento_id"
+                                name="item[state_province_id]" id="state_province_id"
                                 data-placeholder="{#field_Holder_departamento_id#}" {$privFace.input}
                                 required
                                 data-fv-not-empty___message="{#glFieldRequired#}"
                         >
                             <option></option>
-                            {html_options options=$cataobj.departamento selected=$item.departamento_id}
+                            {html_options options=$cataobj.departamento selected=$item.state_province_id}
                         </select>
                     </div>
                     <span class="form-text text-black-50">{#field_GroupMsg_departamento_id#}</span>
@@ -39,13 +37,13 @@
                     <label>{#field_municipio_id#} <span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
-                                name="item[municipio_id]" id="municipio_id"
+                                name="item[municipality_id]" id="municipality_id"
                                 data-placeholder="{#field_Holder_municipio_id#}" {$privFace.input}
                                 required
                                 data-fv-not-empty___message="{#glFieldRequired#}"
                         >
                             <option></option>
-                            {html_options options=$cataobj.municipio selected=$item.municipio_id}
+                            {html_options options=$cataobj.municipio selected=$item.municipality_id}
                         </select>
                     </div>
                     <span class="form-text text-black-50">{#field_GroupMsg_municipio_id#}</span>
@@ -54,7 +52,7 @@
                 <div class="col-lg-6">
                     <label>{#fiel_location_latitude_decimal#}  <span class="text-danger bold">*</span> :</label>
                     <div class="input-group">
-                        <input type="text" class="form-control"
+                        <input type="text" class="form-control location_latitude_decimal"
                                name="item[location_latitude_decimal]"
                                id="location_latitude_decimal"
                                required
@@ -69,7 +67,7 @@
                 <div class="col-lg-6">
                     <label>{#fiel_location_longitude_decimal#}  <span class="text-danger bold">*</span> :</label>
                     <div class="input-group">
-                        <input type="text" class="form-control"
+                        <input type="text" class="form-control location_longitude_decimal"
                                id="location_longitude_decimal"
                                required
                                name="item[location_longitude_decimal]"
@@ -111,7 +109,7 @@
                     </div>
                     <span class="form-text text-black-50">{#field_msg_verbatim_longitude#}</span>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <label>{#field_utm_latitude#}  <span class="text-danger bold">*</span> :</label>
                     <div class="input-group">
                         <input type="text" class="form-control"
@@ -126,7 +124,7 @@
                     </div>
                     <span class="form-text text-black-50">{#field_msg_utm_latitude#}</span>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <label>{#field_utm_longitude#}  <span class="text-danger bold">*</span> :</label>
                     <div class="input-group">
                         <input type="text" class="form-control"
@@ -140,6 +138,33 @@
                                         class="fa fa-map-marker-alt text-danger"></i></span></div>
                     </div>
                     <span class="form-text text-black-50">{#field_msg_utm_longitude#}</span>
+                </div>
+                <div class="col-lg-2">
+                    <label>{#field_zona#}:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control number_integer2"
+                               id="zone"
+                               name="item[zone]"
+                               value="{$item.zone|escape:"html"}"
+                        >
+                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-info"></i></span></div>
+                    </div>
+                    <span class="form-text text-muted">{#field_msg_zona#}</span>
+                </div>
+                <div class="col-lg-2">
+                    <label>{#field_hemisferio#} <span class="text-danger bold">*</span> : </label>
+                    <div class="input-group">
+                        <select class="form-control m-select2"
+                                name="item[hemisferio]" id="hemisferio"
+                                data-placeholder="{#field_Holder_hemisferio#}" {$privFace.input}
+                                required
+                                data-fv-not-empty___message="{#glFieldRequired#}"
+                        >
+                            <option></option>
+                            {html_options options=$cataobj.hemisferio selected=$item.hemisferio}
+                        </select>
+                    </div>
+                    <span class="form-text text-black-50">{#field_GroupMsg_hemisferio#}</span>
                 </div>
             </div>
         </div>
