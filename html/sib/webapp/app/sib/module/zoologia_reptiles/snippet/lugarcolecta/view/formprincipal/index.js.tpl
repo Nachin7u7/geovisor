@@ -217,6 +217,82 @@
                 continuousWorld : true,
                 opacity: 0.5
             });
+            var ecorregiones_ibish = L.tileLayer.wms(geoserver_mmaya+'?', {
+                layers: 'sinb:ecorregiones_ibish',
+                format: 'image/png',
+                uppercase: true,
+                transparent: true,
+                continuousWorld : true,
+                opacity: 0.5
+            });
+
+            var geoserver_mnhn = "http://sib.mnhn.gob.bo/geoserver/wms";
+            var mnhn_geologia = L.tileLayer.wms(geoserver_mnhn+'?', {
+                layers: 'bioadmin:geologia',
+                format: 'image/png',
+                transparent: true,
+                opacity: 0.8
+            });
+            var mnhn_ecoregiones = L.tileLayer.wms(geoserver_mnhn+'?', {
+                layers: 'bioadmin:ecoregion',
+                format: 'image/png',
+                transparent: true,
+                opacity: 0.8
+            });
+            var mnhn_vegetacion = L.tileLayer.wms(geoserver_mnhn+'?', {
+                layers: 'bioadmin:vegetacion',
+                format: 'image/png',
+                transparent: true,
+                opacity: 0.8
+            });
+            var mnhn_Apn = L.tileLayer.wms(geoserver_mnhn+'?', {
+                layers: 'bioadmin:areas_prot_nal',
+                format: 'image/png',
+                transparent: true,
+                opacity: 0.8
+            });
+            var mnhn_Apm = L.tileLayer.wms(geoserver_mnhn+'?', {
+                layers: 'bioadmin:areas_prot_mun',
+                format: 'image/png',
+                transparent: true,
+                opacity: 0.8
+            });
+            var mnhn_Apd = L.tileLayer.wms(geoserver_mnhn+'?', {
+                layers: 'bioadmin:areas_prot_dep',
+                format: 'image/png',
+                transparent: true,
+                opacity: 0.8
+            });
+            var mnhn_sitiosramsar = L.tileLayer.wms(geoserver_mnhn+'?', {
+                layers: 'bioadmin:sitios_ramsar',
+                format: 'image/png',
+                transparent: true,
+                opacity: 0.8
+            });
+            var mnhn_biogeografia = L.tileLayer.wms(geoserver_mnhn+'?', {
+                layers: 'bioadmin:geologia',
+                format: 'image/png',
+                transparent: true,
+                opacity: 0.8
+            });
+            var mnhn_zonasvida = L.tileLayer.wms(geoserver_mnhn+'?', {
+                layers: 'bioadmin:zonasvida',
+                format: 'image/png',
+                transparent: true,
+                opacity: 0.8
+            });
+            var mnhn_reservasforestales = L.tileLayer.wms(geoserver_mnhn+'?', {
+                layers: 'bioadmin:reservasforestales',
+                format: 'image/png',
+                transparent: true,
+                opacity: 0.8
+            });
+            var mnhn_tcos = L.tileLayer.wms(geoserver_mnhn+'?', {
+                layers: 'bioadmin:tcos',
+                format: 'image/png',
+                transparent: true,
+                opacity: 0.8
+            });
             var overLayers = {
                 "Administrativos": {
                     "Departamento": layer_departamento,
@@ -230,9 +306,23 @@
                     "UH Nivel3": uh_nivel3,
                     "UH Nivel2": uh_nivel2,
                     "UH Nivel1": uh_nivel1,
+                },
+                "Biodiversidad": {
+                    "Mapa Geológico": mnhn_geologia,
+                    "Ecorregiones": mnhn_ecoregiones,
+                    "Ecorregiónes Ibish": ecorregiones_ibish,
+                    "Vegetación": mnhn_vegetacion,
+                    "Áreas Protegidas Nacional": mnhn_Apn,
+                    "Áreas Protegidas Departamental": mnhn_Apd,
+                    "Áreas Protegidas Municipal": mnhn_Apm,
+                    "Sitios Ramsar": mnhn_sitiosramsar,
+                    "Provincias biogeográficas": mnhn_biogeografia,
+                    "Zonas de vida": mnhn_zonasvida,
+                    "Reservas forestales": mnhn_reservasforestales,
+                    "TCOs": mnhn_tcos,
                 }
             };
-            
+
             return overLayers;
         };
 
@@ -468,7 +558,7 @@
                         lng: lng}
                     // , {lng: lng}
                     , function (res, textStatus, jqXHR) {
-                        console.log(res);
+                        // console.log(res);
                         let selOption = $('<option></option>');
                         municipio_opt.append(selOption.attr("value", "").text("{/literal}{#field_Holder_municipio_id#}{literal}"));
                         departamento_opt.append(selOption.attr("value", "").text("{/literal}{#field_Holder_departamento_id#}{literal}"));
