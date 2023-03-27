@@ -13,7 +13,7 @@ class Catalog extends CoreResources{
 
     public function confCatalog(){
         $where = "kingdom_id='2' AND class_id='3'";
-        $this->addCatalogList($this->table["catalogo_taxonomia"]
+        $this->addCatalogList($this->table["taxonomia"]
             ,"taxonomia","","scientific_name",""
             ,"scientific_name",$where,"","");
 
@@ -24,7 +24,7 @@ class Catalog extends CoreResources{
          * sacamos la taxonomia
          */
         if($id!="" and $id>0){
-            $sql = "select * from ".$this->table["catalogo_taxonomia"]." as i where i.id = '".$id."'";
+            $sql = "select * from ".$this->table["taxonomia"]." as i where i.id = '".$id."'";
             $item = $this->dbm->Execute($sql);
             $item = $item->GetRows();
         }

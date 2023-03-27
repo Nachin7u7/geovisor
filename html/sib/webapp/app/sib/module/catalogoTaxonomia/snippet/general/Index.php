@@ -4,7 +4,7 @@ use Core\CoreResources;
 
 class Index extends CoreResources
 {
-    var $objTable = "catalogo_taxonomia";
+    var $objTable = "taxonomia";
     function __construct()
     {
         /**

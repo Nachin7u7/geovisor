@@ -4,7 +4,7 @@ use Core\CoreResources;
 
 class Index extends CoreResources
 {
-    var $objTable = "catalogo_taxonomia";
+    var $objTable = "taxonomia";
     function __construct()
     {
         /**
@@ -47,9 +47,11 @@ class Index extends CoreResources
         $field_id="id";
         $res = $this->updateItem($itemId,$itemData ,$this->table[$this->objTable],$action,$field_id);
         $res["accion"] = $action;
+//        print_struc($itemData);exit;
         if( $res["res"]==1){
-            $this->setDivision($itemData["division_id"], $itemId);
+            $this->setPhylum($itemData["phylum_id"], $itemId);
             $this->setOrder($itemData["order_id"], $itemId);
+            $this->setClass($itemData["class_id"], $itemId);
             $this->setFamily($itemData["family_id"], $itemId);
             $this->setGenus($itemData["genus_id"], $itemId);
             $this->setKingdom($itemData["kingdom_id"], $itemId);
@@ -58,10 +60,11 @@ class Index extends CoreResources
     }
 
     function processData($form,$rec,$action="new"){
+//        print_struc($rec);exit;
         $dataResult = array();
+        $dataResult = $this->processFields($rec,$this->campos[$form],$action);
         switch($form){
             case 'module':
-                $dataResult = $this->processFields($rec,$this->campos[$form],$action);
                 /**
                  * Additional processes when saving the data
                  */
@@ -69,31 +72,41 @@ class Index extends CoreResources
                     $dataResult["kingdom_id"] = 1;
                     $dataResult["kingdom"] = "Plantae";
                 }
-                $dataResult["division"] = $this->getItemDivision($rec["division_id"])["nombre"];
+                $dataResult["phylum"] = $this->getItemPhylum($rec["phylum_id"])["nombre"];
                 $dataResult["order"] = $this->getItemOrder($rec["order_id"])["nombre"];
+                $dataResult["class"] = $this->getItemClass($rec["class_id"])["nombre"];
                 $dataResult["family"] = $this->getItemFamily($rec["family_id"])["nombre"];
                 $dataResult["genus"] = $this->getItemGenus($rec["genus_id"])["nombre"];
+                break;
+            case 'addphylum':
+//                $dataResult = $this->processFields($rec,$this->campos[$form],$action);
+                $dataResult["kingdom_id"] = 1;
+                break;
+            case 'addorder':
+            case 'addclass':
+            case 'addfamily':
+            case 'addgenus':
                 break;
         }
         return $dataResult;
     }
 
-    private function setDivision($division_id, $itemId){
+    private function setPhylum($division_id, $itemId){
         if($division_id!=""){
             $sql = "SELECT * 
-                    FROM catalogo.division where id=".$division_id;
+                    FROM catalogo.phylum where id=".$division_id;
             $res = $this->dbm->execute($sql);
             $item = $res->fields;
             $rec = array();
             $rec["division"]=$item["nombre"];
             $where = "id = ".$itemId;
-            $table = $this->table["catalogo_taxonomia"];
+            $table = $this->table["taxonomia"];
             $this->dbm->AutoExecute($table,$rec,"UPDATE",$where);
         }
     }
 
-    function getItemDivision($id){
-        $sql = "select * from catalogo.division where id = '".$id."'";
+    function getItemPhylum($id){
+        $sql = "select * from catalogo.phylum where id = '".$id."'";
         $item = $this->dbm->Execute($sql);
         $item = $item->fields;
         return $item;
@@ -102,19 +115,40 @@ class Index extends CoreResources
     private function setOrder($orden_id, $itemId){
         if($orden_id!=""){
             $sql = "SELECT * 
-                    FROM catalogo.orden where id=".$orden_id;
+                    FROM catalogo.order where id=".$orden_id;
             $res = $this->dbm->execute($sql);
             $item = $res->fields;
             $rec = array();
             $rec["order"]=$item["nombre"];
             $where = "id = ".$itemId;
-            $table = $this->table["catalogo_taxonomia"];
+            $table = $this->table["taxonomia"];
+            $this->dbm->AutoExecute($table,$rec,"UPDATE",$where);
+        }
+    }
+
+    function getItemClass($id){
+        $sql = "select * from catalogo.order where id = '".$id."'";
+        $item = $this->dbm->Execute($sql);
+        $item = $item->fields;
+        return $item;
+    }
+
+    private function setClass($class_id, $itemId){
+        if($class_id!=""){
+            $sql = "SELECT * 
+                    FROM catalogo.class where id=".$class_id;
+            $res = $this->dbm->execute($sql);
+            $item = $res->fields;
+            $rec = array();
+            $rec["class"]=$item["nombre"];
+            $where = "id = ".$itemId;
+            $table = $this->table["taxonomia"];
             $this->dbm->AutoExecute($table,$rec,"UPDATE",$where);
         }
     }
 
     function getItemOrder($id){
-        $sql = "select * from catalogo.orden where id = '".$id."'";
+        $sql = "select * from catalogo.order where id = '".$id."'";
         $item = $this->dbm->Execute($sql);
         $item = $item->fields;
         return $item;
@@ -123,19 +157,19 @@ class Index extends CoreResources
     private function setFamily($family_id, $itemId){
         if($family_id!=""){
             $sql = "SELECT * 
-                    FROM catalogo.familia where id=".$family_id;
+                    FROM catalogo.family where id=".$family_id;
             $res = $this->dbm->execute($sql);
             $item = $res->fields;
             $rec = array();
             $rec["family"]=$item["nombre"];
             $where = "id = ".$itemId;
-            $table = $this->table["catalogo_taxonomia"];
+            $table = $this->table["taxonomia"];
             $this->dbm->AutoExecute($table,$rec,"UPDATE",$where);
         }
     }
 
     function getItemFamily($id){
-        $sql = "select * from catalogo.familia where id = '".$id."'";
+        $sql = "select * from catalogo.family where id = '".$id."'";
         $item = $this->dbm->Execute($sql);
         $item = $item->fields;
         return $item;
@@ -144,19 +178,19 @@ class Index extends CoreResources
     private function setGenus($genus_id, $itemId){
         if($genus_id!=""){
             $sql = "SELECT * 
-                    FROM catalogo.genero where id=".$genus_id;
+                    FROM catalogo.genus where id=".$genus_id;
             $res = $this->dbm->execute($sql);
             $item = $res->fields;
             $rec = array();
             $rec["genus"]=$item["nombre"];
             $where = "id = ".$itemId;
-            $table = $this->table["catalogo_taxonomia"];
+            $table = $this->table["taxonomia"];
             $this->dbm->AutoExecute($table,$rec,"UPDATE",$where);
         }
     }
 
     function getItemGenus($id){
-        $sql = "select * from catalogo.genero where id = '".$id."'";
+        $sql = "select * from catalogo.genus where id = '".$id."'";
         $item = $this->dbm->Execute($sql);
         $item = $item->fields;
         return $item;
@@ -165,15 +199,116 @@ class Index extends CoreResources
     private function setKingdom($kingdom_id, $itemId){
         if($kingdom_id!=""){
             $sql = "SELECT * 
-                    FROM catalogo.reino where id=".$kingdom_id;
+                    FROM catalogo.kingdom where id=".$kingdom_id;
             $res = $this->dbm->execute($sql);
             $item = $res->fields;
             $rec = array();
             $rec["kingdom"]=$item["nombre"];
             $where = "id = ".$itemId;
-            $table = $this->table["catalogo_taxonomia"];
+            $table = $this->table["taxonomia"];
             $this->dbm->AutoExecute($table,$rec,"UPDATE",$where);
         }
+    }
+
+    function updateDataPhylum($rec){
+        $action = "new";
+        $item_id = "";
+        $itemId = "";
+        $tabla = $this->table["phylum"];
+        $form = "addphylum";
+        $itemData  = $this->processData($form,$rec,$action,$item_id);
+
+        /**
+         * Save processed data
+         */
+        $field_id="id";
+        $res = $this->updateItem($itemId,$itemData ,$tabla,$action,$field_id);
+        $res["accion"] = $action;
+        return $res;
+    }
+
+    function updateDataClass($rec){
+//        print_struc($rec);exit;
+//        if($rec["phylum_id"]!=""){
+            $action = "new";
+            $item_id = "";
+            $itemId = "";
+            $tabla = $this->table["class"];
+            $form = "addclass";
+            $itemData  = $this->processData($form,$rec,$action,$item_id);
+
+            /**
+             * Save processed data
+             */
+            $field_id="id";
+            $res = $this->updateItem($itemId,$itemData ,$tabla,$action,$field_id);
+//        print_struc($res);exit;
+            $res["accion"] = $action;
+//        }else{
+//            $res["res"] = 2;
+//            $res["type"] = 5; //mensaje de archivo no permitido
+////            $res["msgdb"] = $error;
+//            $res["msg"] = "La clase que esta creando no esta relacionado con un Filo";
+//        }
+
+        return $res;
+    }
+
+    function updateDataOrder($rec){
+        $action = "new";
+        $item_id = "";
+        $itemId = "";
+        $tabla = $this->table["order"];
+        $form = "addorder";
+        $itemData  = $this->processData($form,$rec,$action,$item_id);
+
+        /**
+         * Save processed data
+         */
+        $field_id="id";
+        $res = $this->updateItem($itemId,$itemData ,$tabla,$action,$field_id);
+//        print_struc($res);exit;
+        $res["accion"] = $action;
+
+        return $res;
+    }
+
+    function updateDataFamily($rec){
+        $action = "new";
+        $item_id = "";
+        $itemId = "";
+        $tabla = $this->table["family"];
+        $form = "addfamily";
+        $itemData  = $this->processData($form,$rec,$action,$item_id);
+
+        /**
+         * Save processed data
+         */
+        $field_id="id";
+        $res = $this->updateItem($itemId,$itemData ,$tabla,$action,$field_id);
+//        print_struc($res);exit;
+        $res["accion"] = $action;
+
+        return $res;
+    }
+
+    function updateDataGenus($rec){
+        $action = "new";
+        $item_id = "";
+        $itemId = "";
+        $tabla = $this->table["genus"];
+        $form = "addgenus";
+        $itemData  = $this->processData($form,$rec,$action,$item_id);
+
+        /**
+         * Save processed data
+         */
+        $field_id="id";
+        $res = $this->updateItem($itemId,$itemData ,$tabla,$action,$field_id);
+//        print_struc($res);exit;
+        $res["accion"] = $action;
+
+        return $res;
     }
 
 }

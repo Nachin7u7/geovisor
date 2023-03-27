@@ -3,7 +3,7 @@ namespace App\Sib\Module\Taxonomia_reptiles\Snippet\Index;
 use Core\CoreResources;
 
 class Index extends CoreResources {
-    var $objTable = "catalogo_taxonomia";
+    var $objTable = "taxonomia";
     var $folder = "catalogoTaxonomia";
     var $fkey_field = "kingdom_id";
     var $fkey_field2 = "class_id";

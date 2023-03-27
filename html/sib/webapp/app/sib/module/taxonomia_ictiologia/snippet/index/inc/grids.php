@@ -10,7 +10,7 @@ $grid_table_join = array();
  * Configuración de tablas relacionales, (JOIN)
  */
 $grid_table[] = array(
-    "table" => $appVars["table"] ["reino"] // Nombre de la tabla con la que hara la relación
+    "table" => $appVars["table"] ["kingdom"] // Nombre de la tabla con la que hara la relación
 ,    "alias"=> "r" //Alias de la tabla para el join
 ,   "field_id"=>"id" //Id de la tabla que hara la relación
 ,   "relationship_id"=>"kingdom_id" //Campo de relación en la tabla principal

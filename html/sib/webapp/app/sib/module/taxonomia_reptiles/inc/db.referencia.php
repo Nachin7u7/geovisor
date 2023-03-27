@@ -12,7 +12,7 @@ $appVars["table"]  = array();
 $db_prefix = ""; //prefijo de la base de datos
 $db_table = array();
 $dbSchemaName = "coleccion";
-$db_table[] = Core::getTableConfig("catalogo_taxonomia");
+$db_table[] = Core::getTableConfig("taxonomia");
 
 $appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName);
 unset($db_table);
@@ -21,17 +21,12 @@ unset($db_prefix);
 
 $db_table = array();
 $dbSchemaName = "catalogo";
-$db_table[] = Core::getTableConfig("reino");
-$db_table[] = Core::getTableConfig("division");
-$db_table[] = Core::getTableConfig("orden");
-$db_table[] = Core::getTableConfig("familia");
-$db_table[] = Core::getTableConfig("genero");
-$db_table[] = Core::getTableConfig("especie");
-$db_table[] = Core::getTableConfig("filo");
-$db_table[] = Core::getTableConfig("clase");
-$db_table[] = Core::getTableConfig("tipo_nomenclatura");
-$db_table[] = Core::getTableConfig("categoria_taxon");
-$db_table[] = Core::getTableConfig("epiteto");
+$db_table[] = Core::getTableConfig("kingdom");
+$db_table[] = Core::getTableConfig("phylum");
+$db_table[] = Core::getTableConfig("order");
+$db_table[] = Core::getTableConfig("family");
+$db_table[] = Core::getTableConfig("genus");
+$db_table[] = Core::getTableConfig("class");
 $appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName,$appVars["table"] );
 unset($db_table);
 

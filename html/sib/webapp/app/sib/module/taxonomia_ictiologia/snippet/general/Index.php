@@ -4,7 +4,7 @@ use Core\CoreResources;
 
 class Index extends CoreResources
 {
-    var $objTable = "catalogo_taxonomia";
+    var $objTable = "taxonomia";
     function __construct()
     {
         /**
@@ -87,7 +87,7 @@ class Index extends CoreResources
             $rec = array();
             $rec["class"]=$item["nombre"];
             $where = "id = ".$itemId;
-            $table = $this->table["catalogo_taxonomia"];
+            $table = $this->table["taxonomia"];
             $this->dbm->AutoExecute($table,$rec,"UPDATE",$where);
         }
     }
@@ -108,7 +108,7 @@ class Index extends CoreResources
             $rec = array();
             $rec["order"]=$item["nombre"];
             $where = "id = ".$itemId;
-            $table = $this->table["catalogo_taxonomia"];
+            $table = $this->table["taxonomia"];
             $this->dbm->AutoExecute($table,$rec,"UPDATE",$where);
         }
     }
@@ -129,7 +129,7 @@ class Index extends CoreResources
             $rec = array();
             $rec["family"]=$item["nombre"];
             $where = "id = ".$itemId;
-            $table = $this->table["catalogo_taxonomia"];
+            $table = $this->table["taxonomia"];
             $this->dbm->AutoExecute($table,$rec,"UPDATE",$where);
         }
     }
@@ -150,7 +150,7 @@ class Index extends CoreResources
             $rec = array();
             $rec["genus"]=$item["nombre"];
             $where = "id = ".$itemId;
-            $table = $this->table["catalogo_taxonomia"];
+            $table = $this->table["taxonomia"];
             $this->dbm->AutoExecute($table,$rec,"UPDATE",$where);
         }
     }
@@ -165,13 +165,13 @@ class Index extends CoreResources
     private function setKingdom($kingdom_id, $itemId){
         if($kingdom_id!=""){
             $sql = "SELECT * 
-                    FROM catalogo.reino where id=".$kingdom_id;
+                    FROM catalogo.kingdom where id=".$kingdom_id;
             $res = $this->dbm->execute($sql);
             $item = $res->fields;
             $rec = array();
             $rec["kingdom"]=$item["nombre"];
             $where = "id = ".$itemId;
-            $table = $this->table["catalogo_taxonomia"];
+            $table = $this->table["taxonomia"];
             $this->dbm->AutoExecute($table,$rec,"UPDATE",$where);
         }
     }

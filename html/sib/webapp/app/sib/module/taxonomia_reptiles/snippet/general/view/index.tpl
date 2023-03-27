@@ -30,7 +30,7 @@
                                 data-fv-not-empty___message="{#glFieldRequired#}"
                         >
                             <option value=""></option>
-                            {html_options options=$cataobj.reino selected=2}
+                            {html_options options=$cataobj.kingdom selected=2}
                         </select>
                     </div>
                     <span class="form-text text-black-50">{#field_GroupMsg_reino_id#}</span>

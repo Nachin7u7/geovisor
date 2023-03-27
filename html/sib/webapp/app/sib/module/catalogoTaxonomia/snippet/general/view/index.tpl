@@ -30,7 +30,7 @@
                                 data-fv-not-empty___message="{#glFieldRequired#}"
                         >
                             <option></option>
-                            {html_options options=$cataobj.reino selected=$item.reino_id}
+                            {html_options options=$cataobj.kingdom selected=$item.reino_id}
                         </select>
                     </div>
                     <span class="form-text text-black-50">{#field_GroupMsg_reino_id#}</span>
@@ -120,7 +120,7 @@
                                 data-fv-not-empty___message="{#glFieldRequired#}"
                         >
                             <option></option>
-                            {html_options options=$cataobj.filo selected=$item.filo_id}
+                            {html_options options=$cataobj.phylum selected=$item.filo_id}
                         </select>
                     </div>
                     <span class="form-text text-black-50">{#field_GroupMsg_filo_id#}</span>

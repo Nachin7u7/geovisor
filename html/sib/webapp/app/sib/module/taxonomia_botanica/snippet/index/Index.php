@@ -3,8 +3,8 @@ namespace App\Sib\Module\Taxonomia_botanica\Snippet\Index;
 use Core\CoreResources;
 
 class Index extends CoreResources {
-    var $objTable = "catalogo_taxonomia";
-    var $folder = "catalogoTaxonomia";
+    var $objTable = "taxonomia";
+    var $folder = "botanica";
     var $fkey_field = "kingdom_id";
     var $extraWhere = "";
     function __construct()
@@ -59,10 +59,6 @@ class Index extends CoreResources {
          */
         $result = $this->getGridDatatableSimple($db,$grid,$table, $primaryKey, $extraWhere);
         foreach ($result['data'] as $itemId => $valor) {
-            if(isset($result['data'][$itemId]['fecha_inicio'])) $result['data'][$itemId]['fecha_inicio'] = $this->changeDataFormat($result['data'][$itemId]['fecha_inicio'],"d/m/Y");
-            if(isset($result['data'][$itemId]['fecha_conclusion'])) $result['data'][$itemId]['fecha_conclusion'] = $this->changeDataFormat($result['data'][$itemId]['fecha_conclusion'],"d/m/Y");
-
-
             $result['data'][$itemId]['created_at'] = $this->changeDataFormat($result['data'][$itemId]['created_at'],"d/m/Y H:i:s");
             $result['data'][$itemId]['updated_at'] = $this->changeDataFormat($result['data'][$itemId]['updated_at'],"d/m/Y H:i:s");
 

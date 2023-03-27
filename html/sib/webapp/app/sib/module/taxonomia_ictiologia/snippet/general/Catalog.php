@@ -12,8 +12,8 @@ class Catalog extends CoreResources{
     }
 
     public function confCatalog(){
-        $this->addCatalogList($this->table["reino"]
-            ,"reino","","nombre",""
+        $this->addCatalogList($this->table["kingdom"]
+            ,"kingdom","","nombre",""
             ,"nombre","","","");
         $this->addCatalogList($this->table["division"]
             ,"division","","nombre",""
