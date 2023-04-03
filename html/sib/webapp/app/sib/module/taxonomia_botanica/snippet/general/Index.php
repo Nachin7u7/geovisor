@@ -217,6 +217,15 @@ class Index extends CoreResources
         $tabla = $this->table["phylum"];
         $form = "addphylum";
         $itemData  = $this->processData($form,$rec,$action,$item_id);
+        $numeroRegistros = $this->getDuplicate($itemData["nombre"], $tabla);
+        if ($numeroRegistros >= 1) {
+            $res["res"] = 2;
+            $res["type"] = 1; //mensaje de archivo no permitido
+            $res["msgdb"] = "El nombre ".$itemData["nombre"]." ya esta registrado";
+        }
+        if($res["res"]==2){
+            return $res;
+        }
 
         /**
          * Save processed data
@@ -228,29 +237,29 @@ class Index extends CoreResources
     }
 
     function updateDataClass($rec){
-//        print_struc($rec);exit;
-//        if($rec["phylum_id"]!=""){
-            $action = "new";
-            $item_id = "";
-            $itemId = "";
-            $tabla = $this->table["class"];
-            $form = "addclass";
-            $itemData  = $this->processData($form,$rec,$action,$item_id);
+        $action = "new";
+        $item_id = "";
+        $itemId = "";
+        $tabla = $this->table["class"];
+        $form = "addclass";
+        $itemData  = $this->processData($form,$rec,$action,$item_id);
 
-            /**
-             * Save processed data
-             */
-            $field_id="id";
-            $res = $this->updateItem($itemId,$itemData ,$tabla,$action,$field_id);
-//        print_struc($res);exit;
-            $res["accion"] = $action;
-//        }else{
-//            $res["res"] = 2;
-//            $res["type"] = 5; //mensaje de archivo no permitido
-////            $res["msgdb"] = $error;
-//            $res["msg"] = "La clase que esta creando no esta relacionado con un Filo";
-//        }
+        $numeroRegistros = $this->getDuplicate($itemData["nombre"], $tabla);
+        if ($numeroRegistros >= 1) {
+            $res["res"] = 2;
+            $res["type"] = 1; //mensaje de archivo no permitido
+            $res["msgdb"] = "El nombre ".$itemData["nombre"]." ya esta registrado";
+        }
+        if($res["res"]==2){
+            return $res;
+        }
 
+        /**
+         * Save processed data
+         */
+        $field_id="id";
+        $res = $this->updateItem($itemId,$itemData ,$tabla,$action,$field_id);
+        $res["accion"] = $action;
         return $res;
     }
 
@@ -261,7 +270,15 @@ class Index extends CoreResources
         $tabla = $this->table["order"];
         $form = "addorder";
         $itemData  = $this->processData($form,$rec,$action,$item_id);
-
+        $numeroRegistros = $this->getDuplicate($itemData["nombre"], $tabla);
+        if ($numeroRegistros >= 1) {
+            $res["res"] = 2;
+            $res["type"] = 1; //mensaje de archivo no permitido
+            $res["msgdb"] = "El nombre ".$itemData["nombre"]." ya esta registrado";
+        }
+        if($res["res"]==2){
+            return $res;
+        }
         /**
          * Save processed data
          */
@@ -280,7 +297,15 @@ class Index extends CoreResources
         $tabla = $this->table["family"];
         $form = "addfamily";
         $itemData  = $this->processData($form,$rec,$action,$item_id);
-
+        $numeroRegistros = $this->getDuplicate($itemData["nombre"], $tabla);
+        if ($numeroRegistros >= 1) {
+            $res["res"] = 2;
+            $res["type"] = 1; //mensaje de archivo no permitido
+            $res["msgdb"] = "El nombre ".$itemData["nombre"]." ya esta registrado";
+        }
+        if($res["res"]==2){
+            return $res;
+        }
         /**
          * Save processed data
          */
@@ -299,7 +324,15 @@ class Index extends CoreResources
         $tabla = $this->table["genus"];
         $form = "addgenus";
         $itemData  = $this->processData($form,$rec,$action,$item_id);
-
+        $numeroRegistros = $this->getDuplicate($itemData["nombre"], $tabla);
+        if ($numeroRegistros >= 1) {
+            $res["res"] = 2;
+            $res["type"] = 1; //mensaje de archivo no permitido
+            $res["msgdb"] = "El nombre ".$itemData["nombre"]." ya esta registrado";
+        }
+        if($res["res"]==2){
+            return $res;
+        }
         /**
          * Save processed data
          */
@@ -311,4 +344,14 @@ class Index extends CoreResources
         return $res;
     }
 
+    private function getDuplicate($nombre, $table){
+        /**
+         * Sacar si exite duplicado el registro
+         */
+        $sql = "SELECT count(*) as total
+                    FROM ".$table." WHERE nombre='".$nombre."'";
+        $res = $this->dbm->execute($sql);
+        $item = $res->fields;
+        return $item["total"];
+    }
 }
