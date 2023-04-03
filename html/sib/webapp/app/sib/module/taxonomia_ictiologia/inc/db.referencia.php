@@ -13,7 +13,6 @@ $db_prefix = ""; //prefijo de la base de datos
 $db_table = array();
 $dbSchemaName = "coleccion";
 $db_table[] = Core::getTableConfig("taxonomia");
-
 $appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName);
 unset($db_table);
 unset($db_prefix);
@@ -27,6 +26,7 @@ $db_table[] = Core::getTableConfig("order");
 $db_table[] = Core::getTableConfig("family");
 $db_table[] = Core::getTableConfig("genus");
 $db_table[] = Core::getTableConfig("class");
+
 $appVars["table"]  = Core::getDbTablesFromArray($db_table,$dbSchemaName,$appVars["table"] );
 unset($db_table);
 

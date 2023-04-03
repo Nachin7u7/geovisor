@@ -19,11 +19,5 @@ class Catalog extends CoreResources{
     }
 
     public function confCatalog(){
-
-        /*
-        $this->addCatalogList($this->table["icas_institucion_tipo"]
-            ,"icas_institucion_tipo","","nombre",""
-            ,"nombre","","","");
-        */
     }
 }

@@ -4,9 +4,8 @@ use Core\CoreResources;
 
 class Index extends CoreResources {
     var $objTable = "taxonomia";
-    var $folder = "catalogoTaxonomia";
-    var $fkey_field = "kingdom_id";
-    var $fkey_field2 = "class_id";
+    var $folder = "taxonomia_ictiologia";
+    var $fkey_field = "categoria_id";
     var $extraWhere = "";
     function __construct()
     {
@@ -14,7 +13,7 @@ class Index extends CoreResources {
          * We initialize all the libraries and variables for the new class
          */
         $this->appInit();
-        $this->extraWhere = $this->fkey_field."= '2' AND ".$this->fkey_field2."= '3'";
+        $this->extraWhere = $this->fkey_field."= '7'";
     }
     function getItem($idItem){
 
@@ -60,10 +59,6 @@ class Index extends CoreResources {
          */
         $result = $this->getGridDatatableSimple($db,$grid,$table, $primaryKey, $extraWhere);
         foreach ($result['data'] as $itemId => $valor) {
-            if(isset($result['data'][$itemId]['fecha_inicio'])) $result['data'][$itemId]['fecha_inicio'] = $this->changeDataFormat($result['data'][$itemId]['fecha_inicio'],"d/m/Y");
-            if(isset($result['data'][$itemId]['fecha_conclusion'])) $result['data'][$itemId]['fecha_conclusion'] = $this->changeDataFormat($result['data'][$itemId]['fecha_conclusion'],"d/m/Y");
-
-
             $result['data'][$itemId]['created_at'] = $this->changeDataFormat($result['data'][$itemId]['created_at'],"d/m/Y H:i:s");
             $result['data'][$itemId]['updated_at'] = $this->changeDataFormat($result['data'][$itemId]['updated_at'],"d/m/Y H:i:s");
 

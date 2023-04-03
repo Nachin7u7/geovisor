@@ -7,6 +7,12 @@
          */
         var form = $('#general_form');
         var btn_submit = $('#general_submit');
+        var phylum_opt = $("#phylum_id");
+        var class_opt = $("#class_id");
+        var order_opt = $("#order_id");
+        var family_opt = $("#family_id");
+        var genus_opt = $("#genus_id");
+        let urlmodule = "{/literal}{$path_url}/{$subcontrol}_{literal}";
 
         var formv;
         /**
@@ -77,6 +83,26 @@
          */
         var handle_components = function(){
             coreUyuni.setComponents();
+            $('.select2_general_phylum').select2({
+                placeholder: lngUyuni.select2PlaceHolder
+                ,width: '92%'
+            });
+            $('.select2_general_class').select2({
+                placeholder: lngUyuni.select2PlaceHolder
+                ,width: '92%'
+            });
+            $('.select2_general_order').select2({
+                placeholder: lngUyuni.select2PlaceHolder
+                ,width: '92%'
+            });
+            $('.select2_general_family').select2({
+                placeholder: lngUyuni.select2PlaceHolder
+                ,width: '92%'
+            });
+            $('.select2_general_genus').select2({
+                placeholder: lngUyuni.select2PlaceHolder
+                ,width: '92%'
+            });
         };
 
         var handle_type_select = function(){
@@ -115,6 +141,312 @@
             }
         };
 
+        /**
+         * añadir Phylum form
+         */
+        var subcontrol = "{/literal}{$subcontrol}{literal}";
+        var phylum_btn = $("#phylum_btn");
+        // var p_opt = $("#actividad_unidad_id");
+        var handle_addPhylum = function () {
+            phylum_btn.click(function(e){
+                e.preventDefault();
+                var load_url = urlmodule;
+                load_url += '/get.formaddphylum';
+                let cargando = lngUyuni.loading+'...'+cargando_vista;
+                $("#modal-content_"+subcontrol+"_peque").html(cargando);
+                $("#form_modal_"+subcontrol+"_peque").modal("show");
+                $.get(load_url, function(data) {
+                    $("#modal-content_"+subcontrol+"_peque").html(data);
+                });
+            });
+        };
+
+        var getPhylum= function(id){
+            phylum_opt.find("option").remove();
+            $.post(urlmodule+"/get.phylum", {}
+                , function (res, textStatus, jqXHR) {
+                    let selOption = $('<option></option>');
+                    phylum_opt.append(selOption.attr("value", "").text("{/literal}{#field_holder_filo_id#}{literal}"));
+                    let person_list = []
+                    for (var row in res) {
+                        phylum_opt.append($('<option></option>').attr("value", res[row].id).text(res[row].nombre));
+                        person_list[res[row].id] = res[row];
+                    }
+                    phylum_opt.val(id);
+                    phylum_opt.trigger('change');
+                }
+                , 'json');
+            phylum_opt.prop('disabled', false);
+        };
+
+        /**
+         * añadir Class form
+         */
+        var class_btn = $("#class_btn");
+        var handle_addClass = function () {
+            class_btn.click(function(e){
+                e.preventDefault();
+                var load_url = urlmodule;
+                load_url += '/get.formaddclass';
+                let cargando = lngUyuni.loading+'...'+cargando_vista;
+                $("#modal-content_"+subcontrol+"_peque").html(cargando);
+                $("#form_modal_"+subcontrol+"_peque").modal("show");
+                $.get(load_url, function(data) {
+                    $("#modal-content_"+subcontrol+"_peque").html(data);
+                });
+            });
+        };
+
+
+        var getClass = function(id){
+            class_opt.find("option").remove();
+            $.post(urlmodule+"/get.classselect", {}
+                , function (res, textStatus, jqXHR) {
+                    let selOption = $('<option></option>');
+                    class_opt.append(selOption.attr("value", "").text("{/literal}{#field_Holder_clase_id#}{literal}"));
+                    let person_list = []
+                    for (var row in res) {
+                        class_opt.append($('<option></option>').attr("value", res[row].id).text(res[row].nombre));
+                        person_list[res[row].id] = res[row];
+                    }
+                    class_opt.val(id);
+                    class_opt.trigger('change');
+                }
+                , 'json');
+            class_opt.prop('disabled', false);
+        };
+
+        /**
+         * añadir Order form
+         */
+        var order_btn = $("#order_btn");
+        var handle_addOrder = function () {
+            order_btn.click(function(e){
+                e.preventDefault();
+                var load_url = urlmodule;
+                load_url += '/get.formaddorder';
+                let cargando = lngUyuni.loading+'...'+cargando_vista;
+                $("#modal-content_"+subcontrol+"_peque").html(cargando);
+                $("#form_modal_"+subcontrol+"_peque").modal("show");
+                $.get(load_url, function(data) {
+                    $("#modal-content_"+subcontrol+"_peque").html(data);
+                });
+            });
+        };
+
+
+        var getOrder = function(id){
+            order_opt.find("option").remove();
+            $.post(urlmodule+"/get.orderselect", {}
+                , function (res, textStatus, jqXHR) {
+                    let selOption = $('<option></option>');
+                    order_opt.append(selOption.attr("value", "").text("{/literal}{#field_Holder_orden_id#}{literal}"));
+                    let person_list = []
+                    for (var row in res) {
+                        order_opt.append($('<option></option>').attr("value", res[row].id).text(res[row].nombre));
+                        person_list[res[row].id] = res[row];
+                    }
+                    order_opt.val(id);
+                    order_opt.trigger('change');
+                }
+                , 'json');
+            order_opt.prop('disabled', false);
+        };
+
+        /**
+         * añadir Family form
+         */
+        var family_btn = $("#family_btn");
+        var handle_addFamily = function () {
+            family_btn.click(function(e){
+                e.preventDefault();
+                var load_url = urlmodule;
+                load_url += '/get.formaddfamily';
+                let cargando = lngUyuni.loading+'...'+cargando_vista;
+                $("#modal-content_"+subcontrol+"_peque").html(cargando);
+                $("#form_modal_"+subcontrol+"_peque").modal("show");
+                $.get(load_url, function(data) {
+                    $("#modal-content_"+subcontrol+"_peque").html(data);
+                });
+            });
+        };
+
+
+        var getFamily = function(id){
+            family_opt.find("option").remove();
+            $.post(urlmodule+"/get.familyselect", {}
+                , function (res, textStatus, jqXHR) {
+                    let selOption = $('<option></option>');
+                    family_opt.append(selOption.attr("value", "").text("{/literal}{#field_Holder_familia_id#}{literal}"));
+                    let person_list = []
+                    for (var row in res) {
+                        family_opt.append($('<option></option>').attr("value", res[row].id).text(res[row].nombre));
+                        person_list[res[row].id] = res[row];
+                    }
+                    family_opt.val(id);
+                    family_opt.trigger('change');
+                }
+                , 'json');
+            family_opt.prop('disabled', false);
+        };
+
+        /**
+         * añadir Genus form
+         */
+        var genus_btn = $("#genus_btn");
+        var handle_addGenus = function () {
+            genus_btn.click(function(e){
+                e.preventDefault();
+                var load_url = urlmodule;
+                load_url += '/get.formaddgenus';
+                let cargando = lngUyuni.loading+'...'+cargando_vista;
+                $("#modal-content_"+subcontrol+"_peque").html(cargando);
+                $("#form_modal_"+subcontrol+"_peque").modal("show");
+                $.get(load_url, function(data) {
+                    $("#modal-content_"+subcontrol+"_peque").html(data);
+                });
+            });
+        };
+
+
+        var getGenus = function(id){
+            genus_opt.find("option").remove();
+            $.post(urlmodule+"/get.genusselect", {}
+                , function (res, textStatus, jqXHR) {
+                    let selOption = $('<option></option>');
+                    genus_opt.append(selOption.attr("value", "").text("{/literal}{#field_Holder_genero_id#}{literal}"));
+                    let person_list = []
+                    for (var row in res) {
+                        genus_opt.append($('<option></option>').attr("value", res[row].id).text(res[row].nombre));
+                        person_list[res[row].id] = res[row];
+                    }
+                    genus_opt.val(id);
+                    genus_opt.trigger('change');
+                }
+                , 'json');
+            genus_opt.prop('disabled', false);
+        };
+
+        var handle_option_class = function(){
+            $('#phylum_id').on('change',function(){
+                var id = $('#phylum_id').val();
+                class_search(id);
+            });
+        };
+
+        var class_search = function(id){
+            class_opt.find("option").remove();
+            // disabled el selectbox
+            class_opt.prop('disabled', true);
+            if(id!="") {
+                $.post(urlmodule+"/get.class"
+                    , {id: id}
+                    , function (res, textStatus, jqXHR) {
+                        let selOption = $('<option></option>');
+                        class_opt.append(selOption.attr("value", "").text("{/literal}{#field_GroupMsg_clase_id#}{literal}"));
+                        let class_list = []
+                        for (var row in res) {
+                            class_opt.append($('<option></option>').attr("value", res[row].id).text(res[row].nombre));
+                            class_list[res[row].id] = res[row];
+                        }
+                        class_opt.trigger('chosen:updated');
+                        class_opt.prop('disabled', false);
+                    }
+                    , 'json');
+            }else{
+            }
+        };
+
+        var handle_option_order = function(){
+            $('#class_id').on('change',function(){
+                var id = $('#class_id').val();
+                order_search(id);
+            });
+        };
+
+        var order_search = function(id){
+            order_opt.find("option").remove();
+            // disabled el selectbox
+            order_opt.prop('disabled', true);
+            if(id!="") {
+                $.post(urlmodule+"/get.order"
+                    , {id: id}
+                    , function (res, textStatus, jqXHR) {
+                        let selOption = $('<option></option>');
+                        order_opt.append(selOption.attr("value", "").text("{/literal}{#field_Holder_order_id#}{literal}"));
+                        let order_list = []
+                        for (var row in res) {
+                            order_opt.append($('<option></option>').attr("value", res[row].id).text(res[row].nombre));
+                            order_list[res[row].id] = res[row];
+                        }
+                        order_opt.trigger('chosen:updated');
+                        order_opt.prop('disabled', false);
+                    }
+                    , 'json');
+            }else{
+            }
+        };
+
+        var handle_option_family = function(){
+            $('#order_id').on('change',function(){
+                var id = $('#order_id').val();
+                family_search(id);
+            });
+        };
+
+        var family_search = function(id){
+            family_opt.find("option").remove();
+            // disabled el selectbox
+            family_opt.prop('disabled', true);
+            if(id!="") {
+                $.post(urlmodule+"/get.family"
+                    , {id: id}
+                    , function (res, textStatus, jqXHR) {
+                        let selOption = $('<option></option>');
+                        family_opt.append(selOption.attr("value", "").text("{/literal}{#field_Holder_familia_id#}{literal}"));
+                        let family_list = []
+                        for (var row in res) {
+                            family_opt.append($('<option></option>').attr("value", res[row].id).text(res[row].nombre));
+                            family_list[res[row].id] = res[row];
+                        }
+                        family_opt.trigger('chosen:updated');
+                        family_opt.prop('disabled', false);
+                    }
+                    , 'json');
+            }else{
+            }
+        };
+
+        var handle_option_genus = function(){
+            $('#family_id').on('change',function(){
+                var id = $('#family_id').val();
+                genus_search(id);
+            });
+        };
+
+        var genus_search = function(id){
+            genus_opt.find("option").remove();
+            // disabled el selectbox
+            genus_opt.prop('disabled', true);
+            if(id!="") {
+                $.post(urlmodule+"/get.genus"
+                    , {id: id}
+                    , function (res, textStatus, jqXHR) {
+                        let selOption = $('<option></option>');
+                        genus_opt.append(selOption.attr("value", "").text("{/literal}{#field_Holder_genero_id#}{literal}"));
+                        let family_list = []
+                        for (var row in res) {
+                            genus_opt.append($('<option></option>').attr("value", res[row].id).text(res[row].nombre));
+                            family_list[res[row].id] = res[row];
+                        }
+                        genus_opt.trigger('chosen:updated');
+                        genus_opt.prop('disabled', false);
+                    }
+                    , 'json');
+            }else{
+            }
+        };
+
         return {
             init: function() {
                 handle_form_submit();
@@ -122,7 +454,31 @@
                 handle_components();
                 handle_type_select();
                 handle_font_select();
-            }
+                handle_option_class();
+                handle_option_order();
+                handle_option_family();
+                handle_option_genus();
+                handle_addPhylum();
+                handle_addClass();
+                handle_addOrder();
+                handle_addFamily();
+                handle_addGenus();
+            },
+            getPhylum:function (id) {
+                getPhylum(id);
+            },
+            getClass:function (id) {
+                getClass(id);
+            },
+            getOrder:function (id) {
+                getOrder(id);
+            },
+            getFamily:function (id) {
+                getFamily(id);
+            },
+            getGenus:function (id) {
+                getGenus(id);
+            },
         };
     }();
 

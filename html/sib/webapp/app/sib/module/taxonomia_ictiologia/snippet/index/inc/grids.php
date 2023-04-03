@@ -21,10 +21,12 @@ $grid_table[] = array(
 
 $grid_item[]=array("field" => "scientific_name","label"=> $smarty->config_vars["table_scientific_name"]);
 $grid_item[]=array("field" => "kingdom","label"=> $smarty->config_vars["table_kingdom"]);
+$grid_item[]=array("field" => "phylum","label"=> $smarty->config_vars["table_phylum"]);
 $grid_item[]=array("field" => "class","label"=> $smarty->config_vars["table_class"]);
 $grid_item[]=array("field" => "order","label"=> $smarty->config_vars["table_order"]);
 $grid_item[]=array("field" => "family","label"=> $smarty->config_vars["table_family"]);
 $grid_item[]=array("field" => "genus","label"=> $smarty->config_vars["table_genus"]);
+$grid_item[]=array("field" => "species","label"=> $smarty->config_vars["table_species"]);
 
 $grid_item[]=array("field" => "created_at","label"=> $smarty->config_vars["gl_table_created_at"]);
 $grid_item[]=array("field" => "updated_at","label"=> $smarty->config_vars["gl_table_updated_at"]);
