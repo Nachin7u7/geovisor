@@ -21,6 +21,7 @@ $field_item["phylum_id"]=array("type"=>"text");
 $field_item["class_id"]=array("type"=>"text");
 $field_item["species"]=array("type"=>"text");
 $field_item["scientific_name"]=array("type"=>"text");
+$field_item["scientific_name_authorship"]=array("type"=>"text");
 //$field_item["active"]=array("type"=>"checkbox_02");
 
 
