@@ -36,6 +36,40 @@
                     <span class="form-text text-black-50">{#field_GroupMsg_reino_id#}</span>
                 </div>
                 <div class="col-lg-4">
+                    <label>{#field_categoria_id#} <span class="text-danger bold">*</span> : </label>
+                    <div class="input-group">
+                        <select class="form-control m-select2 select2_general"
+                                name="item[categoria_id]" id="categoria_id"
+                                data-placeholder="{#field_Holder_categoria_id#}" {$privFace.input}
+                                required
+                                data-fv-not-empty___message="{#glFieldRequired#}"
+                        >
+                            <option value=""></option>
+                            {html_options options=$cataobj.categoria selected=$item.categoria_id}
+                        </select>
+                    </div>
+                    <span class="form-text text-black-50">{#field_GroupMsg_categoria_id#}</span>
+                </div>
+                <div class="col-lg-4">
+                    <label>{#field_phylum_id#} <span class="text-danger bold">*</span> : </label>
+                    <div class="input-group">
+                        <select class="form-control m-select2 select2_general"
+                                name="item[phylum_id]" id="phylum_id"
+                                data-placeholder="{#field_Holder_phylum_id#}" {$privFace.input}
+                                required
+                                data-fv-not-empty___message="{#glFieldRequired#}"
+                        >
+                            <option value=""></option>
+                            {html_options options=$cataobj.phylum selected=$item.phylum_id}
+                        </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-success" id="phylum_btn" type="button">+</button>
+                        </div>
+                    </div>
+                    <span class="form-text text-black-50">{#field_GroupMsg_phylum_id#}</span>
+                </div>
+
+                <div class="col-lg-4">
                     <label>{#field_class_id#} <span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
@@ -45,131 +79,84 @@
                                 data-fv-not-empty___message="{#glFieldRequired#}"
                         >
                             <option value=""></option>
-                            {html_options options=$cataobj.clase selected=$item.class_id}
+                            {html_options options=$cataobj.class selected=$item.class_id}
                         </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-success" id="class_btn" type="button">+</button>
+                        </div>
                     </div>
                     <span class="form-text text-black-50">{#field_GroupMsg_class_id#}</span>
                 </div>
                 <div class="col-lg-4">
-                    <label>{#field_orden_id#} <span class="text-danger bold">*</span> : </label>
+                    <label>{#field_order_id#} <span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
                                 name="item[order_id]" id="order_id"
-                                data-placeholder="{#field_Holder_orden_id#}" {$privFace.input}
+                                data-placeholder="{#field_Holder_order_id#}" {$privFace.input}
                                 required
                                 data-fv-not-empty___message="{#glFieldRequired#}"
                         >
                             <option></option>
-                            {html_options options=$cataobj.orden selected=$item.order_id}
+                            {html_options options=$cataobj.order selected=$item.order_id}
                         </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-success" id="order_btn" type="button">+</button>
+                        </div>
                     </div>
-                    <span class="form-text text-black-50">{#field_GroupMsg_orden_id#}</span>
+                    <span class="form-text text-black-50">{#field_GroupMsg_order_id#}</span>
                 </div>
                 <div class="col-lg-6">
-                    <label>{#field_familia_id#} <span class="text-danger bold">*</span> : </label>
+                    <label>{#field_family_id#}<span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
                                 name="item[family_id]" id="family_id"
-                                data-placeholder="{#field_Holder_familia_id#}" {$privFace.input}
+                                data-placeholder="{#field_Holder_family_id#}" {$privFace.input}
                                 required
                                 data-fv-not-empty___message="{#glFieldRequired#}"
                         >
                             <option></option>
-                            {html_options options=$cataobj.familia selected=$item.family_id}
+                            {html_options options=$cataobj.family selected=$item.family_id}
                         </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-success" id="family_btn" type="button">+</button>
+                        </div>
+
                     </div>
-                    <span class="form-text text-black-50">{#field_GroupMsg_familia_id#}</span>
+                    <span class="form-text text-black-50">{#field_GroupMsg_family_id#}</span>
                 </div>
                 <div class="col-lg-6">
-                    <label>{#field_genero_id#} <span class="text-danger bold">*</span> : </label>
+                    <label>{#field_genus_id#} <span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
                                 name="item[genus_id]" id="genus_id"
-                                data-placeholder="{#field_Holder_genero_id#}" {$privFace.input}
+                                data-placeholder="{#field_Holder_genus_id#}" {$privFace.input}
                                 required
                                 data-fv-not-empty___message="{#glFieldRequired#}"
                         >
                             <option></option>
-                            {html_options options=$cataobj.genero selected=$item.genus_id}
+                            {html_options options=$cataobj.genus selected=$item.genus_id}
                         </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-success" id="genus_btn" type="button">+</button>
+                        </div>
                     </div>
-                    <span class="form-text text-black-50">{#field_GroupMsg_genero_id#}</span>
+                    <span class="form-text text-black-50">{#field_GroupMsg_genus_id#}</span>
                 </div>
-{*                <div class="col-lg-4">*}
-{*                    <label>{#field_filo_id#} <span class="text-danger bold">*</span> : </label>*}
-{*                    <div class="input-group">*}
-{*                        <select class="form-control m-select2 select2_general"*}
-{*                                name="item[filo_id]" id="filo_id"*}
-{*                                data-placeholder="{#field_Holder_filo_id#}" {$privFace.input}*}
-{*                                required*}
-{*                                data-fv-not-empty___message="{#glFieldRequired#}"*}
-{*                        >*}
-{*                            <option></option>*}
-{*                            {html_options options=$cataobj.filo selected=$item.filo_id}*}
-{*                        </select>*}
-{*                    </div>*}
-{*                    <span class="form-text text-black-50">{#field_GroupMsg_filo_id#}</span>*}
-{*                </div>*}
-{*                <div class="col-lg-4">*}
-{*                    <label>{#field_clase_id#} <span class="text-danger bold">*</span> : </label>*}
-{*                    <div class="input-group">*}
-{*                        <select class="form-control m-select2 select2_general"*}
-{*                                name="item[clase_id]" id="clase_id"*}
-{*                                data-placeholder="{#field_Holder_clase_id#}" {$privFace.input}*}
-{*                                required*}
-{*                                data-fv-not-empty___message="{#glFieldRequired#}"*}
-{*                        >*}
-{*                            <option></option>*}
-{*                            {html_options options=$cataobj.clase selected=$item.clase_id}*}
-{*                        </select>*}
-{*                    </div>*}
-{*                    <span class="form-text text-black-50">{#field_GroupMsg_clase_id#}</span>*}
-{*                </div>*}
-{*                <div class="col-lg-4">*}
-{*                    <label>{#field_tipo_nomenclatura_id#} <span class="text-danger bold">*</span> : </label>*}
-{*                    <div class="input-group">*}
-{*                        <select class="form-control m-select2 select2_general"*}
-{*                                name="item[tipo_nomenclatura_id]" id="tipo_nomenclatura_id"*}
-{*                                data-placeholder="{#field_Holder_tipo_nomenclatura_id#}" {$privFace.input}*}
-{*                                required*}
-{*                                data-fv-not-empty___message="{#glFieldRequired#}"*}
-{*                        >*}
-{*                            <option></option>*}
-{*                            {html_options options=$cataobj.tipo_nomenclatura selected=$item.tipo_nomenclatura_id}*}
-{*                        </select>*}
-{*                    </div>*}
-{*                    <span class="form-text text-black-50">{#field_GroupMsg_tipo_nomenclatura_id#}</span>*}
-{*                </div>*}
-{*                <div class="col-lg-4">*}
-{*                    <label>{#field_categoria_taxon_id#} <span class="text-danger bold">*</span> : </label>*}
-{*                    <div class="input-group">*}
-{*                        <select class="form-control m-select2 select2_general"*}
-{*                                name="item[categoria_taxon_id]" id="categoria_taxon_id"*}
-{*                                data-placeholder="{#field_Holder_categoria_taxon_id#}" {$privFace.input}*}
-{*                                required*}
-{*                                data-fv-not-empty___message="{#glFieldRequired#}"*}
-{*                        >*}
-{*                            <option></option>*}
-{*                            {html_options options=$cataobj.categoria_taxon selected=$item.categoria_taxon_id}*}
-{*                        </select>*}
-{*                    </div>*}
-{*                    <span class="form-text text-black-50">{#field_GroupMsg_categoria_taxon_id#}</span>*}
-{*                </div>*}
-{*                <div class="col-lg-4">*}
-{*                    <label>{#field_epiteto_id#} <span class="text-danger bold">*</span> : </label>*}
-{*                    <div class="input-group">*}
-{*                        <select class="form-control m-select2 select2_general"*}
-{*                                name="item[epiteto_id]" id="epiteto_id"*}
-{*                                data-placeholder="{#field_Holder_epiteto_id#}" {$privFace.input}*}
-{*                                required*}
-{*                                data-fv-not-empty___message="{#glFieldRequired#}"*}
-{*                        >*}
-{*                            <option></option>*}
-{*                            {html_options options=$cataobj.epiteto selected=$item.epiteto_id}*}
-{*                        </select>*}
-{*                    </div>*}
-{*                    <span class="form-text text-black-50">{#field_GroupMsg_epiteto_id#}</span>*}
-{*                </div>*}
+
+                <div class="col-lg-12">
+                    <label>{#field_species_id#}  <span class="text-danger bold">*</span> :</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               name="item[species]" value="{$item.species|escape:"html"}"
+                               required
+                               data-fv-not-empty___message="{#glFieldRequired#}"
+                               minlength="3"
+                               data-fv-string-length___message="{#nombre_species_field_length#}"
+                        >
+                        <div class="input-group-append"><span class="input-group-text field_info"><i class="fas fa-otter"></i></span></div>
+                    </div>
+                    <span class="form-text text-black-50">{#nombre_cientifico_field_msg#}</span>
+                </div>
                 <div class="col-lg-12">
                     <label>{#nombre_cientifico_field#}  <span class="text-danger bold">*</span> :</label>
                     <div class="input-group">
@@ -204,5 +191,23 @@
     </form>
     <!--end::Form-->
 </div>
+<!--begin::Modal-->
+<div class="modal fade" id="form_modal_{$subcontrol}_peque"
+     data-backdrop="static" tabindex="-1" role="dialog"
+     aria-labelledby="staticBackdrop" aria-hidden="true"
+     style="z-index:1044;"
+>
+    <div class="modal-dialog " role="document">
+        <div class="modal-content " id="modal-content_{$subcontrol}_peque">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal Title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i aria-hidden="true" class="ki ki-close"></i>
+                </button>
+            </div>
 
+        </div>
+    </div>
+</div>
+<!--end::Modal-->
 {include file="index.js.tpl"}

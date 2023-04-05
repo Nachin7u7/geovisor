@@ -22,6 +22,7 @@ unset($db_prefix);
 $db_table = array();
 $dbSchemaName = "catalogo";
 $db_table[] = Core::getTableConfig("kingdom");
+$db_table[] = Core::getTableConfig("categoria");
 $db_table[] = Core::getTableConfig("phylum");
 $db_table[] = Core::getTableConfig("order");
 $db_table[] = Core::getTableConfig("family");

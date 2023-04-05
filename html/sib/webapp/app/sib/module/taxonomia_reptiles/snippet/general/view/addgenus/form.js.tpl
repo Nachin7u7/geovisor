@@ -11,7 +11,7 @@
          * Antes de enviar el formulario se ejecuta la siguiente funcion
          */
         var showRequest= function(formData, jqForm, op) {
-            let family_id = $('#familia_id').val();
+            let family_id = $('#family_id').val();
             formData.push({name: "item[family_id]", value: family_id});
             btn_submit.addClass('spinner spinner-white spinner-right').attr('disabled', true);
             btn_close.attr('disabled', true);
