@@ -35,29 +35,27 @@
                     </div>
                     <span class="form-text text-black-50">{#field_GroupMsg_reino_id#}</span>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4" hidden>
                     <label>{#field_categoria_id#} <span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
-                                name="item[categoria_id]" id="categoria_id"
+                                name="item[categoria_id]" id="categoria_id" disabled
                                 data-placeholder="{#field_Holder_categoria_id#}" {$privFace.input}
                                 required
                                 data-fv-not-empty___message="{#glFieldRequired#}"
                         >
                             <option value=""></option>
-                            {html_options options=$cataobj.categoria selected=$item.categoria_id}
+                            {html_options options=$cataobj.categoria selected=5}
                         </select>
                     </div>
                     <span class="form-text text-black-50">{#field_GroupMsg_categoria_id#}</span>
                 </div>
                 <div class="col-lg-4">
-                    <label>{#field_phylum_id#} <span class="text-danger bold">*</span> : </label>
+                    <label>{#field_phylum_id#}: </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
                                 name="item[phylum_id]" id="phylum_id"
                                 data-placeholder="{#field_Holder_phylum_id#}" {$privFace.input}
-                                required
-                                data-fv-not-empty___message="{#glFieldRequired#}"
                         >
                             <option value=""></option>
                             {html_options options=$cataobj.phylum selected=$item.phylum_id}
@@ -70,13 +68,11 @@
                 </div>
 
                 <div class="col-lg-4">
-                    <label>{#field_class_id#} <span class="text-danger bold">*</span> : </label>
+                    <label>{#field_class_id#}: </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
                                 name="item[class_id]" id="class_id"
                                 data-placeholder="{#field_Holder_class_id#}" {$privFace.input}
-                                required
-                                data-fv-not-empty___message="{#glFieldRequired#}"
                         >
                             <option value=""></option>
                             {html_options options=$cataobj.class selected=$item.class_id}
@@ -88,13 +84,11 @@
                     <span class="form-text text-black-50">{#field_GroupMsg_class_id#}</span>
                 </div>
                 <div class="col-lg-4">
-                    <label>{#field_order_id#} <span class="text-danger bold">*</span> : </label>
+                    <label>{#field_order_id#}: </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
                                 name="item[order_id]" id="order_id"
                                 data-placeholder="{#field_Holder_order_id#}" {$privFace.input}
-                                required
-                                data-fv-not-empty___message="{#glFieldRequired#}"
                         >
                             <option></option>
                             {html_options options=$cataobj.order selected=$item.order_id}
@@ -105,14 +99,12 @@
                     </div>
                     <span class="form-text text-black-50">{#field_GroupMsg_order_id#}</span>
                 </div>
-                <div class="col-lg-6">
-                    <label>{#field_family_id#}<span class="text-danger bold">*</span> : </label>
+                <div class="col-lg-4">
+                    <label>{#field_family_id#}: </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
                                 name="item[family_id]" id="family_id"
                                 data-placeholder="{#field_Holder_family_id#}" {$privFace.input}
-                                required
-                                data-fv-not-empty___message="{#glFieldRequired#}"
                         >
                             <option></option>
                             {html_options options=$cataobj.family selected=$item.family_id}
@@ -124,14 +116,12 @@
                     </div>
                     <span class="form-text text-black-50">{#field_GroupMsg_family_id#}</span>
                 </div>
-                <div class="col-lg-6">
-                    <label>{#field_genus_id#} <span class="text-danger bold">*</span> : </label>
+                <div class="col-lg-4">
+                    <label>{#field_genus_id#}: </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
                                 name="item[genus_id]" id="genus_id"
                                 data-placeholder="{#field_Holder_genus_id#}" {$privFace.input}
-                                required
-                                data-fv-not-empty___message="{#glFieldRequired#}"
                         >
                             <option></option>
                             {html_options options=$cataobj.genus selected=$item.genus_id}
@@ -155,7 +145,7 @@
                         >
                         <div class="input-group-append"><span class="input-group-text field_info"><i class="fas fa-otter"></i></span></div>
                     </div>
-                    <span class="form-text text-black-50">{#nombre_cientifico_field_msg#}</span>
+                    <span class="form-text text-black-50">{#species_msg#}</span>
                 </div>
                 <div class="col-lg-12">
                     <label>{#nombre_cientifico_field#}  <span class="text-danger bold">*</span> :</label>
@@ -167,11 +157,22 @@
                                minlength="3"
                                data-fv-string-length___message="{#nombre_cientifico_field_length#}"
                         >
-                        <div class="input-group-append"><span class="input-group-text field_info"><i class="fas fa-otter"></i></span></div>
+                        <div class="input-group-append"><span class="input-group-text field_info"><i class="fab fa-sistrix"></i></span></div>
                     </div>
                     <span class="form-text text-black-50">{#nombre_cientifico_field_msg#}</span>
                 </div>
-
+                <div class="col-lg-12">
+                    <label>{#scientific_name_authorship_field#}:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               name="item[scientific_name_authorship]" value="{$item.scientific_name_authorship|escape:"html"}"
+                               minlength="3"
+                               data-fv-string-length___message="{#scientific_name_authorship_field_length#}"
+                        >
+                        <div class="input-group-append"><span class="input-group-text field_info"><i class="fas fa-user"></i></span></div>
+                    </div>
+                    <span class="form-text text-black-50">{#scientific_name_authorship_field_msg#}</span>
+                </div>
 
             </div>
         </div>

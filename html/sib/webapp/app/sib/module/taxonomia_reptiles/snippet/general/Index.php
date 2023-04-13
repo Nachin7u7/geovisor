@@ -69,6 +69,7 @@ class Index extends CoreResources
                 if ($action=="new"){
                     $dataResult["kingdom_id"] = 2;
                     $dataResult["kingdom"] = "Animalae";
+                    $dataResult["categoria_id"] = 5;
                 }
                 $dataResult["phylum"] = $this->getItemPhylum($rec["phylum_id"])["nombre"];
                 $dataResult["class"] = $this->getItemClass($rec["class_id"])["nombre"];
