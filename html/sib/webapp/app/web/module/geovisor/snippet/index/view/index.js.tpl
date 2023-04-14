@@ -4,7 +4,6 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
 <script src="https://maps.googleapis.com/maps/api/js?key={$google_map_key}"></script>
 <script src="/js/geo/leaflet.1.7.1/leaflet.js"></script>
 
-
 <script src="/js/geo/leaflet.spin/example/spin/dist/spin.min.js"></script>
 <script src="/js/geo/leaflet.spin/leaflet.spin.min.js"></script>
 
@@ -34,6 +33,8 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
 
 <script src="/js/chart.js/Chart.min.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/leaflet.shpfile@1.1.0/leaflet.shpfile.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/shpjs@3.0.0/dist/shp.js"></script>
 
 {literal}
 <script>
@@ -470,6 +471,13 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
                 transparent: true,
                 opacity: 0.8
             });
+            var mnhn_Aps = L.geoJSON(); // Crear una nueva capa de GeoJSON vacía para mnhn_Aps
+
+            var urlshape = '/images/shape/28-10-2022';
+            shp(urlshape).then(function(geojson) {
+                mnhn_Aps.addData(geojson);
+            });
+
             var mnhn_Apm = L.tileLayer.wms(geoserver_mmaya+'?', {
                 layers: workspaces+'areas_prot_mun',
                 format: 'image/png',
@@ -743,6 +751,12 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
                             name: "Áreas Protegidas Nacional",
                             icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
                             layer: mnhn_Apn,
+                        },
+                        {
+                            active: false,
+                            name: "Áreas Protegidas SubNacional",
+                            icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
+                            layer: mnhn_Aps,
                         },
                         {
                             active: false,
