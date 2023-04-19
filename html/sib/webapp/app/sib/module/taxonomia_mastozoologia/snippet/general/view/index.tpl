@@ -53,7 +53,7 @@
                 <div class="col-lg-4">
                     <label>{#field_phylum_id#}: </label>
                     <div class="input-group">
-                        <select class="form-control m-select2 select2_general"
+                        <select class="form-control m-select2 select2_general_phylum"
                                 name="item[phylum_id]" id="phylum_id"
                                 data-placeholder="{#field_Holder_phylum_id#}" {$privFace.input}
                         >
@@ -61,7 +61,7 @@
                             {html_options options=$cataobj.phylum selected=$item.phylum_id}
                         </select>
                         <div class="input-group-append">
-                            <button class="btn btn-success" id="phylum_btn" type="button">+</button>
+                            <button class="btn btn-success" id="class_btn" type="button">+</button>
                         </div>
                     </div>
                     <span class="form-text text-black-50">{#field_GroupMsg_phylum_id#}</span>
@@ -70,7 +70,7 @@
                 <div class="col-lg-4">
                     <label>{#field_class_id#}: </label>
                     <div class="input-group">
-                        <select class="form-control m-select2 select2_general"
+                        <select class="form-control m-select2 select2_general_class"
                                 name="item[class_id]" id="class_id"
                                 data-placeholder="{#field_Holder_class_id#}" {$privFace.input}
                         >
@@ -86,7 +86,7 @@
                 <div class="col-lg-4">
                     <label>{#field_order_id#}: </label>
                     <div class="input-group">
-                        <select class="form-control m-select2 select2_general"
+                        <select class="form-control m-select2 select2_general_order"
                                 name="item[order_id]" id="order_id"
                                 data-placeholder="{#field_Holder_order_id#}" {$privFace.input}
                         >
@@ -102,7 +102,7 @@
                 <div class="col-lg-4">
                     <label>{#field_family_id#}: </label>
                     <div class="input-group">
-                        <select class="form-control m-select2 select2_general"
+                        <select class="form-control m-select2 select2_general_family"
                                 name="item[family_id]" id="family_id"
                                 data-placeholder="{#field_Holder_family_id#}" {$privFace.input}
                         >
@@ -119,7 +119,7 @@
                 <div class="col-lg-4">
                     <label>{#field_genus_id#}: </label>
                     <div class="input-group">
-                        <select class="form-control m-select2 select2_general"
+                        <select class="form-control m-select2 select2_general_genus"
                                 name="item[genus_id]" id="genus_id"
                                 data-placeholder="{#field_Holder_genus_id#}" {$privFace.input}
                         >

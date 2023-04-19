@@ -85,23 +85,23 @@
             coreUyuni.setComponents();
             $('.select2_general_phylum').select2({
                 placeholder: lngUyuni.select2PlaceHolder
-                ,width: '92%'
+                ,width: '88%'
             });
             $('.select2_general_class').select2({
                 placeholder: lngUyuni.select2PlaceHolder
-                ,width: '92%'
+                ,width: '88%'
             });
             $('.select2_general_order').select2({
                 placeholder: lngUyuni.select2PlaceHolder
-                ,width: '92%'
+                ,width: '88%'
             });
             $('.select2_general_family').select2({
                 placeholder: lngUyuni.select2PlaceHolder
-                ,width: '92%'
+                ,width: '88%'
             });
             $('.select2_general_genus').select2({
                 placeholder: lngUyuni.select2PlaceHolder
-                ,width: '92%'
+                ,width: '88%'
             });
         };
 
