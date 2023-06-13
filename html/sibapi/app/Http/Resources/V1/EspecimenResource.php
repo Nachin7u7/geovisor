@@ -16,6 +16,34 @@ class EspecimenResource extends JsonResource
     {
         return [
             'id' => $this->id,
+
+            'kingdom' => $this->kingdom,
+            'phylum' => $this->phylum,
+            'class' => $this->class,
+            'order' => $this->order,
+            'family' => $this->family,
+            'genus' => $this->genus,
+            'scientificName' => $this->scientific_name,
+            'scientificNameAuthorship' => $this->scientific_name_authorship,
+            'vernacularName' => "",
+
+            'taxonRank' => $this->taxon_rank,
+            'country' => $this->country,
+            'countryCode' => $this->country_code,
+            'stateProvince' => $this->state_province,
+            'county' => $this->county,
+            'municipality' => $this->municipality,
+            'locality' => $this->locality,
+            'eventDate' => $this->date,
+
+            'coordinates' => [
+                'decimalLatitude' => $this->location_latitude_decimal ?? null,
+                'decimalLongitude' => $this->location_longitude_decimal ?? null,
+            ],
+
+
+/*
+  'specificEpithet' => $this->specific_epithet,
             'basisOfRecord' => $this->basis_of_record,
             'type' => $this->type,
             'institutionCode' => $this->institution_code,
@@ -39,35 +67,23 @@ class EspecimenResource extends JsonResource
             'preparations' => $this->preparations,
             'disposition' => $this->disposition,
             'otherCatalogNumbers' => $this->other_catalog_numbers,
-            'eventDate' => $this->date,
+
             'verbatimEventDate' => $this->verbatim_event_date,
             'eventTime' => $this->event_time,
             'fieldNumber' => $this->field_number,
             'eventRemarks' => $this->event_remarks,
             'continent' => $this->continent,
-            'country' => $this->country,
-            'countryCode' => $this->country_code,
-            'stateProvince' => $this->state_province,
-            'county' => $this->county,
-            'municipality' => $this->municipality,
-            'locality' => $this->locality,
+
+
+
             'verbatimLocality' => $this->verbatim_locality,
-            'coordinates' => [
-                'latitud' => $this->location_latitude_decimal ?? null,
-                'longitud' => $this->location_longitude_decimal ?? null,
-            ],
+
             'verbatimLatitude' => $this->verbatim_latitude,
             'verbatimLongitude' => $this->verbatim_longitude,
-            'scientificName' => $this->scientific_name,
-            'scientificNameAuthorship' => $this->scientific_name_authorship,
-            'kingdom' => $this->kingdom,
-            'phylum' => $this->phylum,
-            'class' => $this->class,
-            'order' => $this->order,
-            'family' => $this->family,
-            'genus' => $this->genus,
-            'specificEpithet' => $this->specific_epithet,
-            'taxonRank' => $this->taxon_rank,
+
+
+*/
+
         ];
     }
 }
