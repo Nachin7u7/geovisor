@@ -1,19 +1,18 @@
 <?PHP
-use App\Sib\Module\Zoologia_ormitologia\Snippet\Index\Index;
-use App\Sib\Module\Zoologia_ormitologia\Snippet\Index\Catalog;
+
+use App\Sib\Zoologia_ormitologia\Index\Index;
+use App\Sib\Zoologia_ormitologia\Index\Catalog;
 use Core\Core;
 
 
 $objItem = new Index();
 $objCatalog = new Catalog();
 
-switch($action) {
+switch ($action) {
     default:
         /**
          * Smarty Options
          */
-        //$smarty->caching = true;
-        //$smarty->debugging = true;
         /**
          * Language settings, section
          */
@@ -22,10 +21,8 @@ switch($action) {
          * catalog configuration
          */
 
-        $objCatalog->confCatalog();
-        $cataobj= $objCatalog->getCatalogList();
-        $cataobj["activo"] = $catalogo=$objCatalog->getActiveOption();
-        //print_struc($cataobj);exit;
+        $cataobj = $objCatalog->getCatalogList();
+        $cataobj["activo"] = $catalogo = $objCatalog->getActiveOption();
         $smarty->assign("cataobj", $cataobj);
         /**
          * Grid configuration
@@ -44,8 +41,6 @@ switch($action) {
      * Creación de JSON
      */
     case 'list':
-
-        //$datatable_debug = true;
         $res = $objItem->getItemDatatableRows();
         Core::printJson($res);
         break;
@@ -56,8 +51,6 @@ switch($action) {
         /**
          * Smarty Options
          */
-        //$smarty->caching = true;
-        //$smarty->debugging = true;
         /**
          * Language settings, section
          */
@@ -72,7 +65,7 @@ switch($action) {
         /**
          * Tabs
          */
-        $menu_tab = $objItem->getTabItem($type,"index");
+        $menu_tab = $objItem->getTabItem($type, "index");
         $smarty->assign("menu_tab", $menu_tab);
         $smarty->assign("menu_tab_active", "general");
         /**

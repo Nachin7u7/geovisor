@@ -1,8 +1,9 @@
 <?PHP
+
 use App\Sib\Zoologia_invertebrado\Lugarcolecta\Index;
 use App\Sib\Zoologia_invertebrado\Lugarcolecta\Catalog;
 use Core\Core;
-use App\Sib\Module\Zoologia_invertebrado\Snippet\Index\Index as indexParent;
+use App\Sib\Zoologia_invertebrado\Index\Index as indexParent;
 
 $objItem = new Index();
 $objCatalog = new Catalog();
@@ -12,7 +13,7 @@ $objItemParent = new indexParent();
  */
 $templateModule = $frontend["baseAjax"];
 
-switch($action){
+switch ($action) {
     /**
      * Página por defecto (index)
      */
@@ -21,26 +22,25 @@ switch($action){
          * Language settings, section
          */
         \Core\Core::setLenguage("index");
-        $smarty->assign("type",$type);
+        $smarty->assign("type", $type);
 
-        if($type=="update"){
+        if ($type == "update") {
             $item = $objItemParent->getItem($id);
-            if(trim($item["location_latitude_decimal"]=="") or  trim($item["location_longitude_decimal"]=="")  ){
+            if (trim($item["location_latitude_decimal"] == "") || trim($item["location_longitude_decimal"] == "")) {
                 $item["location_latitude_decimal"] = -16.513279;
                 $item["location_longitude_decimal"] = -68.1666655;
             }
-        }else{
+        } else {
             $item["location_latitude_decimal"] = -16.513279;
             $item["location_longitude_decimal"] = -68.1666655;
         }
-        $smarty->assign("item",$item);
+        $smarty->assign("item", $item);
         /**
          * Catalog
          */
         $objCatalog->conf_catalog_form($item);
-        $cataobj= $objCatalog->getCatalogList();
+        $cataobj = $objCatalog->getCatalogList();
         $cataobj["hemisferio"] = $objCatalog->geHemisferio();
-        //print_struc($cataobj);exit;
         $smarty->assign("cataobj", $cataobj);
         $smarty->assign("item_id", $item_id);
         /**
@@ -48,11 +48,11 @@ switch($action){
          */
         $gridItem = $objItem->getGridItem("index");
         $smarty->assign("gridItem", $gridItem);
-        $smarty->assign("subpage",$webm["sc_index"]);
+        $smarty->assign("subpage", $webm["sc_index"]);
         break;
 
     case 'save.principal':
-        $respuesta = $objItem->updateData($_REQUEST["item"],$id,"module",$type);
+        $respuesta = $objItem->updateData($_REQUEST["item"], $id, $type);
         Core::printJson($respuesta);
         break;
     case 'get.municipio':
@@ -72,3 +72,4 @@ switch($action){
         Core::printJson($item);
         break;
 }
+

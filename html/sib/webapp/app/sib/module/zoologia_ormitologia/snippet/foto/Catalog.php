@@ -1,21 +1,29 @@
 <?PHP
-namespace App\Sib\Module\Zoologia_ormitologia\Snippet\Foto;
-use Core\CoreResources;
-class Catalog extends CoreResources{
 
-    function __construct(){
+namespace App\Sib\Zoologia_ormitologia\Foto;
+
+use Core\CoreResources;
+
+class Catalog extends CoreResources
+{
+
+    public function __construct()
+    {
         /**
          * Inicializamos todas las librerias y variables para el submodulo
          */
         $this->appInit();
     }
+
     /**
      * Implementación desde aca
      */
-    public function conf_catalog_form(){
-        //$this->addCatalogList($this->table["app"],"","","","","","","");
+    public function conf_catalog_form()
+    {
     }
-    public function get_activo_option(){
+
+    public function get_activo_option()
+    {
         global $smarty;
         $dato = array();
         $dato["1"] = $smarty->config_vars["glOptActive"];
