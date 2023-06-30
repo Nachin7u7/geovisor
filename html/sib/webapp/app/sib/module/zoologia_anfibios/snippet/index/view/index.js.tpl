@@ -94,24 +94,6 @@
                             return boton;
                         },
                     },
-                    /*
-                    {
-                        targets: [0],
-                        className:"text-left",
-                        render: function(data,type,full,meta){
-                            return '<span style="color: #0357ae;">' + data + ' </span>';
-                        },
-                    },
-                    {
-                        targets: [2,3,4],
-                        className: "none",
-                    },
-                    {
-                        targets: [3,5],
-                        searchable: false,
-                    },
-
-                     */
                     {
                         targets: [-2,-3],
                         searchable: false,
@@ -129,7 +111,6 @@
         /**
          * New and Update
          */
-        //var btn_update = $('#btn_update');
         var btn_update = $('#btn_new');
         var handle_button_update = function(){
             btn_update.click(function(e){

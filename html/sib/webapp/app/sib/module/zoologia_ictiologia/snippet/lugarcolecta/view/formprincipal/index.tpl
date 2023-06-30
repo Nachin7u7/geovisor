@@ -43,7 +43,7 @@
                                         class="fas fa-map-marked-alt text-info"></i></span></div>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <label>{#field_departamento_id#} <span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
@@ -59,7 +59,7 @@
                     <span class="form-text text-black-50">{#field_GroupMsg_departamento_id#}</span>
                 </div>
 
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <label>{#field_municipio_id#} <span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
@@ -74,7 +74,19 @@
                     </div>
                     <span class="form-text text-black-50">{#field_GroupMsg_municipio_id#}</span>
                 </div>
-
+                <div class="col-lg-4">
+                    <label>{#field_locality#}:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               name="item[locality]"
+                               id="locality"
+                               value="{$item.locality|escape:"html"}"
+                        >
+                        <div class="input-group-append"><span class="input-group-text"><i
+                                        class="fa fa-location-arrow text-info"></i></span></div>
+                    </div>
+                    <span class="form-text text-black-50">{#field_msg_locality#}</span>
+                </div>
                 <div class="col-lg-6">
                     <label>{#fiel_location_latitude_decimal#}  <span class="text-danger bold">*</span> :</label>
                     <div class="input-group">

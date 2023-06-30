@@ -35,7 +35,7 @@
                     </div>
                     <span class="form-text text-black-50">{#field_msg_identified_by#}</span>
                 </div>
-                <div class="col-lg-12">
+                <div class="col-lg-6">
                     <label>{#field_type_status#} :</label>
                     <div class="input-group">
                         <input type="text" class="form-control"
@@ -48,13 +48,27 @@
                     </div>
                     <span class="form-text text-black-50">{#field_msg_type_status#}</span>
                 </div>
-                <div class="col-lg-12">
-                    <label>{#field_scientific_name#}: </label>
+                <div class="col-lg-6">
+                    <label>{#field_identification_qualifier#} :</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               name="item[identification_qualifier]"
+                               value="{$item.identification_qualifier|escape:"html"}"
+                               minlength="3"
+                               data-fv-string-length___message="{#field_length_identification_qualifier#}"
+                        >
+                        <div class="input-group-append"><span class="input-group-text field_info"><i class="fas fa-user-edit"></i></span></div>
+                    </div>
+                    <span class="form-text text-black-50">{#field_msg_identification_qualifier#}</span>
+                </div>
+                <div class="col-lg-6">
+                    <label>{#field_scientific_name#} <span class="text-danger bold">*</span>: </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
-                                name="item[catalogo_taxonomia_id]"
-                                id="catalogo_taxonomia_id"
-                                data-placeholder="{#field_Holder_scientific_name#}" {$privFace.input}
+                            name="item[catalogo_taxonomia_id]"
+                            id="catalogo_taxonomia_id"
+                            data-placeholder="{#field_Holder_scientific_name#}" {$privFace.input}
+                            required data-fv-not-empty___message="{#glFieldRequired#}"
                         >
                             <option></option>
                             {html_options options=$cataobj.taxonomia selected=$item.catalogo_taxonomia_id}
@@ -63,7 +77,7 @@
                     <span class="form-text text-black-50">{#field_GroupMsg_scientific_name#}</span>
                 </div>
 
-                <div class="col-lg-12" id="scientific_name_authorship_s">
+                <div class="col-lg-6" id="scientific_name_authorship_s">
                     <label>{#field_scientific_name_authorship#}<span class="text-danger bold">*</span> :</label>
                     <div class="input-group">
                         <input type="text" class="form-control"
@@ -80,7 +94,7 @@
                     <span class="form-text text-black-50">{#field_msg_scientific_name_authorship#}</span>
                 </div>
 
-                <div class="col-lg-6" id="kingdom_s">
+                <div class="col-lg-4" id="kingdom_s">
                     <label>{#field_kingdom#}:</label>
                     <div class="input-group">
                         <input type="text" class="form-control"
@@ -91,7 +105,7 @@
                     </div>
                     {*                    <span class="form-text text-muted">{#field_msg_fieldNumber#}</span>*}
                 </div>
-                <div class="col-lg-6" id="class_s">
+                <div class="col-lg-4" id="class_s">
                     <label>{#field_class#}:</label>
                     <div class="input-group">
                         <input type="text" class="form-control"
@@ -102,7 +116,7 @@
                     </div>
                     {*                    <span class="form-text text-muted">{#field_msg_fieldNumber#}</span>*}
                 </div>
-                <div class="col-lg-6" id="order_s">
+                <div class="col-lg-4" id="order_s">
                     <label>{#field_order#}:</label>
                     <div class="input-group">
                         <input type="text" class="form-control"
@@ -113,7 +127,7 @@
                     </div>
                     {*                    <span class="form-text text-muted">{#field_msg_fieldNumber#}</span>*}
                 </div>
-                <div class="col-lg-6" id="family_s">
+                <div class="col-lg-4" id="family_s">
                     <label>{#field_family#}:</label>
                     <div class="input-group">
                         <input type="text" class="form-control"
@@ -124,7 +138,7 @@
                     </div>
                     {*                    <span class="form-text text-muted">{#field_msg_fieldNumber#}</span>*}
                 </div>
-                <div class="col-lg-6" id="genus_s">
+                <div class="col-lg-4" id="genus_s">
                     <label>{#field_genus#}:</label>
                     <div class="input-group">
                         <input type="text" class="form-control"
@@ -134,6 +148,45 @@
                         <div class="input-group-append"><span class="input-group-text"><i class="fa fa-info"></i></span></div>
                     </div>
                     {*                    <span class="form-text text-muted">{#field_msg_fieldNumber#}</span>*}
+                </div>
+                <div class="col-lg-4">
+                    <label>{#field_specific_epithet#}:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               name="item[specific_epithet]" id="specific_epithet"
+                               value="{$item.specific_epithet|escape:"html"}"
+                               minlength="3"
+                               data-fv-string-length___message="{#field_length_specific_epithet#}"
+                        >
+                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-info"></i></span></div>
+                    </div>
+                    <span class="form-text text-black-50">{#field_msg_specific_epithet#}</span>
+                </div>
+                <div class="col-lg-4">
+                    <label>{#field_vernacular_name#}:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               name="item[vernacular_name]" id="vernacular_name"
+                               value="{$item.vernacular_name|escape:"html"}"
+                               minlength="3"
+                               data-fv-string-length___message="{#field_length_vernacular_name#}"
+                        >
+                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-info"></i></span></div>
+                    </div>
+                    <span class="form-text text-black-50">{#field_msg_vernacular_name#}</span>
+                </div>
+                <div class="col-lg-4">
+                    <label>{#field_taxon_rank#}:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               name="item[taxon_rank]" id="taxon_rank"
+                               value="{$item.taxon_rank|escape:"html"}"
+                               minlength="3"
+                               data-fv-string-length___message="{#field_length_taxon_rank#}"
+                        >
+                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-info"></i></span></div>
+                    </div>
+                    <span class="form-text text-black-50">{#field_msg_taxon_rank#}</span>
                 </div>
             </div>
         </div>

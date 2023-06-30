@@ -62,12 +62,13 @@
                     <span class="form-text text-black-50">{#field_msg_identification_qualifier#}</span>
                 </div>
                 <div class="col-lg-6">
-                    <label>{#field_scientific_name#}: </label>
+                    <label>{#field_scientific_name#} <span class="text-danger bold">*</span>: </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
-                                name="item[catalogo_taxonomia_id]"
-                                id="catalogo_taxonomia_id"
-                                data-placeholder="{#field_Holder_scientific_name#}" {$privFace.input}
+                            name="item[catalogo_taxonomia_id]"
+                            id="catalogo_taxonomia_id" required
+                            data-placeholder="{#field_Holder_scientific_name#}" {$privFace.input}
+                            data-fv-not-empty___message="{#glFieldRequired#}"
                         >
                             <option></option>
                             {html_options options=$cataobj.taxonomia selected=$item.catalogo_taxonomia_id}
@@ -77,14 +78,12 @@
                 </div>
 
                 <div class="col-lg-6" id="scientific_name_authorship_s">
-                    <label>{#field_scientific_name_authorship#}<span class="text-danger bold">*</span> :</label>
+                    <label>{#field_scientific_name_authorship#} :</label>
                     <div class="input-group">
                         <input type="text" class="form-control"
                                name="item[scientific_name_authorship]"
                                id="scientific_name_authorship"
                                value="{$item.scientific_name_authorship|escape:"html"}"
-                               required
-                               data-fv-not-empty___message="{#glFieldRequired#}"
                                minlength="3"
                                data-fv-string-length___message="{#field_length_scientific_name_authorship#}"
                         >

@@ -33,7 +33,7 @@ class Index extends CoreResources
         /**
          * Additional configuration
          */
-        $extraWhere = $this->fkey_field . "='" . $itemId . "' ";
+        $extraWhere = $this->fkeyField . "='" . $itemId . "' ";
         /**
          * Result of the query sent
          */
@@ -62,7 +62,7 @@ class Index extends CoreResources
          */
         if ($res["res"] == 1) {
             $item = $this->getItem($res["id"], $itemIdParent);
-            $itemIdName = $this->fkey_field;
+            $itemIdName = $this->fkeyField;
             $idName = "id";
             $this->saveAttachment(
                 $item,
@@ -100,7 +100,7 @@ class Index extends CoreResources
     public function getItem($id, $itemId)
     {
         $sql = "select * from " . $this->table[$this->objTable] . " as p
-        where p.id = '" . $id . "' and p." . $this->fkey_field . " = '" . $itemId . "'";
+        where p.id = '" . $id . "' and p." . $this->fkeyField . " = '" . $itemId . "'";
         $item = $this->dbm->Execute($sql);
         $item = $item->fields;
         return $item;
@@ -149,7 +149,7 @@ class Index extends CoreResources
          * Delete the record from the database
          */
         $fieldId = "id";
-        $where = $this->fkey_field . "='" . $itemId . "'";
+        $where = $this->fkeyField . "='" . $itemId . "'";
         $res = $this->deleteItem($id, $fieldId, $this->table[$this->objTable], $where);
         if ($res["res"] == 1) {
             /**

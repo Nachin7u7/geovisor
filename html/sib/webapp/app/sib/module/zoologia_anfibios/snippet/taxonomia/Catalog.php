@@ -1,30 +1,43 @@
 <?PHP
-namespace App\Sib\Module\Zoologia_anfibios\Snippet\general;
+
+namespace App\Sib\Zoologia_anfibios\taxonomia;
+
 use Core\CoreResources;
 
-class Catalog extends CoreResources{
+class Catalog extends CoreResources
+{
 
-    function __construct(){
+    public function __construct()
+    {
         /**
          * Inicializamos todas las librerias y variables para el submodulo
          */
         $this->appInit();
     }
 
-    public function confCatalog(){
-        $where = "kingdom_id=2 AND class_id=1";
-        $this->addCatalogList($this->table["taxonomia"]
-            ,"taxonomia","","scientific_name",""
-            ,"scientific_name",$where,"","");
-
+    public function confCatalog()
+    {
+        $where = "categoria_id='6'";
+        $this->addCatalogList(
+            $this->table["taxonomia"],
+            "taxonomia",
+            "",
+            "scientific_name",
+            "",
+            "scientific_name",
+            $where,
+            "",
+            ""
+        );
     }
 
-    function getTaxonomia($id){
+    public function getTaxonomia($id)
+    {
         /**
          * sacamos la taxonomia
          */
-        if($id!="" and $id>0){
-            $sql = "select * from ".$this->table["taxonomia"]." as i where i.id = '".$id."'";
+        if ($id != "" && $id > 0) {
+            $sql = "select * from " . $this->table["taxonomia"] . " as i where i.id = '" . $id . "'";
             $item = $this->dbm->Execute($sql);
             $item = $item->GetRows();
         }

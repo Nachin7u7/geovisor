@@ -17,7 +17,7 @@ class Index extends CoreResources
          * We initialize all the libraries and variables for the new class
          */
         $this->appInit();
-        $this->extraWhere = $this->fkey_field . "= '7'";
+        $this->extraWhere = $this->fkeyField . "= '7'";
     }
 
     public function getItem($idItem)
