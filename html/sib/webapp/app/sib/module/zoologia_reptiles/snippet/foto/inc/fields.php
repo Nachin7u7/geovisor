@@ -7,10 +7,9 @@ $fields = array();
  * Configuraciòn de los grupos de campos a utilizar
  */
 $field_item = array();
-$field_item["descripcion"]=array("type"=>"text");
-//$field_item["active"]=array("type"=>"checkbox_02");
+$field_item["descripcion"] = array("type" => "text");
 $group = "index";
-$fields[$group]= $field_item;
+$fields[$group] = $field_item;
 unset($field_item);
 
 /**

@@ -18,6 +18,32 @@
             </div>
             <div class="form-group row">
                 <div class="col-lg-6">
+                    <label>{#field_continent#} <span class="text-danger bold">*</span> :</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               name="item[continent]"
+                               id="continent" required
+                               value="{$item.continent|escape:"html"}"
+                               data-fv-not-empty___message="{#glFieldRequired#}" disabled
+                        >
+                        <div class="input-group-append"><span class="input-group-text"><i
+                                        class="fas fa-map-marked-alt text-info"></i></span></div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <label>{#field_pais#} <span class="text-danger bold">*</span> :</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               name="item[country]"
+                               id="country" required
+                               value="{$item.country|escape:"html"}"
+                               data-fv-not-empty___message="{#glFieldRequired#}" disabled
+                        >
+                        <div class="input-group-append"><span class="input-group-text"><i
+                                        class="fas fa-map-marked-alt text-info"></i></span></div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
                     <label>{#field_departamento_id#} <span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
@@ -33,7 +59,7 @@
                     <span class="form-text text-black-50">{#field_GroupMsg_departamento_id#}</span>
                 </div>
 
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <label>{#field_municipio_id#} <span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"
@@ -48,9 +74,21 @@
                     </div>
                     <span class="form-text text-black-50">{#field_GroupMsg_municipio_id#}</span>
                 </div>
-
+                <div class="col-lg-4">
+                    <label>{#field_locality#}:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               name="item[locality]"
+                               id="locality"
+                               value="{$item.locality|escape:"html"}"
+                        >
+                        <div class="input-group-append"><span class="input-group-text"><i
+                                        class="fa fa-location-arrow text-info"></i></span></div>
+                    </div>
+                    <span class="form-text text-black-50">{#field_msg_locality#}</span>
+                </div>
                 <div class="col-lg-6">
-                    <label>{#fiel_location_latitude_decimal#}  <span class="text-danger bold">*</span> :</label>
+                    <label>{#fiel_location_latitude_decimal#} <span class="text-danger bold">*</span> :</label>
                     <div class="input-group">
                         <input type="text" class="form-control location_latitude_decimal"
                                name="item[location_latitude_decimal]"
@@ -65,7 +103,7 @@
                     <span class="form-text text-black-50">{#field_msg_location_latitude_decimal#}</span>
                 </div>
                 <div class="col-lg-6">
-                    <label>{#fiel_location_longitude_decimal#}  <span class="text-danger bold">*</span> :</label>
+                    <label>{#fiel_location_longitude_decimal#} <span class="text-danger bold">*</span> :</label>
                     <div class="input-group">
                         <input type="text" class="form-control location_longitude_decimal"
                                id="location_longitude_decimal"
@@ -80,7 +118,7 @@
                     <span class="form-text text-black-50">{#field_msg_location_longitude_decimal#}</span>
                 </div>
                 <div class="col-lg-6">
-                    <label>{#field_verbatim_latitude#}  <span class="text-danger bold">*</span> :</label>
+                    <label>{#field_verbatim_latitude#} <span class="text-danger bold">*</span> :</label>
                     <div class="input-group">
                         <input type="text" class="form-control"
                                name="item[verbatim_latitude]"
@@ -95,7 +133,7 @@
                     <span class="form-text text-black-50">{#field_msg_verbatim_latitude#}</span>
                 </div>
                 <div class="col-lg-6">
-                    <label>{#field_verbatim_longitude#}  <span class="text-danger bold">*</span> :</label>
+                    <label>{#field_verbatim_longitude#} <span class="text-danger bold">*</span> :</label>
                     <div class="input-group">
                         <input type="text" class="form-control"
                                id="verbatim_longitude"
@@ -110,7 +148,7 @@
                     <span class="form-text text-black-50">{#field_msg_verbatim_longitude#}</span>
                 </div>
                 <div class="col-lg-4">
-                    <label>{#field_utm_latitude#}  <span class="text-danger bold">*</span> :</label>
+                    <label>{#field_utm_latitude#} <span class="text-danger bold">*</span> :</label>
                     <div class="input-group">
                         <input type="text" class="form-control"
                                name="item[utm_latitude]"
@@ -125,7 +163,7 @@
                     <span class="form-text text-black-50">{#field_msg_utm_latitude#}</span>
                 </div>
                 <div class="col-lg-4">
-                    <label>{#field_utm_longitude#}  <span class="text-danger bold">*</span> :</label>
+                    <label>{#field_utm_longitude#} <span class="text-danger bold">*</span> :</label>
                     <div class="input-group">
                         <input type="text" class="form-control"
                                id="utm_longitude"
@@ -147,7 +185,8 @@
                                name="item[zone]"
                                value="{$item.zone|escape:"html"}"
                         >
-                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-info"></i></span></div>
+                        <div class="input-group-append"><span class="input-group-text"><i class="fa fa-info"></i></span>
+                        </div>
                     </div>
                     <span class="form-text text-muted">{#field_msg_zona#}</span>
                 </div>

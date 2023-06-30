@@ -598,6 +598,8 @@
 
             $('#zone').val(utmCoords.zone);
             $('#hemisferio').val(utmCoords.hemisferio);
+            $('#continent').val("América del sur");
+            $('#country').val("Bolivia (Plurinational State of)");
         });
 
         // var location_latitude_decimal = $('#location_latitude_decimal').val();
