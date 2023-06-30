@@ -12,17 +12,14 @@ $fields = array();
  * Configuraciòn de los grupos de campos a utilizar
  */
 $field_item = array();
-$field_item["date"]=array("type"=>"text");
-$field_item["verbatim_event_date"]=array("type"=>"date_01");
-$field_item["event_time"]=array("type"=>"text");
-$field_item["field_number"]=array("type"=>"text");
-$field_item["event_remarks"]=array("type"=>"text");
-$field_item["colector_principal"]=array("type"=>"text");
+$field_item["date"] = array("type" => "text");
+$field_item["verbatim_event_date"] = array("type" => "date_01");
+$field_item["event_time"] = array("type" => "text");
+$field_item["field_number"] = array("type" => "text");
+$field_item["event_remarks"] = array("type" => "text");
+$field_item["colector_principal"] = array("type" => "text");
 
-//$field_item["active"]=array("type"=>"checkbox_02");
-
-
-$fields["module"]= $field_item;
+$fields["module"] = $field_item;
 unset($field_item);
 /**
  * Apartir de aca, puedes configurar otros campos

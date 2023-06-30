@@ -25,21 +25,6 @@ $item_tab[]=array(
 ,   "icon" => "fas fa-book m--font-success"
 ,   "new" => 0
 );
-
-//-------------------------------------------------------------
-$item_tab[]=array(
-    "label"=> $smarty->config_vars["tab_colectorsecundario"]
-,   "id_name"=>"colectorsecundario"
-,   "icon" => "fas fa-user-alt m--font-success"
-,   "new" => 0
-);
-//-------------------------------------------------------------
-$item_tab[]=array(
-    "label"=> $smarty->config_vars["tab_preparador"]
-,   "id_name"=>"preparador"
-,   "icon" => "fas fa-user-alt m--font-success"
-,   "new" => 0
-);
 //-------------------------------------------------------------
 
 $item_tab[]=array(

@@ -1,38 +1,44 @@
 <?PHP
+
 namespace App\Sib\Module\Zoologia_ictiologia\Snippet\Index;
+
 use Core\CoreResources;
 
-class Index extends CoreResources {
-    var $objTable = "especimen";
-    var $folder = "zoologia_ictiologia";
-    var $fkey_field = "categoria_id";
-    var $extraWhere = "";
-    function __construct()
+class Index extends CoreResources
+{
+    public $objTable = "especimen";
+    public $folder = "zoologia_ictiologia";
+    public $fkeyField = "categoria_id";
+    public $extraWhere = "";
+
+    public function __construct()
     {
         /**
          * We initialize all the libraries and variables for the new class
          */
         $this->appInit();
-        $this->extraWhere = $this->fkey_field."= '7'";
+        $this->extraWhere = $this->fkey_field . "= '7'";
     }
-    function getItem($idItem){
+
+    public function getItem($idItem)
+    {
 
         $info = '';
 
-        if($idItem!=''){
+        if ($idItem != '') {
             $sqlSelect = ' i.*
                            , concat(u1.name,\' \',u1.last_name) AS user_creater
                             , CONCAT(u2.name,\' \',u2.last_name) as user_updater';
-            $sqlFrom = ' '.$this->table[$this->objTable].' i
-                         LEFT JOIN '.$this->table_core["user"].' u1 on u1.id=i.user_create
-                         LEFT JOIN '.$this->table_core["user"].' u2 on u2.id=i.user_update';
-            $sqlWhere = ' i.id='.$idItem;
+            $sqlFrom = ' ' . $this->table[$this->objTable] . ' i
+                         LEFT JOIN ' . $this->table_core["user"] . ' u1 on u1.id=i.user_create
+                         LEFT JOIN ' . $this->table_core["user"] . ' u2 on u2.id=i.user_update';
+            $sqlWhere = ' i.id=' . $idItem;
             $sqlGroup = ' ';
 
-            $sql = 'SELECT '.$sqlSelect.'
-                  FROM '.$sqlFrom.'
-                  WHERE '.$sqlWhere.'
-                  '.$sqlGroup;
+            $sql = 'SELECT ' . $sqlSelect . '
+                  FROM ' . $sqlFrom . '
+                  WHERE ' . $sqlWhere . '
+                  ' . $sqlGroup;
             $info = $this->dbm->Execute($sql);
             $info = $info->fields;
 
@@ -42,25 +48,24 @@ class Index extends CoreResources {
     }
 
 
-    public function getItemDatatableRows(){
+    public function getItemDatatableRows()
+    {
         global $dbSetting;
         $table = $this->table[$this->objTable];
         $primaryKey = 'id';
         $grid = "item";
-        $db=$dbSetting[0];
+        $db = $dbSetting[0];
         /**
          * Additional configuration
          */
-        $extraWhere = $this->extraWhere ;
-        $groupBy = "";
-        $having = "";
+        $extraWhere = $this->extraWhere;
         /**
          * Result of the query sent
          */
-        $result = $this->getGridDatatableSimple($db,$grid,$table, $primaryKey, $extraWhere);
+        $result = $this->getGridDatatableSimple($db, $grid, $table, $primaryKey, $extraWhere);
         foreach ($result['data'] as $itemId => $valor) {
-            $result['data'][$itemId]['created_at'] = $this->changeDataFormat($result['data'][$itemId]['created_at'],"d/m/Y H:i:s");
-            $result['data'][$itemId]['updated_at'] = $this->changeDataFormat($result['data'][$itemId]['updated_at'],"d/m/Y H:i:s");
+            $result['data'][$itemId]['created_at'] = $this->changeDataFormat($valor['created_at'], "d/m/Y H:i:s");
+            $result['data'][$itemId]['updated_at'] = $this->changeDataFormat($valor['updated_at'], "d/m/Y H:i:s");
 
         }
         return $result;
@@ -74,12 +79,11 @@ class Index extends CoreResources {
      * @param $id
      * @return mixed
      */
-    function deleteData($id){
-        $field_id="id";
-//        $where = $this->extraWhere;
+    public function deleteData($id)
+    {
+        $fieldId = "id";
         $where = "";
-        $res = $this->deleteItem($id,$field_id,$this->table[$this->objTable],$where);
-        return $res;
+        return $this->deleteItem($id, $fieldId, $this->table[$this->objTable], $where);
     }
 
 }

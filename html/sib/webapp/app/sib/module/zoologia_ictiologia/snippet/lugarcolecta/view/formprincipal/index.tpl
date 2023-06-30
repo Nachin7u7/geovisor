@@ -18,6 +18,32 @@
             </div>
             <div class="form-group row">
                 <div class="col-lg-6">
+                    <label>{#field_continent#}  <span class="text-danger bold">*</span> :</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               name="item[continent]"
+                               id="continent" required
+                               value="{$item.continent|escape:"html"}"
+                               data-fv-not-empty___message="{#glFieldRequired#}" disabled
+                        >
+                        <div class="input-group-append"><span class="input-group-text"><i
+                                        class="fas fa-map-marked-alt text-info"></i></span></div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <label>{#field_pais#}  <span class="text-danger bold">*</span> :</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               name="item[country]"
+                               id="country" required
+                               value="{$item.country|escape:"html"}"
+                               data-fv-not-empty___message="{#glFieldRequired#}" disabled
+                        >
+                        <div class="input-group-append"><span class="input-group-text"><i
+                                        class="fas fa-map-marked-alt text-info"></i></span></div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
                     <label>{#field_departamento_id#} <span class="text-danger bold">*</span> : </label>
                     <div class="input-group">
                         <select class="form-control m-select2 select2_general"

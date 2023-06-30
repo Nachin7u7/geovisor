@@ -1,4 +1,5 @@
 <?PHP
+
 use App\Sib\Module\Zoologia_ictiologia\Snippet\Foto\Index;
 use App\Sib\Module\Zoologia_ictiologia\Snippet\Foto\Catalog;
 use Core\Core;
@@ -10,7 +11,7 @@ $objCatalog = new Catalog();
  */
 $templateModule = $frontend["baseAjax"];
 
-switch($action){
+switch ($action) {
     /**
      * Página por defecto (index)
      */
@@ -27,13 +28,12 @@ switch($action){
          */
         $gridItem = $objItem->getGridItem("index");
         $smarty->assign("gridItem", $gridItem);
-        $smarty->assign("subpage",$webm["sc_index"]);
+        $smarty->assign("subpage", $webm["sc_index"]);
         break;
     /**
      * Creación de JSON
      */
     case 'list':
-        //$datatable_debug= true;
         $res = $objItem->getItemDatatableRows($item_id);
         Core::printJson($res);
         break;
@@ -43,45 +43,42 @@ switch($action){
          */
         \Core\Core::setLenguage("formItem");
 
-        $smarty->assign("item_id",$item_id);
+        $smarty->assign("item_id", $item_id);
 
 
-
-        if($type=="update"){
-            $item = $objItem->getItem($id2,$item_id);
-        }else{
-            //$item = "";
+        if ($type == "update") {
+            $item = $objItem->getItem($id2, $item_id);
+        } else {
             $item["class"] = "fab fa-buffer";
             $item["order"] = "1";
             $item["active"] = "1";
         }
-        $smarty->assign("item",$item);
+        $smarty->assign("item", $item);
 
-        $objCatalog->conf_catalog_form($item,$item_id);
+        $objCatalog->conf_catalog_form($item, $item_id);
         $cataobj = $objCatalog->getCatalogList();
-        $smarty->assign("cataobj" , $cataobj);
-        //print_struc($cataobj);
+        $smarty->assign("cataobj", $cataobj);
 
-        $smarty->assign("type",$type);
-        $smarty->assign("id",$id2);
-        $smarty->assign("subpage",$webm["sc_form"]);
+        $smarty->assign("type", $type);
+        $smarty->assign("id", $id2);
+        $smarty->assign("subpage", $webm["sc_form"]);
         break;
 
     case 'save':
-        $respuesta = $objItem->updateData($_REQUEST["item"],$id2,"index",$type,$item_id,$_FILES["input_file"]);
+        $respuesta = $objItem->updateData($_REQUEST["item"], $id2, "index", $type, $item_id, $_FILES["input_file"]);
         Core::printJson($respuesta);
         break;
 
     case 'delete':
-        $res = $objItem->deleteData($id2,$item_id);
+        $res = $objItem->deleteData($id2, $item_id);
         Core::printJson($res);
         break;
 
     case 'download':
-        $objItem->getFile($id2,$item_id,0);
+        $objItem->getFile($id2, $item_id, 0);
         break;
     case 'view':
-        $objItem->getFile($id2,$item_id,3);
+        $objItem->getFile($id2, $item_id, 3);
         break;
 
 }
