@@ -63,7 +63,7 @@ class Index extends CoreResources
             $dataResult = $this->processFields($rec, $this->campos[$form], $action);
 
             if ($action == "new") {
-                $dataResult["categoria_id"] = 6;
+                $dataResult["categoria_id"] = 9;
             }
 
             $fieldsToCheck = [

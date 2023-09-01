@@ -22,7 +22,6 @@ switch ($action) {
          * catalog configuration
          */
 
-        $objCatalog->confCatalog();
         $cataobj = $objCatalog->getCatalogList();
         $cataobj["activo"] = $catalogo = $objCatalog->getActiveOption();
         $smarty->assign("cataobj", $cataobj);

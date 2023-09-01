@@ -32,10 +32,5 @@ if ($action == 'save') {
     }
     $smarty->assign("item", $item);
 
-    // Catalog
-    $objCatalog->confCatalog();
-    $cataobj = $objCatalog->getCatalogList();
-    $smarty->assign("cataobj", $cataobj);
-
     $smarty->assign("subpage", $webm["sc_index"]);
 }
