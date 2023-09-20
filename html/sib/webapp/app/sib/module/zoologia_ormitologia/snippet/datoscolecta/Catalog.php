@@ -14,5 +14,11 @@ class Catalog extends CoreResources
          */
         $this->appInit();
     }
+    public function confCatalog()
+{
+    /**
+     * Agregar catalogos
+     */
+}
 
 }
