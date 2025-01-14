@@ -1,7 +1,6 @@
-version: '3'
 services:
     geoserver:
-        image: geonode/geoserver:${GEO_VERSION}
+        image: kartoza/geoserver
         container_name: ${GEO_NAME}
         restart: always
         env_file:
@@ -17,10 +16,10 @@ services:
             - "./apps/tomcat/conf/tomcat-users.xml:/usr/local/tomcat/conf/tomcat-users.xml"
             - "./apps/tomcat/conf/context.xml:/usr/local/tomcat/conf/context.xml"
         environment:
-        #  - DOCKERHOST
-        #  - GEONODE_HOST_IP
-        #  - PUBLIC_PORT=80
-        #  - DOCKER_HOST_IP
+            #  - DOCKERHOST
+            #  - GEONODE_HOST_IP
+            #  - PUBLIC_PORT=80
+            #  - DOCKER_HOST_IP
             - DJANGO_URL=http://localhost/
         depends_on:
             - postgresdb
