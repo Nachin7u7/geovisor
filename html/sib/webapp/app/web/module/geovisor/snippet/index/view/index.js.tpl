@@ -527,110 +527,8 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
 
             var dia = '2022/11/01';
 
-            var nasa_01 = new L.GIBSLayer('VIIRS_CityLights_2012', {
-                date: new Date(dia),
-                transparent: true,
-                opacity: 0.8
-            });
-
-            var nasa_02 = new L.GIBSLayer('VIIRS_SNPP_CorrectedReflectance_TrueColor', {
-                date: new Date(dia),
-                transparent: true,
-                opacity: 0.8
-            });
-            var nasa_03 = new L.GIBSLayer('VIIRS_SNPP_CorrectedReflectance_BandsM11-I2-I1', {
-                date: new Date(dia),
-                transparent: true,
-                opacity: 0.8
-            });
-
-            var nasa_04 = new L.GIBSLayer('VIIRS_SNPP_CorrectedReflectance_BandsM3-I3-M11', {
-                date: new Date(dia),
-                transparent: true,
-                opacity: 0.8
-            });
-
-
-
-            var nasa_modis_01 = new L.GIBSLayer('MODIS_Terra_Land_Surface_Temp_Day', {
-                date: new Date(dia),
-                transparent: true,
-                opacity: 0.8
-            });
-            var nasa_modis_02 = new L.GIBSLayer('MODIS_Terra_Land_Surface_Temp_Night', {
-                date: new Date(dia),
-                transparent: true,
-                opacity: 0.8
-            });
-            var nasa_modis_03 = new L.GIBSLayer('MODIS_Terra_Brightness_Temp_Band31_Day', {
-                date: new Date(dia),
-                transparent: true,
-                opacity: 0.8
-            });
-            var nasa_modis_04 = new L.GIBSLayer('MODIS_Terra_Brightness_Temp_Band31_Night', {
-                date: new Date(dia),
-                transparent: true,
-                opacity: 0.8
-            });
-
-
-
 
             var overLayers =[
-                {
-                    group: "NASA",
-                    collapsed: true,
-                    layers: [
-                        {
-                            active: false,
-                            name: "VIIRS CityLights 2012",
-                            icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
-                            layer: nasa_01
-                        },
-                        {
-                            active: false,
-                            name: "VIIRS SNPP CorrectedReflectance TrueColor",
-                            icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
-                            layer: nasa_02
-                        },
-                        {
-                            active: false,
-                            name: "VIIRS SNPP CorrectedReflectance Bands M11-I2-I1",
-                            icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
-                            layer: nasa_03
-                        },
-                        {
-                            active: false,
-                            name: "VIIRS SNPP CorrectedReflectance Bands M3I3-M11",
-                            icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
-                            layer: nasa_04
-                        },
-                        {
-                            active: false,
-                            name: "MODIS Terra Land Surface Temp Day",
-                            icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
-                            layer: nasa_modis_01
-                        },
-                        {
-                            active: false,
-                            name: "MODIS Terra Land Surface Temp Night",
-                            icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
-                            layer: nasa_modis_02
-                        },
-                        {
-                            active: false,
-                            name: "MODIS Terra Brightness Temp Band31 Day",
-                            icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
-                            layer: nasa_modis_03
-                        },
-                        {
-                            active: false,
-                            name: "MODIS Terra Brightness Temp Band31 Night",
-                            icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
-                            layer: nasa_modis_04
-                        },
-                    ]
-                },
                 {
                     group: "Administrativos",
                     collapsed: true,
@@ -804,35 +702,6 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
                     ]
                 },
 
-
-                {
-                    group: "Servicios climáticos globales",
-                    collapsed: true,
-                    layers: [
-                        {
-                            active: false,
-                            name: "Nubes",
-                            //icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
-                            layer: clima_nubes,
-                        },
-                        {
-                            active: false,
-                            name: "Precipitación",
-                            //icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
-                            layer: clima_precipitacion,
-                        },
-                        {
-                            active: false,
-                            name: "Temperatura",
-                            layer: clima_temperatura,
-                        },
-                        {
-                            active: false,
-                            name: "Viento",
-                            layer: clima_viento,
-                        },
-                    ]
-                },
                 {
                     group: "Red vial",
                     collapsed: true,
