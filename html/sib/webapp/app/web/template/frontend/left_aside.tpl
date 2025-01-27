@@ -3,8 +3,8 @@
     <!--begin::Brand-->
     <div class="brand flex-column-auto" id="kt_brand">
         <!--begin::Logo-->
-        <a href="/" class="brand-logo">
-            <img alt="Uyuni" src="/images/logo/logo_white.png" width="160"/>
+        <a href="/" class="brand-logo" style="display: inline-block; margin-top: 50px; margin-bottom: 20px;">
+            <img alt="Uyuni" src="/images/logo/logo_white.png" width="230"/>
         </a>
         <!--end::Logo-->
         <!--begin::Toggle-->

@@ -331,7 +331,7 @@ http_response_code(404);
 <div class="stars">
     <div class="custom-navbar">
         <div class="brand-logo">
-            <img src="/images/404/logo.svg" width="80px">
+            <img src="/images/404/logo.svg" width="200px">
         </div>
         <!--
         <div class="navbar-links">

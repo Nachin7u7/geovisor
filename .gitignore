@@ -50,4 +50,3 @@ data/*.gz
 data/*.tar
 #/apps/nginx/default.conf
 ~*
-.env
