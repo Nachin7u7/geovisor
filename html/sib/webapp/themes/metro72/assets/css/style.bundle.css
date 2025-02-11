@@ -49488,7 +49488,8 @@ a.text-white:hover {
 }
 
 .min-h-165px {
-    min-height: 400px !important /* <--- not really LOL */
+    min-height: 200px !important
+        /* <--- not really LOL */
 }
 
 .max-h-165px {

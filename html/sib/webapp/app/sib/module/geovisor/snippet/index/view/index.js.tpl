@@ -553,18 +553,6 @@
                         layers: [
                             {
                                 active: false,
-                                name: "UH Nivel5",
-                                icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
-                                layer: uh_nivel5
-                            },
-                            {
-                                active: false,
-                                name: "UH Nivel4",
-                                icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
-                                layer: uh_nivel4
-                            },
-                            {
-                                active: false,
                                 name: "UH Nivel3",
                                 icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
                                 layer: uh_nivel3
@@ -582,80 +570,28 @@
                                 layer: uh_nivel1
                             },
                         ]
-                    },
-    
+                    },    
                     {
-                        group: "Bosques y Conservación",
+                        group: "Otras Coberturas",
                         collapsed: true,
                         layers: [
-                            {
-                                active: false,
-                                name: "Áreas protegidas",
-                                icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
-                                layer: areas_protegidas,
-                            },
-                            {
-                                active: false,
-                                name: "Reservas Forestales",
-                                icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
-                                layer: reservas_forestales,
-                            },
-                            {
-                                active: false,
-                                name: "Deforestación",
-                                icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
-                                layer: deforestacion,
-                            },
-                            {
-                                active: false,
-                                name: "Bosques",
-                                icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
-                                layer: view_bosques,
-                            },
-                        ]
-                    },
-    
-                    {
-                        group: "MNHN",
-                        collapsed: true,
-                        layers: [
-                            {
-                                active: false,
-                                name: "Mapa Geológico",
-                                icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
-                                layer: mnhn_geologia,
-                            },
-                            /*
-                            {
-                                active: false,
-                                name: "Ecorregiones",
-                                icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
-                                layer: mnhn_ecoregiones,
-                            },
-                            */
                             {
                                 name: "Ecorregiónes Ibish",
                                 icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
                                 layer: ecorregiones_ibish
                             },
-                            {
-                                active: false,
-                                name: "Vegetación",
-                                icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
-                                layer: mnhn_vegetacion,
-                            },
-                            {
-                                active: false,
-                                name: "Áreas Protegidas Nacional",
-                                icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
-                                layer: mnhn_Apn,
-                            },
-                            {
-                                active: false,
-                                name: "Áreas Protegidas SubNacional",
-                                icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
-                                layer: mnhn_Aps,
-                            },
+                            // {
+                            //     active: false,
+                            //     name: "Áreas Protegidas Nacional",
+                            //     icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
+                            //     layer: mnhn_Apn,
+                            // },
+                            // {
+                            //     active: false,
+                            //     name: "Áreas Protegidas SubNacional",
+                            //     icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
+                            //     layer: mnhn_Aps,
+                            // },
                             {
                                 active: false,
                                 name: "Áreas Protegidas Departamental",
@@ -682,12 +618,6 @@
                             },
                             {
                                 active: false,
-                                name: "Zonas de vida",
-                                icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
-                                layer: mnhn_zonasvida,
-                            },
-                            {
-                                active: false,
                                 name: "Reservas forestales",
                                 icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
                                 layer: mnhn_reservasforestales,
@@ -698,39 +628,11 @@
                                 icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
                                 layer: mnhn_tcos,
                             },
-    
-                        ]
-                    },
-    
-                    {
-                        group: "Red vial",
-                        collapsed: true,
-                        layers: [
                             {
                                 active: false,
-                                name: "Caminos Principales",
-                                layer: redvial_principal,
-                            },
-                            {
-                                active: false,
-                                name: "Caminos Secundarios",
-                                layer: redvial_secundario,
-                            },
-                        ]
-                    },
-                    {
-                        group: "Salud y Educación",
-                        collapsed: true,
-                        layers: [
-                            {
-                                active: false,
-                                name: "Establecimientos de salud",
-                                layer: saludedu_salud,
-                            },
-                            {
-                                active: false,
-                                name: "Establecimientos de Educación",
-                                layer: saludedu_educacion,
+                                name: "Deforestación",
+                                icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
+                                layer: deforestacion,
                             },
                         ]
                     },
@@ -742,40 +644,30 @@
                                 active: false,
                                 name: "Ríos Principales",
                                 layer: hidro_rios_principales,
-                            },
-                            {
-                                active: false,
-                                name: "Ríos Secundarios",
-                                layer: hidro_rios_secundarios,
-                            },
-                            {
-                                active: false,
-                                name: "Lagunas",
-                                layer: hidro_lagunas,
-                            },
+                            }
                         ]
                     },
-                    {
-                        group: "SENAMHI",
-                        collapsed: true,
-                        layers: [
-                            {
-                                active: false,
-                                name: "Temperatura a 2 m hora: 18:00",
-                                layer: senamhi_temperatura,
-                            },
-                            {
-                                active: false,
-                                name: "Humedad relativa % hora: 1800",
-                                layer: senamhi_humedad,
-                            },
-                            {
-                                active: false,
-                                name: "Precipitación acumulada de las 24h",
-                                layer: senamhi_precipitacion_acumulada,
-                            },
-                        ]
-                    },
+                    // {
+                    //     group: "SENAMHI",
+                    //     collapsed: true,
+                    //     layers: [
+                    //         {
+                    //             active: false,
+                    //             name: "Temperatura a 2 m hora: 18:00",
+                    //             layer: senamhi_temperatura,
+                    //         },
+                    //         {
+                    //             active: false,
+                    //             name: "Humedad relativa % hora: 1800",
+                    //             layer: senamhi_humedad,
+                    //         },
+                    //         {
+                    //             active: false,
+                    //             name: "Precipitación acumulada de las 24h",
+                    //             layer: senamhi_precipitacion_acumulada,
+                    //         },
+                    //     ]
+                    // },
                 ];
                 return overLayers;
             };
