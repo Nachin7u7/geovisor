@@ -1,6 +1,7 @@
 services:
     geoserver:
-        image: kartoza/geoserver
+        image: geonode/geoserver:${GEO_VERSION}
+        pull_policy: never
         container_name: ${GEO_NAME}
         restart: always
         env_file:
