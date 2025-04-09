@@ -553,9 +553,9 @@
                         layers: [
                             {
                                 active: false,
-                                name: "UH Nivel3",
+                                name: "UH Nivel1",
                                 icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
-                                layer: uh_nivel3
+                                layer: uh_nivel1
                             },
                             {
                                 active: false,
@@ -565,9 +565,9 @@
                             },
                             {
                                 active: false,
-                                name: "UH Nivel1",
+                                name: "UH Nivel3",
                                 icon: '<i class="fa fa-map-marked-alt icon-sm"></i>',
-                                layer: uh_nivel1
+                                layer: uh_nivel3
                             },
                         ]
                     },    
